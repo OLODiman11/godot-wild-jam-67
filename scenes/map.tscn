@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgngaw7447d8v"]
+
+[ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="1_driq8"]
+[ext_resource type="Texture2D" uid="uid://cijond5qk5rx7" path="res://assets/1x1_white.png" id="2_0asrx"]
+
+[node name="Map" type="Node2D"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture_repeat = 2
+texture = ExtResource("1_driq8")
+region_enabled = true
+region_rect = Rect2(0, 0, 3500, 3500)
+
+[node name="LeftWall" type="Sprite2D" parent="."]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(-1750, 0)
+scale = Vector2(200, 4100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(-0.5, 0)
+
+[node name="RightWall" type="Sprite2D" parent="."]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(1750, 0)
+scale = Vector2(200, 4100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0.5, 0)
+
+[node name="UpperWall" type="Sprite2D" parent="."]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+position = Vector2(0, -1750)
+scale = Vector2(3500, 200)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, -0.5)
+
+[node name="UpperWall2" type="Sprite2D" parent="."]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(0, -1950)
+scale = Vector2(3500, 100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, -0.5)
+
+[node name="BottomWall2" type="Sprite2D" parent="."]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(0, 1750)
+scale = Vector2(3500, 100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, 0.5)
+
+[node name="BottomWall" type="Sprite2D" parent="."]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+position = Vector2(0, 1850)
+scale = Vector2(3900, 200)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, 0.5)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ptt1kw2oop"]
+
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_bepd8"]
+[ext_resource type="PackedScene" uid="uid://r3vfkcvtavpr" path="res://scenes/bullet.tscn" id="2_sy18a"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_bepd8")
+bullet_scene = ExtResource("2_sy18a")
+
+[node name="ShootPoint" type="Marker2D" parent="."]

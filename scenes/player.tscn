@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://djpyxgp2ue8hp"]
+
+[ext_resource type="Script" path="res://scripts/Player.gd" id="1_wwpmi"]
+[ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="2_mm1p7"]
+[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/weapon.tscn" id="3_5fphg"]
+[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="4_5frl1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_wwpmi")
+speed = 800.0
+run_speed = 1200.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dgsdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.205, 0.16)
+texture = ExtResource("2_mm1p7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="UI" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -222.0
+offset_top = -122.0
+offset_right = 222.0
+offset_bottom = 124.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -107.0
+offset_top = 2.0
+offset_bottom = 68.0
+grow_horizontal = 0
+alignment = 1
+
+[node name="Pistol" type="Button" parent="Camera2D/UI/VBoxContainer"]
+layout_mode = 2
+text = "Pistol
+"
+
+[node name="Rifle" type="Button" parent="Camera2D/UI/VBoxContainer"]
+layout_mode = 2
+text = "Rifle"
+
+[node name="Weapon" parent="." instance=ExtResource("3_5fphg")]
+weapon_res = ExtResource("4_5frl1")
+
+[connection signal="pressed" from="Camera2D/UI/VBoxContainer/Pistol" to="." method="switch_weapon" binds= ["res://resources/weapons/pistol.tres"]]
+[connection signal="pressed" from="Camera2D/UI/VBoxContainer/Rifle" to="." method="switch_weapon" binds= ["res://resources/weapons/rifle.tres"]]
