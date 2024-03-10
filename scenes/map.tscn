@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgngaw7447d8v"]
+[gd_scene load_steps=4 format=3 uid="uid://bgngaw7447d8v"]
 
 [ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="1_driq8"]
 [ext_resource type="Texture2D" uid="uid://cijond5qk5rx7" path="res://assets/1x1_white.png" id="2_0asrx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4oly"]
 
 [node name="Map" type="Node2D"]
 
@@ -12,44 +14,74 @@ texture = ExtResource("1_driq8")
 region_enabled = true
 region_rect = Rect2(0, 0, 3500, 3500)
 
-[node name="LeftWall" type="Sprite2D" parent="."]
+[node name="LeftWall" type="Sprite2D" parent="." groups=["Map"]]
 modulate = Color(0.486275, 0.486275, 0.486275, 1)
 position = Vector2(-1750, 0)
 scale = Vector2(200, 4100)
 texture = ExtResource("2_0asrx")
 offset = Vector2(-0.5, 0)
 
-[node name="RightWall" type="Sprite2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="LeftWall" groups=["Map"]]
+position = Vector2(-0.505, 0)
+scale = Vector2(0.0502081, 0.0502081)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall/StaticBody2D" groups=["Map"]]
+shape = SubResource("RectangleShape2D_x4oly")
+
+[node name="RightWall" type="Sprite2D" parent="." groups=["Map"]]
 modulate = Color(0.486275, 0.486275, 0.486275, 1)
 position = Vector2(1750, 0)
 scale = Vector2(200, 4100)
 texture = ExtResource("2_0asrx")
 offset = Vector2(0.5, 0)
 
-[node name="UpperWall" type="Sprite2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="RightWall" groups=["Map"]]
+position = Vector2(0.494999, 0)
+scale = Vector2(0.0502081, 0.0502081)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall/StaticBody2D2" groups=["Map"]]
+shape = SubResource("RectangleShape2D_x4oly")
+
+[node name="UpperWall" type="Sprite2D" parent="." groups=["Map"]]
 modulate = Color(0.337255, 0.337255, 0.337255, 1)
 position = Vector2(0, -1750)
 scale = Vector2(3500, 200)
 texture = ExtResource("2_0asrx")
 offset = Vector2(0, -0.5)
 
-[node name="UpperWall2" type="Sprite2D" parent="."]
+[node name="StaticBody2D4" type="StaticBody2D" parent="UpperWall" groups=["Map"]]
+position = Vector2(0, -0.74)
+rotation = 1.5708
+scale = Vector2(0.0648654, 0.0501421)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperWall/StaticBody2D4" groups=["Map"]]
+shape = SubResource("RectangleShape2D_x4oly")
+
+[node name="UpperWall2" type="Sprite2D" parent="." groups=["Map"]]
 modulate = Color(0.486275, 0.486275, 0.486275, 1)
 position = Vector2(0, -1950)
 scale = Vector2(3500, 100)
 texture = ExtResource("2_0asrx")
 offset = Vector2(0, -0.5)
 
-[node name="BottomWall2" type="Sprite2D" parent="."]
+[node name="BottomWall2" type="Sprite2D" parent="." groups=["Map"]]
 modulate = Color(0.486275, 0.486275, 0.486275, 1)
 position = Vector2(0, 1750)
 scale = Vector2(3500, 100)
 texture = ExtResource("2_0asrx")
 offset = Vector2(0, 0.5)
 
-[node name="BottomWall" type="Sprite2D" parent="."]
+[node name="BottomWall" type="Sprite2D" parent="." groups=["Map"]]
 modulate = Color(0.337255, 0.337255, 0.337255, 1)
 position = Vector2(0, 1850)
 scale = Vector2(3900, 200)
 texture = ExtResource("2_0asrx")
 offset = Vector2(0, 0.5)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="BottomWall" groups=["Map"]]
+position = Vector2(0, 0.11)
+rotation = 1.5708
+scale = Vector2(0.0648654, 0.0449993)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall/StaticBody2D3" groups=["Map"]]
+shape = SubResource("RectangleShape2D_x4oly")
