@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://djpyxgp2ue8hp"]
+[gd_scene load_steps=7 format=3 uid="uid://djpyxgp2ue8hp"]
 
 [ext_resource type="Script" path="res://scripts/Player.gd" id="1_wwpmi"]
 [ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="2_mm1p7"]
@@ -7,7 +7,13 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="Curve2D" id="Curve2D_plty3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -249, -149.6, 0, 0, 0, 0, 255.6, -153, 0, 0, 0, 0, 256.8, 159, 0, 0, 0, 0, -249.6, 159, 0, 0, 0, 0, -249, -149.6)
+}
+point_count = 5
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(5, 5)
 script = ExtResource("1_wwpmi")
 speed = 800.0
@@ -51,8 +57,22 @@ text = "Pistol
 layout_mode = 2
 text = "Rifle"
 
+[node name="Sniper Rifle" type="Button" parent="Camera2D/UI/VBoxContainer"]
+layout_mode = 2
+text = "Sniper Rifle"
+
 [node name="Weapon" parent="." instance=ExtResource("3_5fphg")]
 weapon_res = ExtResource("4_5frl1")
 
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_plty3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-249, -149.6)
+rotation = -0.0067379
+
+[node name="Marker2D" type="Marker2D" parent="Path2D/PathFollow2D"]
+
 [connection signal="pressed" from="Camera2D/UI/VBoxContainer/Pistol" to="." method="switch_weapon" binds= ["res://resources/weapons/pistol.tres"]]
 [connection signal="pressed" from="Camera2D/UI/VBoxContainer/Rifle" to="." method="switch_weapon" binds= ["res://resources/weapons/rifle.tres"]]
+[connection signal="pressed" from="Camera2D/UI/VBoxContainer/Sniper Rifle" to="." method="switch_weapon" binds= ["res://resources/weapons/sniper_rifle.tres"]]

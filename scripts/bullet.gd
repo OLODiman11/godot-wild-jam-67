@@ -16,4 +16,5 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group('Enemies'):
 			collision.get_collider().get_hit(damage)
 			queue_free()
-	
+		elif collision.get_collider().is_in_group('Map'):
+			queue_free()
