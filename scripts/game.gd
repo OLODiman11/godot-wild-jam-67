@@ -40,6 +40,6 @@ func _get_enemy_random_position():
 
 func _on_button_pressed():
 	$Button.visible = false
-	create_wave(wave_list[round])
+wa	create_wave(wave_list[round])
 
 
