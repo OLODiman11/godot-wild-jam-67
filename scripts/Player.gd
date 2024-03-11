@@ -52,4 +52,3 @@ func _on_regen_timer_timeout():
 	if health > max_health:
 		health = max_health
 	healthChanged.emit()
-	print(health)
