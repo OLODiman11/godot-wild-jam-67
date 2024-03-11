@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://djpyxgp2ue8hp"]
+[gd_scene load_steps=12 format=3 uid="uid://djpyxgp2ue8hp"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_yd1ik"]
 [ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="2_mm1p7"]
 [ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/weapon.tscn" id="3_5fphg"]
 [ext_resource type="Script" path="res://scripts/upgrade_menu.gd" id="3_bsty8"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="4_5frl1"]
+[ext_resource type="Texture2D" uid="uid://djamjw8p0mrrs" path="res://assets/ProgressUnder.svg" id="4_5m60e"]
+[ext_resource type="Texture2D" uid="uid://bk4mogujc7275" path="res://assets/ProgressBar.svg" id="5_3vusx"]
+[ext_resource type="Script" path="res://scripts/progress_bar.gd" id="6_b26ha"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
 
@@ -75,7 +78,10 @@ text = "Upgrade"
 
 [node name="UpgradeMenu" type="PanelContainer" parent="Camera2D/UI"]
 visible = false
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.0121951
+anchor_bottom = -0.0121951
 offset_left = 101.0
 offset_top = 26.0
 offset_right = 327.0
@@ -183,6 +189,24 @@ offset_right = 57.0
 offset_bottom = 23.0
 text = "Points: 0"
 
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Camera2D/UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -131.4
+offset_top = -25.4
+offset_right = 318.6
+offset_bottom = 24.6
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.293927, 0.469476)
+texture_under = ExtResource("4_5m60e")
+texture_progress = ExtResource("5_3vusx")
+script = ExtResource("6_b26ha")
+
 [node name="Weapon" parent="." instance=ExtResource("3_5fphg")]
 weapon_res = ExtResource("4_5frl1")
 
@@ -195,9 +219,16 @@ rotation = -0.0067379
 
 [node name="Marker2D" type="Marker2D" parent="Path2D/PathFollow2D"]
 
+[node name="RegenTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="pressed" from="Camera2D/UI/VBoxContainer/Pistol" to="." method="switch_weapon" binds= ["res://resources/weapons/pistol.tres"]]
+[connection signal="pressed" from="Camera2D/UI/VBoxContainer/Rifle" to="." method="switch_weapon" binds= ["res://resources/weapons/rifle.tres"]]
+[connection signal="pressed" from="Camera2D/UI/VBoxContainer/Sniper Rifle" to="." method="switch_weapon" binds= ["res://resources/weapons/sniper_rifle.tres"]]
 [connection signal="pressed" from="Camera2D/UI/UpgradeButton" to="Camera2D/UI/UpgradeMenu" method="_on_upgrade_button_pressed"]
 [connection signal="pressed" from="Camera2D/UI/UpgradeMenu/UpgradeList/Health/Upgrade/PlusHP" to="Camera2D/UI/UpgradeMenu" method="_on_plus_hp_pressed"]
 [connection signal="pressed" from="Camera2D/UI/UpgradeMenu/UpgradeList/Speed/Upgrade/PlusSpeed" to="Camera2D/UI/UpgradeMenu" method="_on_plus_speed_pressed"]
 [connection signal="pressed" from="Camera2D/UI/UpgradeMenu/UpgradeList/Stamina/Upgrade/PlusStamina" to="Camera2D/UI/UpgradeMenu" method="_on_plus_stamina_pressed"]
 [connection signal="pressed" from="Camera2D/UI/UpgradeMenu/UpgradeList/RegenRate/Upgrade/PlusRegen" to="Camera2D/UI/UpgradeMenu" method="_on_plus_regen_pressed"]
 [connection signal="pressed" from="Camera2D/UI/UpgradeMenu/UpgradeList/CloseButton" to="Camera2D/UI/UpgradeMenu" method="_on_close_button_pressed"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]

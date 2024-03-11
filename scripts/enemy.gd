@@ -3,6 +3,7 @@ class_name Enemy
 extends CharacterBody2D
 
 signal died
+signal healthChanged
 
 @onready var enemy_res: EnemyRes:
 	set(value):
@@ -36,3 +37,4 @@ func _physics_process(delta):
 
 func get_hit(damage: float):
 	health -= damage
+	healthChanged.emit()
