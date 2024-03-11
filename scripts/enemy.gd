@@ -16,6 +16,7 @@ var player: Player
 		$Sprite2D.modulate = Color.RED + health / enemy_res.max_health * Color.WHITE
 		if health <= 0:
 			queue_free()
+			Globals.enemy_killed()
 			died.emit()
 
 func _ready():

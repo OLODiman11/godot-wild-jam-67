@@ -11,15 +11,15 @@ var MAP_BOUNDS := 1750
 @export var wave_list: PackedInt32Array = [5,10,15,20]
 @export var preload_enemy = preload("res://scenes/enemy.tscn")
 
-var round = 0
+var round_num = 0
 var _enemies_to_spawn: int
 
 func _ready():
 	timer.timeout.connect(spawn_enemy)
 
 func start_next_wave():
-	_enemies_to_spawn = wave_list[round]
-	round += 1
+	_enemies_to_spawn = wave_list[round_num]
+	round_num += 1
 	timer.start()
 	
 func spawn_enemy():
