@@ -11,6 +11,7 @@ signal healthChanged
 @export var stamina := 50.0
 
 @onready var regen_timer = $RegenTimer
+@onready var animation_player = $AnimationPlayer
 
 
 var health := max_health:
@@ -33,11 +34,22 @@ func _process(_delta):
 
 func _physics_process(_delta):
 	var direction = Input.get_vector("left", "right", "up", "down")
+	
+	if direction:
+		animation_player.play("parasite_walk")
+	else:
+		animation_player.play("parasite_idle")
+	
+	if direction.x < 0:
+		$Sprite2D.flip_h = false
+	else: 
+		$Sprite2D.flip_h = true
+	
 	velocity = direction * speed
 	
 	if Input.is_action_pressed("run"):
 		velocity = run_speed * direction
-	
+		
 	move_and_slide()
 	
 func get_hit(damage: float):

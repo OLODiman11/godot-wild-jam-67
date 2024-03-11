@@ -4,7 +4,7 @@ extends Node2D
 
 signal wave_ended
 
-var MAP_BOUNDS := 1750
+var MAP_BOUNDS := 1700
 
 @onready var timer: Timer = $SpawnTimer
 
