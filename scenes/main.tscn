@@ -1,19 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://bjsvj5goi8qnc"]
 
-[ext_resource type="Script" path="res://scripts/game.gd" id="1_arsmj"]
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
+[ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
 [ext_resource type="PackedScene" uid="uid://djpyxgp2ue8hp" path="res://scenes/player.tscn" id="3_t6t72"]
 
-[node name="Node2D" type="Node2D"]
-script = ExtResource("1_arsmj")
+[node name="Main" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("1_qi0m0")]
 
 [node name="Player" parent="." instance=ExtResource("3_t6t72")]
 
-[node name="Enemy_spawn_cd" type="Timer" parent="."]
-
-[node name="Button" type="Button" parent="."]
+[node name="NextWave" type="Button" parent="."]
 offset_left = -212.0
 offset_top = 295.0
 offset_right = -166.0
@@ -21,5 +18,8 @@ offset_bottom = 326.0
 scale = Vector2(8.92, 8.92)
 text = "Start"
 
-[connection signal="timeout" from="Enemy_spawn_cd" to="." method="_on_enemy_spawn_cd_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="WaveManager" parent="." instance=ExtResource("3_qillp")]
+
+[connection signal="pressed" from="NextWave" to="NextWave" method="hide"]
+[connection signal="pressed" from="NextWave" to="WaveManager" method="start_next_wave"]
+[connection signal="wave_ended" from="WaveManager" to="NextWave" method="show"]
