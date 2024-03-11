@@ -41,5 +41,5 @@ func shoot(layers: PackedInt32Array):
 		bullet.direction = get_global_transform().x
 		for layer in layers:
 			bullet.set_collision_mask_value(layer, true)
-		var root_node = get_tree().root.get_child(0)
+		var root_node = get_tree().root.get_child(1)
 		root_node.add_child(bullet)

@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var timer: Timer = $Enemy_spawn_cd
 
-var round = 0
+var round_num = 0
 var wave_list = [5,10,15,20]
 var preload_enemy = preload("res://scenes/enemy.tscn")
 var enemy_count: int
@@ -28,7 +28,7 @@ func _on_enemy_spawn_cd_timeout():
 	
 	if enemy_count <= 0:
 		timer.stop()
-		round += 1
+		round_num += 1
 		$Button.visible = true
 
 func _get_enemy_random_position():
@@ -40,6 +40,6 @@ func _get_enemy_random_position():
 
 func _on_button_pressed():
 	$Button.visible = false
-wa	create_wave(wave_list[round])
+	create_wave(wave_list[round_num])
 
 

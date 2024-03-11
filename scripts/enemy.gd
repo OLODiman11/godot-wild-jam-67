@@ -3,6 +3,7 @@ class_name Enemy
 extends CharacterBody2D
 
 signal died
+signal healthChanged
 
 @onready var enemy_res: EnemyRes:
 	set(value):
@@ -16,6 +17,7 @@ var player: Player
 		$Sprite2D.modulate = Color.RED + health / enemy_res.max_health * Color.WHITE
 		if health <= 0:
 			queue_free()
+			Globals.enemy_killed()
 			died.emit()
 
 func _ready():
@@ -35,3 +37,4 @@ func _physics_process(delta):
 
 func get_hit(damage: float):
 	health -= damage
+	healthChanged.emit()
