@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://ewanf82htyyo"]
+[gd_scene load_steps=6 format=3 uid="uid://ewanf82htyyo"]
 
 [ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="1_17nlv"]
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_f401s"]
+[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/weapon.tscn" id="4_1nldg"]
+[ext_resource type="Resource" uid="uid://lhcl3ob3ifjw" path="res://resources/weapons/baton.tres" id="5_h8mqk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmjwb"]
 
-[node name="Enemy" type="CharacterBody2D" groups=["Enemies"]]
+[node name="Enemy" type="CharacterBody2D" groups=["Enemies", "Hittable"]]
 scale = Vector2(5, 5)
+collision_layer = 4
+collision_mask = 23
 script = ExtResource("1_f401s")
-speed = 400.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.741601, 0.741601)
@@ -18,3 +21,6 @@ shape = SubResource("CapsuleShape2D_vmjwb")
 position = Vector2(0, 0.499999)
 scale = Vector2(0.2, 0.147208)
 texture = ExtResource("1_17nlv")
+
+[node name="Weapon" parent="." instance=ExtResource("4_1nldg")]
+weapon_res = ExtResource("5_h8mqk")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyRes" load_steps=3 format=3 uid="uid://bmjqoipa7l3cx"]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_res.gd" id="1_guggu"]
+[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="2_yfdny"]
+
+[resource]
+script = ExtResource("1_guggu")
+speed = 300.0
+max_health = 100.0
+weapon_res = ExtResource("2_yfdny")

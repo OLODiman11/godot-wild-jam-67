@@ -6,3 +6,5 @@ extends Resource
 @export var shoot_point_offset: float
 @export var damage: float
 @export var bullet_speed: float
+@export var fire_range: float
+@export var is_melee: bool

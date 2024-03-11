@@ -30,6 +30,10 @@ func spawn_enemy():
 	_enemies_to_spawn -= 1
 	
 	var enemy: Enemy = preload_enemy.instantiate()
+	if randi_range(0, 4) == 0:
+		enemy.enemy_res = load("res://resources/enemies/guard.tres")
+	else:
+		enemy.enemy_res = load("res://resources/enemies/melee.tres")
 	enemy.died.connect(try_end_wave)
 	
 	while true:

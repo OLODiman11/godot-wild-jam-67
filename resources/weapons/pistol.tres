@@ -8,3 +8,5 @@ fire_rate = 3.0
 shoot_point_offset = 25.0
 damage = 25.0
 bullet_speed = 2000.0
+fire_range = 1750.0
+is_melee = false

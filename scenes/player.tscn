@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://djpyxgp2ue8hp"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_wwpmi"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_yd1ik"]
 [ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="2_mm1p7"]
 [ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/weapon.tscn" id="3_5fphg"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="4_5frl1"]
@@ -13,9 +13,11 @@ _data = {
 }
 point_count = 5
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["Hittable", "Player"]]
 scale = Vector2(5, 5)
-script = ExtResource("1_wwpmi")
+collision_layer = 2
+collision_mask = 21
+script = ExtResource("1_yd1ik")
 speed = 800.0
 run_speed = 1200.0
 
