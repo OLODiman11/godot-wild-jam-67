@@ -60,14 +60,22 @@ func switch_character():
 			character = new_character
 			break
 
-func _physics_process(delta: float):
+func _physics_process(_delta: float):
 	_weapon.look_at(get_global_mouse_position())
+	if get_global_mouse_position() > character.global_position:
+		character.get_node("Sprite2D").flip_h = true
+	else:
+		character.get_node("Sprite2D").flip_h = false
+		
 
 	if Input.is_action_pressed("shoot"):
 		_weapon.shoot()
 	
 	var direction = Input.get_vector("left", "right", "up", "down")
-	
+	if direction:
+		character.get_node("AnimationPlayer").play("ally_walk")
+	else:
+		character.get_node("AnimationPlayer").play("ally_idle")
 	if Input.is_action_pressed("run"):
 		_movement.run(direction)
 	else:

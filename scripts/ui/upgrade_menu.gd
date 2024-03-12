@@ -12,7 +12,8 @@ func _ready():
 	regen_rate.increment_button.pressed.connect(PlayerStats.add_regen_rate.bind(1))
 	
 	for item in $UpgradeList.get_children():
-		item.increment_button.pressed.connect(Globals.spend_points.bind(1))
+		if item.name != "CloseButton":
+			item.increment_button.pressed.connect(Globals.spend_points.bind(1))
 	
 	PlayerStats.max_health_changed.connect(health.value.set_text)
 	PlayerStats.speed_changed.connect(speed.value.set_text)

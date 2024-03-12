@@ -4,7 +4,6 @@
 
 [node name="WaveManager" type="Node2D"]
 script = ExtResource("1_us804")
-wave_list = PackedInt32Array(5, 10, 15, 0)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 

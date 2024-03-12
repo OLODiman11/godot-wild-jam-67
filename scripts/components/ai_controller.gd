@@ -9,7 +9,7 @@ extends Node2D
 @onready var _weapon: Weapon = get_parent().get_node("Weapon")
 @onready var _movement: Movement = get_parent().get_node("Movement")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if !enabled:
 		return
 		
@@ -37,5 +37,7 @@ func _physics_process(delta):
 	var is_in_attack_range = dist_to_target < _weapon.weapon_res.fire_range
 	if is_in_attack_range:
 		_weapon.shoot()
+		character.get_node("AnimationPlayer").play("ai_idle")
 	else:
 		_movement.move(vector_to_target)
+		character.get_node("AnimationPlayer").play("ai_walk")

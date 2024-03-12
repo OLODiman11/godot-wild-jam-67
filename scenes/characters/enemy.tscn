@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ewanf82htyyo"]
+[gd_scene load_steps=12 format=3 uid="uid://ewanf82htyyo"]
 
 [ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="1_17nlv"]
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_f401s"]
@@ -10,6 +10,14 @@
 [ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="8_gwuh0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vmjwb"]
+
+[sub_resource type="Animation" id="Animation_egxd0"]
+resource_name = "ai_walk"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eh1rr"]
+_data = {
+"ai_walk": SubResource("Animation_egxd0")
+}
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies", "Hittable"]]
 scale = Vector2(5, 5)
@@ -41,3 +49,8 @@ health = NodePath("../Health")
 [node name="AiController" parent="." instance=ExtResource("7_3r0s7")]
 
 [node name="Movement" parent="." instance=ExtResource("8_gwuh0")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eh1rr")
+}

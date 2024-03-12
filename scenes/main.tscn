@@ -23,7 +23,6 @@ point_count = 5
 [node name="WaveManager" parent="." node_paths=PackedStringArray("enemies_container", "spawn_path") instance=ExtResource("3_qillp")]
 enemies_container = NodePath("../EnemiesContainer")
 spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
-wave_list = [5, 10, 15, 20]
 
 [node name="AlliesContainer" type="Node2D" parent="."]
 
@@ -86,6 +85,7 @@ offset_left = -46.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 60
 text = "Start"
 
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/NextWave" method="show"]

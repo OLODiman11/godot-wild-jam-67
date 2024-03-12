@@ -42,19 +42,25 @@ alignment = 1
 
 [node name="Pistol" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Pistol
 "
 script = SubResource("GDScript_sim8h")
+theme_override_font_sizes/font_size = 50
 
 [node name="Rifle" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Rifle"
 script = SubResource("GDScript_sim8h")
+theme_override_font_sizes/font_size = 50
 
 [node name="Sniper Rifle" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Sniper Rifle"
 script = SubResource("GDScript_sim8h")
+theme_override_font_sizes/font_size = 50
 
 [node name="UpgradeButton" type="Button" parent="."]
 layout_mode = 1
@@ -64,12 +70,14 @@ anchor_bottom = 1.0
 offset_top = -31.0
 offset_right = 75.0
 grow_vertical = 0
+theme_override_font_sizes/font_size = 50
 text = "Upgrade"
 
 [node name="PointsLabel" type="Label" parent="."]
 layout_mode = 1
 offset_right = 57.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 50
 text = "Points: 0"
 script = ExtResource("2_t7tv7")
 

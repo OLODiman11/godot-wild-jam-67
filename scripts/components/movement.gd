@@ -2,6 +2,9 @@ class_name Movement
 
 extends Node2D
 
+
+@onready var animation_player = $"../AnimationPlayer"
+
 @export var speed: float
 @export var run_speed: float
 

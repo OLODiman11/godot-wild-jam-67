@@ -12,6 +12,7 @@ script = ExtResource("1_ft8ru")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 text = "Title"
 
 [node name="Upgrade" type="GridContainer" parent="."]
@@ -24,9 +25,11 @@ columns = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
 text = "100"
 
 [node name="IncrementButton" type="Button" parent="Upgrade"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 50
 disabled = true
 text = "+"
