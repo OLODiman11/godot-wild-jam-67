@@ -1,0 +1,52 @@
+[gd_scene load_steps=11 format=3 uid="uid://brl845cpq7fs1"]
+
+[ext_resource type="Script" path="res://scripts/characters/ally.gd" id="1_argwm"]
+[ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="2_h3rqr"]
+[ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="2_h4l6i"]
+[ext_resource type="PackedScene" uid="uid://dx70fgaf2yxkn" path="res://scenes/components/health.tscn" id="6_0uryq"]
+[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/components/weapon.tscn" id="7_i2hle"]
+[ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="7_qkrmw"]
+[ext_resource type="PackedScene" uid="uid://b5ccwaf53l6nv" path="res://scenes/components/regeneration.tscn" id="8_2ui6p"]
+[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
+[ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="9_s75ov"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
+
+[node name="Ally" type="CharacterBody2D" groups=["Hittable", "Player"]]
+scale = Vector2(5, 5)
+collision_layer = 2
+collision_mask = 23
+script = ExtResource("1_argwm")
+
+[node name="AiController" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_h3rqr")]
+character = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dgsdg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.258824, 1, 0.258824, 1)
+scale = Vector2(0.205, 0.16)
+texture = ExtResource("2_h4l6i")
+
+[node name="Weapon" parent="." instance=ExtResource("7_i2hle")]
+bullet_collision_mask = Array[int]([5, 3])
+weapon_res = ExtResource("8_k3i8f")
+
+[node name="Movement" parent="." instance=ExtResource("9_s75ov")]
+speed = 800.0
+run_speed = 1200.0
+
+[node name="Health" parent="." instance=ExtResource("6_0uryq")]
+max_health = 100.0
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_qkrmw")]
+visible = true
+offset_top = -22.4
+offset_bottom = -18.4
+health = NodePath("../Health")
+
+[node name="Regeneration" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_2ui6p")]
+rate = 2.0
+amount = 2.0
+health = NodePath("../Health")

@@ -20,6 +20,7 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group('Map'):
 			queue_free()
 			return
-		if collision.get_collider().is_in_group('Hittable'):
-			collision.get_collider().get_hit(damage)
+		var health_node: Health = collision.get_collider().get_node("Health")
+		if health_node != null:
+			health_node.take_damage(damage)
 			queue_free()

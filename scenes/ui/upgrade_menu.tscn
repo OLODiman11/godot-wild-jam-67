@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=3 uid="uid://cchpr5i2hb580"]
+
+[ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
+[ext_resource type="PackedScene" uid="uid://bahjc717lijkx" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjk66"]
+
+[node name="UpgradeMenu" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -85.5
+offset_right = 74.5
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjk66")
+script = ExtResource("1_4yrbt")
+metadata/_edit_use_anchors_ = true
+
+[node name="UpgradeList" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Health" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/Health" index="0"]
+text = "Health"
+
+[node name="Speed" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/Speed" index="0"]
+text = "Speed"
+
+[node name="Value" parent="UpgradeList/Speed/Upgrade" index="0"]
+text = "800"
+
+[node name="Stamina" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/Stamina" index="0"]
+text = "Stamina"
+
+[node name="Value" parent="UpgradeList/Stamina/Upgrade" index="0"]
+text = "10"
+
+[node name="RegenRate" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/RegenRate" index="0"]
+text = "Regen Rate"
+
+[node name="Value" parent="UpgradeList/RegenRate/Upgrade" index="0"]
+text = "1
+"
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"
+
+[connection signal="pressed" from="CloseButton" to="." method="hide"]
+
+[editable path="UpgradeList/Health"]
+[editable path="UpgradeList/Speed"]
+[editable path="UpgradeList/Stamina"]
+[editable path="UpgradeList/RegenRate"]
