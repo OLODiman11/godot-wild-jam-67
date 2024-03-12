@@ -10,6 +10,7 @@ var enemy_res: EnemyRes:
 		$Movement.speed = enemy_res.speed
 		$Health.max_health = enemy_res.max_health
 		$Weapon.switch(enemy_res.weapon_res)
+		$Sprite2D.texture = enemy_res.sprite
 
 func _ready():
 	PlayerController.character_switched.connect(switch_target)

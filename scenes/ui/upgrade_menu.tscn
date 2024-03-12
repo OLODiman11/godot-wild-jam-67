@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cchpr5i2hb580"]
+[gd_scene load_steps=5 format=3 uid="uid://cumeeu7kg3eci"]
 
 [ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
-[ext_resource type="PackedScene" uid="uid://bahjc717lijkx" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
+[ext_resource type="PackedScene" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjk66"]
 

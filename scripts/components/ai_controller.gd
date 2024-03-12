@@ -32,7 +32,12 @@ func _physics_process(_delta):
 	
 	_weapon.look_at(target.global_position)
 	
+	
 	var vector_to_target = target.global_position - global_position
+	if vector_to_target.x > 0:
+		character.get_node("Sprite2D").flip_h = true
+	else:
+		character.get_node("Sprite2D").flip_h = false
 	var dist_to_target = vector_to_target.length()
 	var is_in_attack_range = dist_to_target < _weapon.weapon_res.fire_range
 	if is_in_attack_range:
