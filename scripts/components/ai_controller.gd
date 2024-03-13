@@ -13,25 +13,25 @@ func _physics_process(_delta):
 	if !enabled:
 		return
 		
-	if target == null:
-		var enemiesContainer = get_tree().root.get_node('Main/EnemiesContainer')
-		if enemiesContainer.get_child_count() == 0:
-			return
-		var closiest = enemiesContainer.get_child(0)
-		var min_distance = (closiest.global_position - get_parent().global_position).length()
-		for enemy in enemiesContainer.get_children():
-			var vector = enemy.global_position - get_parent().global_position
-			var distance = vector.length()
-			if distance < min_distance:
-				closiest = enemy
-				min_distance = distance
-		
-		target = closiest
-			
+	var container: Node2D
+	if character.get_parent().name == "EnemiesContainer":
+		container = get_tree().root.get_node('Main/AlliesContainer')
+	if character.get_parent().name == "AlliesContainer":
+		container = get_tree().root.get_node('Main/EnemiesContainer')
+	if container.get_child_count() == 0:
 		return
+	var closest = container.get_child(0)
+	var min_distance = (closest.global_position - get_parent().global_position).length()
+	for enemy in container.get_children():
+		var vector = enemy.global_position - get_parent().global_position
+		var distance = vector.length()
+		if distance < min_distance:
+			closest = enemy
+			min_distance = distance
+		
+	target = closest
 	
 	_weapon.look_at(target.global_position)
-	
 	
 	var vector_to_target = target.global_position - global_position
 	if vector_to_target.x > 0:
@@ -42,7 +42,7 @@ func _physics_process(_delta):
 	var is_in_attack_range = dist_to_target < _weapon.weapon_res.fire_range
 	if is_in_attack_range:
 		_weapon.shoot()
-		character.get_node("AnimationPlayer").play("ai_idle")
+		character.get_node("AnimationPlayer").play("idle")
 	else:
 		_movement.move(vector_to_target)
-		character.get_node("AnimationPlayer").play("ai_walk")
+		character.get_node("AnimationPlayer").play("walk")

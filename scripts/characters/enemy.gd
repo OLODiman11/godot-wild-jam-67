@@ -13,8 +13,4 @@ var enemy_res: EnemyRes:
 		$Sprite2D.texture = enemy_res.sprite
 
 func _ready():
-	PlayerController.character_switched.connect(switch_target)
 	$Health.died.connect(Globals.enemy_killed)
-	
-func switch_target(new_target: CharacterBody2D):
-	$AiController.target = new_target

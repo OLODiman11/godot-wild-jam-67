@@ -25,21 +25,29 @@ var _weapon: Weapon
 var _ai_controller: AiController
 var _health: Health
 var _parasite: Resource = preload("res://scenes/projectiles/parasite.tscn")
+var parasites_released: int = 0:
+	set(value):
+		parasites_released = value
+		print(parasites_released)
 
 @onready var allies_container = get_tree().root.get_node("Main/AlliesContainer")
 @onready var enemies_container = get_tree().root.get_node("Main/EnemiesContainer")
 
 func _input(event):
-	if event.is_action_pressed("release_parasite"):
-		var parasite = _parasite.instantiate()
-		var weapon: Weapon = character.get_node("Weapon")
-		parasite.position = weapon.global_position
-		parasite.orig_glob_pos = weapon.global_position
-		parasite.direction = weapon.get_global_transform().x
-		for mask in weapon.bullet_collision_mask:
-			parasite.set_collision_mask_value(mask, true)
-		var root_node = get_tree().root.get_node('Main')
-		root_node.add_child(parasite)
+	if allies_container.get_child_count() + parasites_released < PlayerStats.max_parasite_count:
+		if event.is_action_pressed("release_parasite"):
+			parasites_released += 1
+			var parasite: Parasite = _parasite.instantiate()
+			parasite.missed.connect(func(): parasites_released -= 1)
+			parasite.hit.connect(func(): parasites_released -= 1)
+			var weapon: Weapon = character.get_node("Weapon")
+			parasite.position = weapon.global_position
+			parasite.orig_glob_pos = weapon.global_position
+			parasite.direction = weapon.get_global_transform().x
+			for mask in weapon.bullet_collision_mask:
+				parasite.set_collision_mask_value(mask, true)
+			var root_node = get_tree().root.get_node('Main')
+			root_node.add_child(parasite)
 		
 	if event.is_action_pressed("next_character"):
 		switch_character()
@@ -73,9 +81,9 @@ func _physics_process(_delta: float):
 	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction:
-		character.get_node("AnimationPlayer").play("ally_walk")
+		character.get_node("AnimationPlayer").play("walk")
 	else:
-		character.get_node("AnimationPlayer").play("ally_idle")
+		character.get_node("AnimationPlayer").play("idle")
 	if Input.is_action_pressed("run"):
 		_movement.run(direction)
 	else:
