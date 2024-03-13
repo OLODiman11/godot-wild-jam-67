@@ -14,6 +14,7 @@ signal died
 	set(value):
 		value = clampf(value, 0, max_health)
 		health = value
+		get_parent().get_node("Sprite2D").modulate = Color.RED + health / max_health * Color.WHITE
 		health_changed.emit()
 		if health == 0:
 			get_parent().queue_free()
