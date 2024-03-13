@@ -62,8 +62,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eh1rr"]
 _data = {
 "RESET": SubResource("Animation_nnfn0"),
-"idle": SubResource("Animation_xw4e5"),
-"walk": SubResource("Animation_egxd0")
+"ai_idle": SubResource("Animation_xw4e5"),
+"ai_walk": SubResource("Animation_egxd0")
 }
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies", "Hittable"]]

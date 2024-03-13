@@ -104,7 +104,7 @@ speed = 800.0
 run_speed = 1200.0
 
 [node name="Health" parent="." instance=ExtResource("6_0uryq")]
-max_health = 100.0
+max_health = 500.0
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_qkrmw")]
 visible = true

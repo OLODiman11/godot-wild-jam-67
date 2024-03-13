@@ -5,7 +5,7 @@ signal speed_changed(float)
 signal regen_rate_changed(float)
 signal max_parasite_count_changed(int)
 
-var max_health: float = 200:
+var max_health: float = 500:
 	set(value):
 		max_health = value
 		max_health_changed.emit(max_health)
