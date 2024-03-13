@@ -8,3 +8,4 @@ extends Resource
 @export var bullet_speed: float
 @export var fire_range: float
 @export var is_melee: bool
+@export var shoot_sound: Resource

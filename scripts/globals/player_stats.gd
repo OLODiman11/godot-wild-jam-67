@@ -20,7 +20,7 @@ var speed: float = 800:
 		speed = value
 		speed_changed.emit(speed)
 		
-var max_parasite_count: int = 10:
+var max_parasite_count: int = 1:
 	set(value):
 		max_parasite_count = value
 		max_parasite_count_changed.emit(max_parasite_count)

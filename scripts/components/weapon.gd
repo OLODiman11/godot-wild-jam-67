@@ -13,6 +13,7 @@ const SNIPER_RIFLE: WeaponRes = preload("res://resources/weapons/sniper_rifle.tr
 	set(value):
 		weapon_res = value
 		_shoot_timer = 1
+		$AudioStreamPlayer2D.stream = weapon_res.shoot_sound
 
 var _shoot_timer: float = 0
 
@@ -30,6 +31,10 @@ func shoot():
 		return
 	
 	_shoot_timer = -1.0 / weapon_res.fire_rate
+	
+	$AudioStreamPlayer2D.pitch_scale = randf_range(0.99, 1.01)
+	$AudioStreamPlayer2D.volume_db = randf_range(-0.5, 0.5)
+	$AudioStreamPlayer2D.play()
 	
 	if weapon_res.is_melee:
 		var forward := get_global_transform().x
