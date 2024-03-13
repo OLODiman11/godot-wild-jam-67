@@ -5,7 +5,7 @@ signal stamina_changed(float)
 signal speed_changed(float)
 signal regen_rate_changed(float)
 
-var max_health: float = 100:
+var max_health: float = 200:
 	set(value):
 		max_health = value
 		max_health_changed.emit(max_health)

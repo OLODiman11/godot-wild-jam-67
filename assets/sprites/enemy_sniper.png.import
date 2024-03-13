@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dokmdmxhy1c7g"
-path="res://.godot/imported/enemy_meele.png-4b79663ccaf3e0c474d5693390684345.ctex"
+uid="uid://dhqejikancnx4"
+path="res://.godot/imported/enemy_sniper.png-3a1c32dff8735b16ce8a4479601ebb2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_meele.png"
-dest_files=["res://.godot/imported/enemy_meele.png-4b79663ccaf3e0c474d5693390684345.ctex"]
+source_file="res://assets/sprites/enemy_sniper.png"
+dest_files=["res://.godot/imported/enemy_sniper.png-3a1c32dff8735b16ce8a4479601ebb2e.ctex"]
 
 [params]
 

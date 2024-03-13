@@ -33,6 +33,9 @@ layout_mode = 2
 [node name="Title" parent="UpgradeList/Health" index="0"]
 text = "Health"
 
+[node name="Value" parent="UpgradeList/Health/Upgrade" index="0"]
+text = "200"
+
 [node name="Speed" parent="UpgradeList" instance=ExtResource("2_h053b")]
 layout_mode = 2
 

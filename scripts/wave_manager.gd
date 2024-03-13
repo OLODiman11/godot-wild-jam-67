@@ -32,8 +32,15 @@ func spawn_enemy():
 	_enemies_to_spawn -= 1
 	
 	var enemy: Enemy = preload_enemy.instantiate()
-	if randi_range(0, 4) == 0:
-		enemy.enemy_res = load("res://resources/enemies/guard.tres")
+	var chance = randi_range(0, 10)
+	if chance == 0:
+		enemy.enemy_res = load("res://resources/enemies/grenader.tres")
+	elif chance in range(1,3):
+		enemy.enemy_res = load("res://resources/enemies/pistol.tres")
+	elif chance in range(4,5):
+		enemy.enemy_res = load("res://resources/enemies/sniper.tres")
+	elif chance in range(6,7):
+		enemy.enemy_res = load("res://resources/enemies/rifleman.tres")
 	else:
 		enemy.enemy_res = load("res://resources/enemies/melee.tres")
 	enemy.get_node("Health").died.connect(try_end_wave)

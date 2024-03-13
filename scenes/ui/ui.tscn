@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5yn5nt52v0up"]
 
-[ext_resource type="PackedScene" uid="uid://cchpr5i2hb580" path="res://scenes/ui/upgrade_menu.tscn" id="1_5ucio"]
+[ext_resource type="PackedScene" uid="uid://cumeeu7kg3eci" path="res://scenes/ui/upgrade_menu.tscn" id="1_5ucio"]
 [ext_resource type="Script" path="res://scripts/ui/points_label.gd" id="2_t7tv7"]
-[ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="3_prjlu"]
+[ext_resource type="PackedScene" uid="uid://bdhhjbymmivmt" path="res://scenes/ui/health_bar.tscn" id="3_prjlu"]
 
 [sub_resource type="GDScript" id="GDScript_sim8h"]
 script/source = "extends Button
@@ -46,21 +46,18 @@ theme_override_font_sizes/font_size = 50
 text = "Pistol
 "
 script = SubResource("GDScript_sim8h")
-theme_override_font_sizes/font_size = 50
 
 [node name="Rifle" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Rifle"
 script = SubResource("GDScript_sim8h")
-theme_override_font_sizes/font_size = 50
 
 [node name="Sniper Rifle" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Sniper Rifle"
 script = SubResource("GDScript_sim8h")
-theme_override_font_sizes/font_size = 50
 
 [node name="UpgradeButton" type="Button" parent="."]
 layout_mode = 1

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dokmdmxhy1c7g"
-path="res://.godot/imported/enemy_meele.png-4b79663ccaf3e0c474d5693390684345.ctex"
+uid="uid://cmnunwt55g1yn"
+path="res://.godot/imported/enemy_guard.png-9de047b3ec8aaca944067a366a2b4136.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_meele.png"
-dest_files=["res://.godot/imported/enemy_meele.png-4b79663ccaf3e0c474d5693390684345.ctex"]
+source_file="res://assets/sprites/enemy_guard.png"
+dest_files=["res://.godot/imported/enemy_guard.png-9de047b3ec8aaca944067a366a2b4136.ctex"]
 
 [params]
 
