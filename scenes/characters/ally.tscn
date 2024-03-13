@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/characters/ally.gd" id="1_argwm"]
 [ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="2_h3rqr"]
-[ext_resource type="Texture2D" uid="uid://dkcwdybcjna68" path="res://assets/sprites/parasite.png" id="3_cx12y"]
+[ext_resource type="Texture2D" uid="uid://i4w3k8ntgq0n" path="res://assets/sprites/parasite_sheet.png" id="3_3bwba"]
 [ext_resource type="PackedScene" uid="uid://dx70fgaf2yxkn" path="res://scenes/components/health.tscn" id="6_0uryq"]
-[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/components/weapon.tscn" id="7_i2hle"]
+[ext_resource type="PackedScene" path="res://scenes/components/weapon.tscn" id="7_i2hle"]
 [ext_resource type="PackedScene" path="res://scenes/ui/health_bar.tscn" id="7_qkrmw"]
 [ext_resource type="PackedScene" uid="uid://b5ccwaf53l6nv" path="res://scenes/components/regeneration.tscn" id="8_2ui6p"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
@@ -92,7 +92,7 @@ shape = SubResource("CapsuleShape2D_dgsdg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("3_cx12y")
+texture = ExtResource("3_3bwba")
 hframes = 4
 
 [node name="Weapon" parent="." instance=ExtResource("7_i2hle")]
