@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://bahjc717lijkx"]
+
+[ext_resource type="Script" path="res://scripts/ui/labeled_value.gd" id="1_ft8ru"]
+
+[node name="LabeledValue" type="HSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ft8ru")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Title"
+
+[node name="Upgrade" type="GridContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+columns = 2
+
+[node name="Value" type="Label" parent="Upgrade"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "100"
+
+[node name="IncrementButton" type="Button" parent="Upgrade"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+disabled = true
+text = "+"

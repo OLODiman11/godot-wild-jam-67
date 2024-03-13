@@ -1,25 +1,101 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=11 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
-[ext_resource type="PackedScene" uid="uid://djpyxgp2ue8hp" path="res://scenes/player.tscn" id="3_t6t72"]
+[ext_resource type="PackedScene" uid="uid://brl845cpq7fs1" path="res://scenes/characters/ally.tscn" id="4_jpwry"]
+[ext_resource type="PackedScene" uid="uid://cafrwwps605aw" path="res://scenes/bootstrap.tscn" id="4_y6kmi"]
+[ext_resource type="PackedScene" uid="uid://b5yn5nt52v0up" path="res://scenes/ui/ui.tscn" id="5_jjwy5"]
+[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="7_046r7"]
+[ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="8_xmnlb"]
+[ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="9_1hoaq"]
+[ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
+
+[sub_resource type="Curve2D" id="Curve2D_774ut"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -249, -149.6, 0, 0, 0, 0, 255.6, -153, 0, 0, 0, 0, 256.8, 159, 0, 0, 0, 0, -249.6, 159, 0, 0, 0, 0, -249, -149.6)
+}
+point_count = 5
 
 [node name="Main" type="Node2D"]
 
 [node name="Map" parent="." instance=ExtResource("1_qi0m0")]
 
-[node name="Player" parent="." instance=ExtResource("3_t6t72")]
+[node name="WaveManager" parent="." node_paths=PackedStringArray("enemies_container", "spawn_path") instance=ExtResource("3_qillp")]
+enemies_container = NodePath("../EnemiesContainer")
+spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
 
-[node name="NextWave" type="Button" parent="."]
-offset_left = -212.0
-offset_top = 295.0
-offset_right = -166.0
-offset_bottom = 326.0
-scale = Vector2(8.92, 8.92)
+[node name="AlliesContainer" type="Node2D" parent="."]
+
+[node name="Ally" parent="AlliesContainer" instance=ExtResource("4_jpwry")]
+
+[node name="SpawnPath" type="Path2D" parent="AlliesContainer/Ally"]
+curve = SubResource("Curve2D_774ut")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="AlliesContainer/Ally/SpawnPath"]
+position = Vector2(-249, -149.6)
+rotation = -0.0067379
+
+[node name="Marker2D" type="Marker2D" parent="AlliesContainer/Ally/SpawnPath/PathFollow2D"]
+
+[node name="MainCamera" type="Camera2D" parent="AlliesContainer/Ally"]
+scale = Vector2(0.3, 0.3)
+zoom = Vector2(0.48, 0.48)
+limit_left = -1950
+limit_top = -2050
+limit_right = 1950
+limit_bottom = 2050
+editor_draw_limits = true
+
+[node name="EnemiesContainer" type="Node2D" parent="."]
+
+[node name="Bootstrap" parent="." node_paths=PackedStringArray("current_ally") instance=ExtResource("4_y6kmi")]
+current_ally = NodePath("../AlliesContainer/Ally")
+
+[node name="AllyFactory" parent="." node_paths=PackedStringArray("allies_container") instance=ExtResource("9_naicb")]
+allies_container = NodePath("../AlliesContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("5_jjwy5")]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+offset_left = -18.432
+offset_top = -18.144
+
+[node name="Pistol" parent="CanvasLayer/UI/VBoxContainer" index="0"]
+weapon_res = ExtResource("7_046r7")
+
+[node name="Rifle" parent="CanvasLayer/UI/VBoxContainer" index="1"]
+weapon_res = ExtResource("8_xmnlb")
+
+[node name="Sniper Rifle" parent="CanvasLayer/UI/VBoxContainer" index="2"]
+weapon_res = ExtResource("9_1hoaq")
+
+[node name="NextWave" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 60
 text = "Start"
 
-[node name="WaveManager" parent="." instance=ExtResource("3_qillp")]
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/NextWave" method="show"]
+[connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
+[connection signal="pressed" from="CanvasLayer/UI/NextWave" to="CanvasLayer/UI/NextWave" method="hide"]
 
-[connection signal="pressed" from="NextWave" to="NextWave" method="hide"]
-[connection signal="pressed" from="NextWave" to="WaveManager" method="start_next_wave"]
-[connection signal="wave_ended" from="WaveManager" to="NextWave" method="show"]
+[editable path="CanvasLayer/UI"]
+[editable path="CanvasLayer/UI/UpgradeMenu"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Health"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Speed"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/RegenRate"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/MaxParasiteCount"]
+[editable path="CanvasLayer/UI/HealthBar"]

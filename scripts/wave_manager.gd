@@ -4,12 +4,14 @@ extends Node2D
 
 signal wave_ended
 
-var MAP_BOUNDS := 1750
+var MAP_BOUNDS := 1700
 
 @onready var timer: Timer = $SpawnTimer
 
+@export var enemies_container: Node2D
+@export var spawn_path: Path2D
 @export var wave_list: PackedInt32Array = [5,10,15,20]
-@export var preload_enemy = preload("res://scenes/enemy.tscn")
+@export var preload_enemy = preload("res://scenes/characters/enemy.tscn")
 
 var round_num = 0
 var _enemies_to_spawn: int
@@ -34,7 +36,9 @@ func spawn_enemy():
 		enemy.enemy_res = load("res://resources/enemies/guard.tres")
 	else:
 		enemy.enemy_res = load("res://resources/enemies/melee.tres")
-	enemy.died.connect(try_end_wave)
+	enemy.get_node("Health").died.connect(try_end_wave)
+	enemy.converted_to_parasite.connect(try_end_wave)
+	enemy.get_node("AiController").target = PlayerController.character
 	
 	while true:
 		enemy.global_position = _get_enemy_random_position()
@@ -43,13 +47,13 @@ func spawn_enemy():
 		if is_in_bounds_x and is_in_bounds_y:
 			break
 	
-	$Enemies.add_child(enemy)
+	enemies_container.add_child(enemy)
 		
 func try_end_wave():
 	if _enemies_to_spawn > 0:
 		return
 		
-	for enemy in $Enemies.get_children():
+	for enemy in enemies_container.get_children():
 		if !enemy.is_queued_for_deletion():
 			return
 	wave_ended.emit()
@@ -58,6 +62,6 @@ func try_end_wave():
 func _get_enemy_random_position():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	var path_follow = get_tree().get_first_node_in_group("Player").get_node("Path2D/PathFollow2D")
+	var path_follow = spawn_path.get_node("PathFollow2D")
 	path_follow.progress = rng.randi_range(0, 1600)
 	return path_follow.get_node("Marker2D").global_position
