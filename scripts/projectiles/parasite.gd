@@ -3,6 +3,7 @@ class_name Parasite
 extends CharacterBody2D
 
 signal missed
+signal hit
 
 @export var speed: float
 @export var fire_range: float
@@ -23,6 +24,7 @@ func _physics_process(delta):
 			return
 		var enemy: Enemy = collision.get_collider()
 		if enemy != null:
+			hit.emit()
 			get_node("/root/Main/AllyFactory").convert_to_ally(enemy)
 			enemy.converted_to_parasite.emit()
 			queue_free()

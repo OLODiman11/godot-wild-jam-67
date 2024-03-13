@@ -96,6 +96,6 @@ text = "Start"
 [editable path="CanvasLayer/UI/UpgradeMenu"]
 [editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Health"]
 [editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Speed"]
-[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Stamina"]
 [editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/RegenRate"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/MaxParasiteCount"]
 [editable path="CanvasLayer/UI/HealthBar"]
