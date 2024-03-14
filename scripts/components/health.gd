@@ -13,11 +13,17 @@ signal fraction_changed(sender: Health)
 @export var fraction: float: get = get_fraction
 
 func set_max_value(new_value: float):
+	if max_value == new_value: 
+		return
+		
 	max_value = new_value
 	max_value_changed.emit(self)
 	fraction_changed.emit(self)
 	
 func set_value(new_value: float):
+	if value == new_value: 
+		return
+	
 	value = clampf(value, 0, max_value)
 	value = new_value
 	value_changed.emit(self)
