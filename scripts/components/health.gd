@@ -1,3 +1,5 @@
+@tool
+
 class_name Health
 
 extends Node2D
