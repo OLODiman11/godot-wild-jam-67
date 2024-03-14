@@ -1,3 +1,5 @@
+class_name HealthBar
+
 extends TextureProgressBar
 
 @export var health: Health

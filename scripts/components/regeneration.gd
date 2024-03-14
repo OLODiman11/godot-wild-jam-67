@@ -1,3 +1,5 @@
+class_name Regeneration
+
 extends Node2D
 
 @export var rate: float:
