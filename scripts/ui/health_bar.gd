@@ -1,3 +1,5 @@
+@tool
+
 class_name HealthBar
 
 extends TextureProgressBar
@@ -13,3 +15,4 @@ func set_health_component(value: Health):
 		
 	health = value
 	health.fraction_changed.connect(_adjust)
+	_adjust(health)
