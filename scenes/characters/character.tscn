@@ -80,6 +80,7 @@ hframes = 4
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_ie8yk")
+fraction = 1.0
 
 [node name="Weapon" parent="." instance=ExtResource("4_fbvnx")]
 bullet_collision_mask = Array[int]([5])
@@ -91,11 +92,11 @@ weapon_res = ExtResource("5_4vl4e")
 character = NodePath("..")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_iimqj")]
-visible = true
 offset_left = -6.0
 offset_top = -12.0
 offset_right = 6.0
 offset_bottom = -10.0
+value = 100.0
 health = NodePath("../Health")
 
 [node name="Timer" type="Timer" parent="HealthBar"]

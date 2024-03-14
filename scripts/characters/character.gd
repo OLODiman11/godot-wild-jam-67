@@ -26,6 +26,7 @@ func _setup_sprite_tint_logic():
 	health.fraction_changed.connect(_change_sprite_tint)
 	
 func _setup_health_bar():
+	health_bar.hide()
 	health_bar.health = health
 	health_bar_timer.timeout.connect(health_bar.hide)
 	health.fraction_changed.connect(_show_health_bar_and_restart_timer)
