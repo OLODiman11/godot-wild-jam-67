@@ -15,13 +15,3 @@ signal max_health_changed(sender: Health)
 		value = clampf(value, 0, max_health)
 		health = value
 		health_changed.emit(self)
-
-func take_damage(damage: float):
-	health -= damage
-	
-func heal(amount: float):
-	health += amount
-	
-func set_max_health(value: float):
-	max_health = value
-	

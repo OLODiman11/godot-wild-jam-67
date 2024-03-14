@@ -14,7 +14,7 @@ func _ready():
 	timer.timeout.connect(heal)
 	
 func heal():
-	health.heal(amount)
+	health.health += amount
 	
 func set_rate(value: float):
 	rate = value

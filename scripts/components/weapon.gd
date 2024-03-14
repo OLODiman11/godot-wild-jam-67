@@ -43,7 +43,7 @@ func shoot():
 				enemy.last_shot_by = get_parent()
 			var health_node: Health = result.collider.get_node("Health")
 			if health_node != null:
-				health_node.take_damage(weapon_res.damage)
+				health_node.health -= weapon_res.damage
 	else:
 		var bullet = bullet_scene.instantiate()
 		bullet.speed = weapon_res.bullet_speed
