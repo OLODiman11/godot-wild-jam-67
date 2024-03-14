@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="EnemyRes" load_steps=5 format=3 uid="uid://drpfh83h58w4g"]
 
-[ext_resource type="Texture2D" uid="uid://cx57hhh6u23nt" path="res://assets/sprites/parasites/parasite_range.png" id="1_2q6ua"]
 [ext_resource type="Script" path="res://scripts/resources/enemy_res.gd" id="1_p7b0y"]
+[ext_resource type="Texture2D" uid="uid://cx57hhh6u23nt" path="res://assets/sprites/parasites/parasite_range.png" id="1_rxx3k"]
 [ext_resource type="Texture2D" uid="uid://be34bx5lf8t20" path="res://assets/sprites/enemies/enemy_range.png" id="2_qts17"]
 [ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="3_fsw1h"]
 
@@ -11,4 +11,4 @@ speed = 300.0
 max_health = 200.0
 weapon_res = ExtResource("3_fsw1h")
 sprite = ExtResource("2_qts17")
-parasite_sprite = ExtResource("1_2q6ua")
+parasite_sprite = ExtResource("1_rxx3k")

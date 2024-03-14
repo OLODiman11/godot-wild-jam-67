@@ -27,4 +27,4 @@ func check_points(points: int):
 		health.increment_button.disabled = points < 2
 		speed.increment_button.disabled = points < 1
 		max_parasite_count.increment_button.disabled = points < 5
-		regen_rate.increment_button.disabled = points < 2
+		regen_rate.increment_button.disabled = points < 3
