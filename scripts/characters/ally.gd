@@ -2,8 +2,8 @@ class_name Ally
 
 extends Character
 
-@onready var inventory = $Inventory
-@onready var regeneration = $Regeneration
+@onready var inventory: Inventory = $Inventory
+@onready var regeneration: Regeneration = $Regeneration
 
 func _ready():
 	PlayerStats.max_health_changed.connect(health.set_max_health)
