@@ -32,6 +32,7 @@ func spawn_enemy():
 	_enemies_to_spawn -= 1
 	
 	var enemy: Enemy = preload_enemy.instantiate()
+	enemies_container.add_child(enemy)
 	if randi_range(0, 4) == 0:
 		enemy.enemy_res = load("res://resources/enemies/guard.tres")
 	else:
@@ -48,7 +49,6 @@ func spawn_enemy():
 		if is_in_bounds_x and is_in_bounds_y:
 			break
 	
-	enemies_container.add_child(enemy)
 		
 func try_end_wave():
 	if _enemies_to_spawn > 0:
