@@ -6,3 +6,4 @@ extends Resource
 @export var max_health: float
 @export var weapon_res: WeaponRes
 @export var sprite: Texture2D
+@export var infected_sprites: Texture2D
