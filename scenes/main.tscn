@@ -57,8 +57,10 @@ current = true
 
 [node name="EnemiesContainer" type="Node2D" parent="."]
 
-[node name="Bootstrap" parent="." node_paths=PackedStringArray("current_ally") instance=ExtResource("4_y6kmi")]
+[node name="Bootstrap" parent="." node_paths=PackedStringArray("current_ally", "allies_container", "enemies_container") instance=ExtResource("4_y6kmi")]
 current_ally = NodePath("../AlliesContainer/Ally")
+allies_container = NodePath("../AlliesContainer")
+enemies_container = NodePath("../EnemiesContainer")
 
 [node name="AllyFactory" parent="." node_paths=PackedStringArray("allies_container") instance=ExtResource("9_naicb")]
 allies_container = NodePath("../AlliesContainer")
