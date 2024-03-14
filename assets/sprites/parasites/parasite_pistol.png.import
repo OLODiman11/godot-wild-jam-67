@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hauq186fh5kp"
-path="res://.godot/imported/enemy_grenader.png-33d691e49d74d05770651f44e9885721.ctex"
+uid="uid://bpeqfweo54ung"
+path="res://.godot/imported/parasite_pistol.png-d0da5eee25227f2cba665871f9f3606a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_grenader.png"
-dest_files=["res://.godot/imported/enemy_grenader.png-33d691e49d74d05770651f44e9885721.ctex"]
+source_file="res://assets/sprites/parasites/parasite_pistol.png"
+dest_files=["res://.godot/imported/parasite_pistol.png-d0da5eee25227f2cba665871f9f3606a.ctex"]
 
 [params]
 

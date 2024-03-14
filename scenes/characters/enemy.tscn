@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://ewanf82htyyo"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_f401s"]
-[ext_resource type="Texture2D" uid="uid://cmnunwt55g1yn" path="res://assets/sprites/enemy_guard.png" id="2_k4dg4"]
+[ext_resource type="Texture2D" uid="uid://cmnunwt55g1yn" path="res://assets/sprites/enemies/enemy_guard.png" id="2_urnw7"]
 [ext_resource type="PackedScene" uid="uid://cndhxe0rkxmn6" path="res://scenes/components/weapon.tscn" id="4_1nldg"]
 [ext_resource type="Resource" uid="uid://lhcl3ob3ifjw" path="res://resources/weapons/baton.tres" id="5_h8mqk"]
 [ext_resource type="PackedScene" uid="uid://dx70fgaf2yxkn" path="res://scenes/components/health.tscn" id="5_ilabo"]
@@ -62,8 +62,8 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eh1rr"]
 _data = {
 "RESET": SubResource("Animation_nnfn0"),
-"ai_idle": SubResource("Animation_xw4e5"),
-"ai_walk": SubResource("Animation_egxd0")
+"idle": SubResource("Animation_xw4e5"),
+"walk": SubResource("Animation_egxd0")
 }
 
 [node name="Enemy" type="CharacterBody2D" groups=["Enemies", "Hittable"]]
@@ -79,7 +79,7 @@ shape = SubResource("CapsuleShape2D_vmjwb")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 0.499999)
 scale = Vector2(2, 2)
-texture = ExtResource("2_k4dg4")
+texture = ExtResource("2_urnw7")
 hframes = 4
 frame = 2
 

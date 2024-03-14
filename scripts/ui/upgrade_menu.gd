@@ -6,9 +6,9 @@ extends PanelContainer
 @onready var max_parasite_count: LabeledValue = $UpgradeList/MaxParasiteCount
 
 func _ready():
-	health.increment_button.pressed.connect(PlayerStats.add_max_health.bind(5))
-	speed.increment_button.pressed.connect(PlayerStats.add_speed.bind(10))
-	regen_rate.increment_button.pressed.connect(PlayerStats.add_regen_rate.bind(1))
+	health.increment_button.pressed.connect(PlayerStats.add_max_health.bind(50))
+	speed.increment_button.pressed.connect(PlayerStats.add_speed.bind(100))
+	regen_rate.increment_button.pressed.connect(PlayerStats.add_regen_rate.bind(2))
 	max_parasite_count.increment_button.pressed.connect(PlayerStats.add_max_parasite_count.bind(1))
 	
 	health.increment_button.pressed.connect(Globals.spend_points.bind(1))
@@ -24,7 +24,7 @@ func _ready():
 	Globals.points_changed.connect(check_points)
 
 func check_points(points: int):
-		health.increment_button.disabled = points < 1
+		health.increment_button.disabled = points < 2
 		speed.increment_button.disabled = points < 1
 		max_parasite_count.increment_button.disabled = points < 5
 		regen_rate.increment_button.disabled = points < 2

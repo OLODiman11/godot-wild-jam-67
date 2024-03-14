@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i4w3k8ntgq0n"
-path="res://.godot/imported/parasite_sheet.png-4a7f744a5b00537cdff1a1cc80aca6ce.ctex"
+uid="uid://be34bx5lf8t20"
+path="res://.godot/imported/enemy_range.png-11fd011596e1189965afd377febcdcb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/parasite_sheet.png"
-dest_files=["res://.godot/imported/parasite_sheet.png-4a7f744a5b00537cdff1a1cc80aca6ce.ctex"]
+source_file="res://assets/sprites/enemies/enemy_range.png"
+dest_files=["res://.godot/imported/enemy_range.png-11fd011596e1189965afd377febcdcb2.ctex"]
 
 [params]
 

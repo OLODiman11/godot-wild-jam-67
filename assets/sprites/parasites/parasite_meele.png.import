@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhqejikancnx4"
-path="res://.godot/imported/enemy_sniper.png-3a1c32dff8735b16ce8a4479601ebb2e.ctex"
+uid="uid://d3qed5mn0qlm1"
+path="res://.godot/imported/parasite_meele.png-fb3f9dbcaea1efbf0d487836f143c6b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/enemy_sniper.png"
-dest_files=["res://.godot/imported/enemy_sniper.png-3a1c32dff8735b16ce8a4479601ebb2e.ctex"]
+source_file="res://assets/sprites/parasites/parasite_meele.png"
+dest_files=["res://.godot/imported/parasite_meele.png-fb3f9dbcaea1efbf0d487836f143c6b1.ctex"]
 
 [params]
 
