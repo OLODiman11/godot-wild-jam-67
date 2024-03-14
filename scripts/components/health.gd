@@ -13,9 +13,6 @@ signal health_changed(sender: Health)
 	set(value):
 		value = clampf(value, 0, max_health)
 		health = value
-		
-		get_parent().sprite_2d.modulate = Color.RED + health / max_health * Color.AQUA
-		
 		health_changed.emit(self)
 
 func take_damage(damage: float):
