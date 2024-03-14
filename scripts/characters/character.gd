@@ -31,16 +31,16 @@ func _setup_health_bar():
 	health_bar_timer.timeout.connect(health_bar.hide)
 	health.fraction_changed.connect(_show_health_bar_and_restart_timer)
 	
-func _die_if_zero_health(sender: Health):
+func _die_if_zero_health(_sender: Health):
 	if health.value <= 0:
 		queue_free()
 		died.emit()
 		EventBus.character_died.emit(self)
 	
-func _change_sprite_tint(sender: Health):
+func _change_sprite_tint(_sender: Health):
 	var tint = Color(1, health.fraction, health.fraction)
 	sprite_2d.modulate = tint
 	
-func _show_health_bar_and_restart_timer(sender: Health):
+func _show_health_bar_and_restart_timer(_sender: Health):
 	health_bar.show()
 	health_bar_timer.start()
