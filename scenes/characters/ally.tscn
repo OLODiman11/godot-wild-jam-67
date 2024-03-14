@@ -12,7 +12,6 @@ script = ExtResource("1_argwm")
 bullet_collision_mask = Array[int]([5, 3])
 
 [node name="HealthBar" parent="." index="6"]
-anchors_preset = 0
 grow_horizontal = 1
 grow_vertical = 1
 
