@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://brl845cpq7fs1"]
+[gd_scene load_steps=16 format=3 uid="uid://brl845cpq7fs1"]
 
 [ext_resource type="Script" path="res://scripts/characters/ally.gd" id="1_argwm"]
 [ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="2_h3rqr"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ccwaf53l6nv" path="res://scenes/components/regeneration.tscn" id="8_2ui6p"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
 [ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="9_s75ov"]
+[ext_resource type="PackedScene" uid="uid://byj8lyjiucnls" path="res://scenes/components/inventory.tscn" id="10_781gy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
 
@@ -122,3 +123,5 @@ root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_3ywgi")
 }
+
+[node name="Inventory" parent="." instance=ExtResource("10_781gy")]

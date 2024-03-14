@@ -38,6 +38,9 @@ func shoot():
 		var query = PhysicsRayQueryParameters2D.create(global_position, end)
 		var result = space_state.intersect_ray(query)
 		if result:
+			if result.collider.is_in_group("Enemies"):
+				var enemy: Enemy = result.collider
+				enemy.last_shot_by = get_parent()
 			var health_node: Health = result.collider.get_node("Health")
 			if health_node != null:
 				health_node.take_damage(weapon_res.damage)
@@ -49,6 +52,7 @@ func shoot():
 		bullet.fire_range = weapon_res.fire_range
 		bullet.orig_glob_pos = global_position
 		bullet.direction = get_global_transform().x
+		bullet.shooter = get_parent()
 		for mask in bullet_collision_mask:
 			bullet.set_collision_mask_value(mask, true)
 		var root_node = get_tree().root.get_node('Main')
