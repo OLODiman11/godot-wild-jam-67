@@ -15,4 +15,5 @@ var enemy_res: EnemyRes:
 		sprite_2d.texture = enemy_res.sprite
 
 func _ready():
+	super._ready()
 	self.died.connect(func(_x): Globals.enemy_killed())

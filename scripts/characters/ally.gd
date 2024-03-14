@@ -6,6 +6,7 @@ extends Character
 @onready var regeneration: Regeneration = $Regeneration
 
 func _ready():
+	super._ready()
 	PlayerStats.max_health_changed.connect(health.set_max_health)
 	PlayerStats.speed_changed.connect(movement.set_speed)
 	PlayerStats.regen_rate_changed.connect(regeneration.set_rate)
