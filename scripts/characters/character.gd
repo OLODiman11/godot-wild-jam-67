@@ -1,8 +1,18 @@
+@tool
+
 class_name Character
 
 extends CharacterBody2D
 
 signal died
+
+enum Type {
+	MELEE,
+	GUARD
+}
+
+@export var type: Type = Type.GUARD: set = set_character_res
+@export var infected: bool = true: set = set_infected
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -19,6 +29,22 @@ func _ready():
 	_setup_sprite_tint_logic()
 	_setup_health_bar()
 	
+func set_character_res(new_type: Type):
+	if !_cache_is_initialized():
+		return
+	type = new_type
+	var char_res: EnemyRes = Resources.CHARACTER_RES[type]
+	health.max_value = char_res.max_health
+	movement.speed = char_res.speed
+	weapon.weapon_res = char_res.weapon_res
+	_set_sprite()
+	
+func set_infected(new_value: bool):
+	if !_cache_is_initialized():
+		return
+	infected = new_value
+	_set_sprite()
+
 func _setup_dying_logic():
 	health.value_changed.connect(_die_if_zero_health)
 	
@@ -26,7 +52,8 @@ func _setup_sprite_tint_logic():
 	health.fraction_changed.connect(_change_sprite_tint)
 	
 func _setup_health_bar():
-	health_bar.hide()
+	if !Engine.is_editor_hint():
+		health_bar.hide()
 	health_bar.health = health
 	health_bar_timer.timeout.connect(health_bar.hide)
 	health.fraction_changed.connect(_show_health_bar_and_restart_timer)
@@ -44,3 +71,13 @@ func _change_sprite_tint(_sender: Health):
 func _show_health_bar_and_restart_timer(_sender: Health):
 	health_bar.show()
 	health_bar_timer.start()
+	
+func _cache_is_initialized() -> bool:
+	return health != null
+		
+func _set_sprite():
+	var char_res: EnemyRes = Resources.CHARACTER_RES[type]
+	if infected:
+		sprite_2d.texture = char_res.infected_sprites
+	else:
+		sprite_2d.texture = char_res.sprite

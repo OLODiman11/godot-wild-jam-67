@@ -1,13 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://dyahl44mx4k4a"]
+[gd_scene load_steps=5 format=3 uid="uid://dyahl44mx4k4a"]
 
 [ext_resource type="Script" path="res://scripts/characters/enemy.gd" id="1_f401s"]
 [ext_resource type="PackedScene" uid="uid://b72yp7eaeisl4" path="res://scenes/characters/character.tscn" id="1_umrdh"]
+[ext_resource type="Texture2D" uid="uid://cmnunwt55g1yn" path="res://assets/sprites/enemy_meele.png" id="3_jyvrp"]
+[ext_resource type="Resource" uid="uid://lhcl3ob3ifjw" path="res://resources/weapons/baton.tres" id="4_3ndap"]
 
 [node name="Enemy" instance=ExtResource("1_umrdh")]
 script = ExtResource("1_f401s")
 
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_jyvrp")
+
 [node name="Weapon" parent="." index="3"]
 bullet_collision_mask = Array[int]([5, 2])
+weapon_res = ExtResource("4_3ndap")
+
+[node name="Movement" parent="." index="4"]
+speed = 500.0
 
 [node name="HealthBar" parent="." index="6"]
 grow_horizontal = 1

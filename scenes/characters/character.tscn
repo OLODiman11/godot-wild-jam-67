@@ -89,6 +89,7 @@ bullet_collision_mask = Array[int]([5])
 weapon_res = ExtResource("5_4vl4e")
 
 [node name="Movement" parent="." instance=ExtResource("5_wl3a1")]
+speed = 300.0
 
 [node name="AiController" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_5m626")]
 character = NodePath("..")
