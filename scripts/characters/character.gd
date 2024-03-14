@@ -12,11 +12,20 @@ signal died
 @onready var health_bar: HealthBar = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var health: Health = $Health
+@onready var health_bar_timer: Timer = $HealthBar/Timer
 
 func _ready():
+	# Die logic
 	health.value_changed.connect(_die_if_zero_health)
+	
+	# Sprite tint logic
 	health.value_changed.connect(_change_sprite_tint)
 	health.max_value_changed.connect(_change_sprite_tint)
+	
+	# Health bar show/hide logic
+	health_bar_timer.timeout.connect(health_bar.hide)
+	health.value_changed.connect(_show_health_bar_and_restart_timer)
+	health.max_value_changed.connect(_show_health_bar_and_restart_timer)
 	
 func _die_if_zero_health(sender: Health):
 	if health.value <= 0:
@@ -28,3 +37,7 @@ func _change_sprite_tint(sender: Health):
 	var factor = health.value / health.max_value
 	var tint = Color(1, factor, factor)
 	sprite_2d.modulate = tint
+	
+func _show_health_bar_and_restart_timer():
+	health_bar.show()
+	health_bar_timer.start()

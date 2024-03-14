@@ -25,5 +25,3 @@ texture_under = ExtResource("1_02ng7")
 texture_progress = ExtResource("2_emmlk")
 script = ExtResource("2_nv682")
 metadata/_edit_use_anchors_ = true
-
-[node name="Timer" type="Timer" parent="."]
