@@ -80,6 +80,8 @@ hframes = 4
 
 [node name="Health" type="Node2D" parent="."]
 script = ExtResource("3_ie8yk")
+value = 100.0
+max_value = 100.0
 fraction = 1.0
 
 [node name="Weapon" parent="." instance=ExtResource("4_fbvnx")]
