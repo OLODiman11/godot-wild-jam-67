@@ -16,6 +16,7 @@ signal died
 func _ready():
 	health.health_changed.connect(_die_if_zero_health)
 	health.health_changed.connect(_change_sprite_tint)
+	health.max_health_changed.connect(_change_sprite_tint)
 	
 func _die_if_zero_health(sender: Health):
 	if health.health <= 0:
