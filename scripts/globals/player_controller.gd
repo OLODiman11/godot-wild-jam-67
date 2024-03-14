@@ -7,8 +7,8 @@ signal character_switched(CharacterBody2D)
 		if _ai_controller != null:
 			_ai_controller.enabled = true
 			
-		if _health != null:
-			_health.died.disconnect(switch_character)
+		if character != null:
+			character.died.disconnect(switch_character)
 			
 		character = value
 		_movement = character.get_node("Movement")
@@ -16,7 +16,7 @@ signal character_switched(CharacterBody2D)
 		_ai_controller = character.get_node("AiController")
 		_ai_controller.enabled = false
 		_health = character.get_node("Health")
-		_health.died.connect(switch_character)
+		character.died.connect(switch_character)
 		_inventory = character.get_node("Inventory")
 		
 		update_inventory_ui()

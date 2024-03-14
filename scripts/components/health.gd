@@ -3,7 +3,6 @@ class_name Health
 extends Node2D
 
 signal health_changed
-signal died(Node2D)
 
 @export var max_health: float:
 	set(value):
@@ -14,12 +13,10 @@ signal died(Node2D)
 	set(value):
 		value = clampf(value, 0, max_health)
 		health = value
-		get_parent().get_node("Sprite2D").modulate = Color.RED + health / max_health * Color.AQUA
+		
+		get_parent().sprite_2d.modulate = Color.RED + health / max_health * Color.AQUA
+		
 		health_changed.emit()
-		if health == 0:
-			var parent = get_parent()
-			parent.queue_free()
-			died.emit(parent)
 
 func take_damage(damage: float):
 	health -= damage
