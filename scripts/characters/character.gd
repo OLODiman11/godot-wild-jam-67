@@ -40,6 +40,6 @@ func _change_sprite_tint(sender: Health):
 	var tint = Color(1, health.fraction, health.fraction)
 	sprite_2d.modulate = tint
 	
-func _show_health_bar_and_restart_timer():
+func _show_health_bar_and_restart_timer(sender: Health):
 	health_bar.show()
 	health_bar_timer.start()
