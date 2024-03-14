@@ -1,11 +1,8 @@
 class_name Ally
 
-extends CharacterBody2D
+extends Character
 
 @onready var inventory = $Inventory
-@onready var weapon = $Weapon
-@onready var movement = $Movement
-@onready var health = $Health
 @onready var regeneration = $Regeneration
 
 func _ready():

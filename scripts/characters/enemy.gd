@@ -1,13 +1,8 @@
 class_name Enemy
 
-extends CharacterBody2D
+extends Character
 
 signal converted_to_parasite
-
-@onready var movement = $Movement
-@onready var health = $Health
-@onready var weapon = $Weapon
-@onready var sprite_2d = $Sprite2D
 
 var last_shot_by: Node2D
 var enemy_res: EnemyRes:

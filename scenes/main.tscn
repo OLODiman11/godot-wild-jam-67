@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
-[ext_resource type="PackedScene" uid="uid://brl845cpq7fs1" path="res://scenes/characters/ally.tscn" id="4_jpwry"]
 [ext_resource type="PackedScene" uid="uid://cafrwwps605aw" path="res://scenes/bootstrap.tscn" id="4_y6kmi"]
 [ext_resource type="PackedScene" uid="uid://b5yn5nt52v0up" path="res://scenes/ui/ui.tscn" id="5_jjwy5"]
+[ext_resource type="PackedScene" uid="uid://bjnme14nmxolr" path="res://scenes/characters/ally.tscn" id="6_bubpy"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="7_046r7"]
 [ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="8_xmnlb"]
 [ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="9_1hoaq"]
@@ -26,12 +26,17 @@ spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
 
 [node name="AlliesContainer" type="Node2D" parent="."]
 
-[node name="Ally" parent="AlliesContainer" instance=ExtResource("4_jpwry")]
+[node name="Ally" parent="AlliesContainer" instance=ExtResource("6_bubpy")]
 
-[node name="Inventory" parent="AlliesContainer/Ally" index="9"]
+[node name="Movement" parent="AlliesContainer/Ally" index="4"]
+speed = 800.0
+run_speed = 1200.0
+
+[node name="Inventory" parent="AlliesContainer/Ally" index="8"]
 possessed_weapons = Array[bool]([false, true, false, false])
 
 [node name="SpawnPath" type="Path2D" parent="AlliesContainer/Ally"]
+scale = Vector2(5, 5)
 curve = SubResource("Curve2D_774ut")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="AlliesContainer/Ally/SpawnPath"]
@@ -41,7 +46,7 @@ rotation = -0.0067379
 [node name="Marker2D" type="Marker2D" parent="AlliesContainer/Ally/SpawnPath/PathFollow2D"]
 
 [node name="MainCamera" type="Camera2D" parent="AlliesContainer/Ally"]
-scale = Vector2(0.3, 0.3)
+scale = Vector2(1.5, 1.5)
 zoom = Vector2(0.48, 0.48)
 limit_left = -1950
 limit_top = -2050
@@ -55,6 +60,7 @@ editor_draw_limits = true
 current_ally = NodePath("../AlliesContainer/Ally")
 
 [node name="AllyFactory" parent="." node_paths=PackedStringArray("allies_container") instance=ExtResource("9_naicb")]
+ally_scene = ExtResource("6_bubpy")
 allies_container = NodePath("../AlliesContainer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

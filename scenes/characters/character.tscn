@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://b72yp7eaeisl4"]
+
+[ext_resource type="Script" path="res://scripts/characters/character.gd" id="1_b4be6"]
+[ext_resource type="Texture2D" uid="uid://i4w3k8ntgq0n" path="res://assets/sprites/parasite_sheet.png" id="2_43b6j"]
+[ext_resource type="Script" path="res://scripts/components/health.gd" id="3_ie8yk"]
+[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/components/weapon.tscn" id="4_fbvnx"]
+[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="5_4vl4e"]
+[ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="5_wl3a1"]
+[ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="6_5m626"]
+[ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="7_iimqj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0vy5a"]
+radius = 7.0
+height = 16.0
+
+[sub_resource type="Animation" id="Animation_dby3n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_g1pd4"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_vok3f"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70nnh"]
+_data = {
+"RESET": SubResource("Animation_dby3n"),
+"idle": SubResource("Animation_g1pd4"),
+"walk": SubResource("Animation_vok3f")
+}
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_b4be6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0vy5a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_43b6j")
+hframes = 4
+
+[node name="Health" type="Node2D" parent="."]
+script = ExtResource("3_ie8yk")
+max_health = 100.0
+
+[node name="Weapon" parent="." instance=ExtResource("4_fbvnx")]
+bullet_collision_mask = Array[int]([5])
+weapon_res = ExtResource("5_4vl4e")
+
+[node name="Movement" parent="." instance=ExtResource("5_wl3a1")]
+
+[node name="AiController" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_5m626")]
+character = NodePath("..")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_iimqj")]
+visible = true
+anchors_preset = -1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -6.0
+offset_top = -12.0
+offset_right = 6.0
+offset_bottom = -10.0
+health = NodePath("../Health")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_70nnh")
+}

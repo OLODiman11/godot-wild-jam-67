@@ -1,127 +1,22 @@
-[gd_scene load_steps=16 format=3 uid="uid://brl845cpq7fs1"]
+[gd_scene load_steps=5 format=3 uid="uid://bjnme14nmxolr"]
 
 [ext_resource type="Script" path="res://scripts/characters/ally.gd" id="1_argwm"]
-[ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="2_h3rqr"]
-[ext_resource type="Texture2D" uid="uid://i4w3k8ntgq0n" path="res://assets/sprites/parasite_sheet.png" id="3_3bwba"]
-[ext_resource type="PackedScene" uid="uid://dx70fgaf2yxkn" path="res://scenes/components/health.tscn" id="6_0uryq"]
-[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/components/weapon.tscn" id="7_i2hle"]
-[ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="7_qkrmw"]
+[ext_resource type="PackedScene" uid="uid://b72yp7eaeisl4" path="res://scenes/characters/character.tscn" id="1_jbd5d"]
 [ext_resource type="PackedScene" uid="uid://b5ccwaf53l6nv" path="res://scenes/components/regeneration.tscn" id="8_2ui6p"]
-[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
-[ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="9_s75ov"]
 [ext_resource type="PackedScene" uid="uid://byj8lyjiucnls" path="res://scenes/components/inventory.tscn" id="10_781gy"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
-
-[sub_resource type="Animation" id="Animation_5a338"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_quopa"]
-resource_name = "ally_idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_trttl"]
-resource_name = "ally_walk"
-length = 0.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 3]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ywgi"]
-_data = {
-"RESET": SubResource("Animation_5a338"),
-"idle": SubResource("Animation_quopa"),
-"walk": SubResource("Animation_trttl")
-}
-
-[node name="Ally" type="CharacterBody2D" groups=["Hittable", "Player"]]
-scale = Vector2(5, 5)
-collision_layer = 2
-collision_mask = 23
+[node name="Ally" instance=ExtResource("1_jbd5d")]
 script = ExtResource("1_argwm")
 
-[node name="AiController" parent="." node_paths=PackedStringArray("character") instance=ExtResource("2_h3rqr")]
-character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_dgsdg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("3_3bwba")
-hframes = 4
-
-[node name="Weapon" parent="." instance=ExtResource("7_i2hle")]
+[node name="Weapon" parent="." index="3"]
 bullet_collision_mask = Array[int]([5, 3])
-weapon_res = ExtResource("8_k3i8f")
 
-[node name="Movement" parent="." instance=ExtResource("9_s75ov")]
-speed = 800.0
-run_speed = 1200.0
+[node name="HealthBar" parent="." index="6"]
+anchors_preset = 0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="Health" parent="." instance=ExtResource("6_0uryq")]
-max_health = 100.0
+[node name="Inventory" parent="." index="8" instance=ExtResource("10_781gy")]
 
-[node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_qkrmw")]
-visible = true
-offset_top = -22.4
-offset_bottom = -18.4
+[node name="Regeneration" parent="." index="9" node_paths=PackedStringArray("health") instance=ExtResource("8_2ui6p")]
 health = NodePath("../Health")
-
-[node name="Regeneration" parent="." node_paths=PackedStringArray("health") instance=ExtResource("8_2ui6p")]
-rate = 2.0
-amount = 2.0
-health = NodePath("../Health")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2D")
-libraries = {
-"": SubResource("AnimationLibrary_3ywgi")
-}
-
-[node name="Inventory" parent="." instance=ExtResource("10_781gy")]
