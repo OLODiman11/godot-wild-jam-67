@@ -14,17 +14,17 @@ signal died
 @onready var health: Health = $Health
 
 func _ready():
-	health.health_changed.connect(_die_if_zero_health)
-	health.health_changed.connect(_change_sprite_tint)
-	health.max_health_changed.connect(_change_sprite_tint)
+	health.value_changed.connect(_die_if_zero_health)
+	health.value_changed.connect(_change_sprite_tint)
+	health.max_value_changed.connect(_change_sprite_tint)
 	
 func _die_if_zero_health(sender: Health):
-	if health.health <= 0:
+	if health.value <= 0:
 		queue_free()
 		died.emit()
 		EventBus.character_died.emit(self)
 	
 func _change_sprite_tint(sender: Health):
-	var factor = health.health / health.max_health
+	var factor = health.value / health.max_value
 	var tint = Color(1, factor, factor)
 	sprite_2d.modulate = tint

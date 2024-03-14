@@ -2,17 +2,17 @@ class_name Health
 
 extends Node2D
 
-signal health_changed(sender: Health)
-signal max_health_changed(sender: Health)
+signal value_changed(sender: Health)
+signal max_value_changed(sender: Health)
 
-@export var health: float = 100: set = set_health
-@export var max_health: float = 100: set = set_max_health
+@export var value: float = 100: set = set_value
+@export var max_value: float = 100: set = set_max_value
 
-func set_max_health(value: float):
-	max_health = value
-	max_health_changed.emit(self)
+func set_max_value(new_value: float):
+	max_value = new_value
+	max_value_changed.emit(self)
 	
-func set_health(value: float):
-	value = clampf(value, 0, max_health)
-	health = value
-	health_changed.emit(self)
+func set_value(new_value: float):
+	value = clampf(value, 0, max_value)
+	value = new_value
+	value_changed.emit(self)

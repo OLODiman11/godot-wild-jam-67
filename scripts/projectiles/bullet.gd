@@ -27,5 +27,5 @@ func _physics_process(delta):
 			enemy.last_shot_by = shooter
 		var health_node: Health = collision.get_collider().get_node("Health")
 		if health_node != null:
-			health_node.health -= damage
+			health_node.value -= damage
 			queue_free()

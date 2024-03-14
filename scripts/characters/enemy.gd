@@ -9,8 +9,8 @@ var enemy_res: EnemyRes:
 	set(value):
 		enemy_res = value
 		movement.speed = enemy_res.speed
-		health.max_health = enemy_res.max_health
-		health.health = enemy_res.max_health
+		health.max_value = enemy_res.max_health
+		health.value = enemy_res.max_health
 		weapon.switch(enemy_res.weapon_res)
 		sprite_2d.texture = enemy_res.sprite
 

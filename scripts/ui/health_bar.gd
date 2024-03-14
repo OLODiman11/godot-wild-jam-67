@@ -8,14 +8,14 @@ extends TextureProgressBar
 
 func _ready():
 	if health:
-		health.health_changed.connect(func(_x): update())
-		health.max_health_changed.connect(func(_x): update())
-		value = health.health / health.max_health * max_value
+		health.value_changed.connect(func(_x): update())
+		health.max_value_changed.connect(func(_x): update())
+		value = health.value / health.max_value * max_value
 	timer.timeout.connect(hide_bar)
 
 func update():
 	show_bar()
-	value = health.health / health.max_health * max_value
+	value = health.value / health.max_value * max_value
 
 func show_bar():
 	timer.start()
