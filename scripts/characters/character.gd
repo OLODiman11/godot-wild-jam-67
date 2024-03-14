@@ -16,7 +16,7 @@ signal died
 func _ready():
 	health.health_changed.connect(_die_if_zero_health)
 	
-func _die_if_zero_health():
+func _die_if_zero_health(sender: Health):
 	if health.health <= 0:
 		queue_free()
 		died.emit()

@@ -2,12 +2,12 @@ class_name Health
 
 extends Node2D
 
-signal health_changed
+signal health_changed(sender: Health)
 
 @export var max_health: float:
 	set(value):
 		max_health = value
-		health_changed.emit()
+		health_changed.emit(self)
 
 @onready var health := max_health:
 	set(value):
@@ -16,7 +16,7 @@ signal health_changed
 		
 		get_parent().sprite_2d.modulate = Color.RED + health / max_health * Color.AQUA
 		
-		health_changed.emit()
+		health_changed.emit(self)
 
 func take_damage(damage: float):
 	health -= damage
