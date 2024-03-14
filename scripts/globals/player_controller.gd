@@ -93,7 +93,10 @@ func switch_character():
 			new_character.add_child(camera)
 			character.remove_child(path)
 			new_character.add_child(path)
+			var index = Globals.weapon_resources.find(new_character.get_node("Weapon").weapon_res)
+			new_character.get_node("Inventory").possessed_weapons[index] = true
 			character = new_character
+			switch_weapon(index)
 			break
 
 func _physics_process(_delta: float):
