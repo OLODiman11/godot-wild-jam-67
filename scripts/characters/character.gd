@@ -15,13 +15,18 @@ signal died
 @onready var health_bar_timer: Timer = $HealthBar/Timer
 
 func _ready():
-	# Die logic
+	_setup_dying_logic()
+	_setup_sprite_tint_logic()
+	_setup_health_bar()
+	
+func _setup_dying_logic():
 	health.value_changed.connect(_die_if_zero_health)
 	
-	# Sprite tint logic
+func _setup_sprite_tint_logic():
 	health.fraction_changed.connect(_change_sprite_tint)
 	
-	# Health bar show/hide logic
+func _setup_health_bar():
+	health_bar.health = health
 	health_bar_timer.timeout.connect(health_bar.hide)
 	health.fraction_changed.connect(_show_health_bar_and_restart_timer)
 	
