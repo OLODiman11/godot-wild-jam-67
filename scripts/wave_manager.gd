@@ -40,7 +40,6 @@ func spawn_enemy():
 	enemy.died.connect(func(_x): try_end_wave())
 	enemy.died.connect(Ally._on_enemy_killed)
 	enemy.converted_to_parasite.connect(try_end_wave)
-	enemy.get_node("AiController").target = PlayerController.character
 	
 	while true:
 		enemy.global_position = _get_enemy_random_position()
