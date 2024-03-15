@@ -2,47 +2,51 @@ class_name AiController
 
 extends Node2D
 
-@export var character: CharacterBody2D = get_parent()
-@export var target: CharacterBody2D
 @export var enabled: bool = true
+@export var character: Character
+@export_enum(Groups.ALLIES, Groups.ENEMIES) var target_group: String
 
-@onready var _weapon: Weapon = get_parent().get_node("Weapon")
-@onready var _movement: Movement = get_parent().get_node("Movement")
+var _target: Character
 
 func _physics_process(_delta):
 	if !enabled:
 		return
-		
-	var container: Node2D
-	if character.get_parent().name == "EnemiesContainer":
-		container = get_tree().root.get_node('Main/AlliesContainer')
-	if character.get_parent().name == "AlliesContainer":
-		container = get_tree().root.get_node('Main/EnemiesContainer')
-	if container.get_child_count() == 0:
+	
+	_target = _get_closest_target()
+	if _target == null:
 		return
-	var closest = container.get_child(0)
-	var min_distance = (closest.global_position - get_parent().global_position).length()
-	for enemy in container.get_children():
-		var vector = enemy.global_position - get_parent().global_position
-		var distance = vector.length()
-		if distance < min_distance:
-			closest = enemy
-			min_distance = distance
 		
-	target = closest
-	
-	_weapon.look_at(target.global_position)
-	
-	var vector_to_target = target.global_position - global_position
-	if vector_to_target.x > 0:
-		character.get_node("Sprite2D").flip_h = true
+	_point_weapon_at_target()
+	if _target_is_in_fire_range():
+		_shoot()
 	else:
-		character.get_node("Sprite2D").flip_h = false
-	var dist_to_target = vector_to_target.length()
-	var is_in_attack_range = dist_to_target < _weapon.weapon_res.fire_range
-	if is_in_attack_range:
-		_weapon.shoot()
-		character.get_node("AnimationPlayer").play("idle")
-	else:
-		_movement.move(vector_to_target)
-		character.get_node("AnimationPlayer").play("walk")
+		_move_towards_target()
+		
+func _get_closest_target() -> Character:
+	var targets: Array[Node] = get_tree().get_nodes_in_group(target_group)
+	var closest = null
+	var min_distance = INF
+	for target in targets:
+		var distance = (target.global_position - character.global_position).length()
+		if distance < min_distance:
+			closest = target
+			min_distance = distance
+	return closest
+
+func _point_weapon_at_target():
+	character.weapon.look_at(_target.global_position)
+	var dir_to_target = character.global_position.direction_to(_target.global_position)
+	character.sprite_2d.flip_h = dir_to_target.x > 0
+	
+func _target_is_in_fire_range() -> bool:
+	var dist_to_target = character.global_position.distance_to(_target.global_position)
+	return dist_to_target < character.weapon.weapon_res.fire_range
+	
+func _shoot():
+	character.weapon.shoot()
+	character.animation_player.play(Animations.IDLE)
+	
+func _move_towards_target():
+	var direction = character.global_position.direction_to(_target.global_position)
+	character.movement.move(direction)
+	character.animation_player.play(Animations.WALK)
