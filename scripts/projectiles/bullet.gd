@@ -10,6 +10,8 @@ extends CharacterBody2D
 @export var fire_range: float
 @export var orig_glob_pos: Vector2
 
+var shooter: Node2D
+
 func _physics_process(delta):
 	var collision := move_and_collide(speed * direction * delta)
 	
@@ -20,6 +22,9 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group('Map'):
 			queue_free()
 			return
+		if collision.get_collider().is_in_group("Enemies"):
+			var enemy: Enemy = collision.get_collider()
+			enemy.last_shot_by = shooter
 		var health_node: Health = collision.get_collider().get_node("Health")
 		if health_node != null:
 			health_node.take_damage(damage)

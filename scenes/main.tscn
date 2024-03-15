@@ -28,6 +28,9 @@ spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
 
 [node name="Ally" parent="AlliesContainer" instance=ExtResource("4_jpwry")]
 
+[node name="Inventory" parent="AlliesContainer/Ally" index="9"]
+possessed_weapons = Array[bool]([false, true, false, false])
+
 [node name="SpawnPath" type="Path2D" parent="AlliesContainer/Ally"]
 curve = SubResource("Curve2D_774ut")
 
@@ -92,6 +95,7 @@ text = "Start"
 [connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
 [connection signal="pressed" from="CanvasLayer/UI/NextWave" to="CanvasLayer/UI/NextWave" method="hide"]
 
+[editable path="AlliesContainer/Ally"]
 [editable path="CanvasLayer/UI"]
 [editable path="CanvasLayer/UI/UpgradeMenu"]
 [editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Health"]

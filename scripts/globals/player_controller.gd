@@ -17,13 +17,18 @@ signal character_switched(CharacterBody2D)
 		_ai_controller.enabled = false
 		_health = character.get_node("Health")
 		_health.died.connect(switch_character)
+		_inventory = character.get_node("Inventory")
 		
+		update_inventory_ui()
+			
 		character_switched.emit(character)
 
+var current_weapon_index = 1
 var _movement: Movement
 var _weapon: Weapon
 var _ai_controller: AiController
 var _health: Health
+var _inventory: Inventory
 var _parasite: Resource = preload("res://scenes/projectiles/parasite.tscn")
 var parasites_released: int = 0:
 	set(value):
@@ -51,6 +56,29 @@ func _input(event):
 		
 	if event.is_action_pressed("next_character"):
 		switch_character()
+		
+	if event.is_action_pressed("first_weapon"):
+		switch_weapon(0)
+	if event.is_action_pressed("second_weapon"):
+		switch_weapon(1)
+	if event.is_action_pressed("third_weapon"):
+		switch_weapon(2)
+	if event.is_action_pressed("fourth_weapon"):
+		switch_weapon(3)
+	
+func switch_weapon(index):
+	if !_inventory.possessed_weapons[index]:
+		return
+	
+	var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
+	var previous = container.get_child(current_weapon_index)
+	previous.get_child(1).hide()
+	
+	current_weapon_index = index
+	var child = container.get_child(index)
+	child.get_child(1).show()
+	
+	_weapon.weapon_res = Globals.weapon_resources[index]
 	
 func switch_character():
 	var size = allies_container.get_children().size()
@@ -65,7 +93,10 @@ func switch_character():
 			new_character.add_child(camera)
 			character.remove_child(path)
 			new_character.add_child(path)
+			var index = Globals.weapon_resources.find(new_character.get_node("Weapon").weapon_res)
+			new_character.get_node("Inventory").possessed_weapons[index] = true
 			character = new_character
+			switch_weapon(index)
 			break
 
 func _physics_process(_delta: float):
@@ -88,3 +119,13 @@ func _physics_process(_delta: float):
 		_movement.run(direction)
 	else:
 		_movement.move(direction)
+		
+func update_inventory_ui():
+	var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
+	for i in range(Globals.weapon_resources.size()):
+		if _inventory.possessed_weapons[i]:
+			container.get_child(i).get_child(2).show()
+		else:
+			container.get_child(i).get_child(2).hide()
+		
+

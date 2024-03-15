@@ -3,7 +3,7 @@ class_name Health
 extends Node2D
 
 signal health_changed
-signal died
+signal died(Node2D)
 
 @export var max_health: float:
 	set(value):
@@ -17,8 +17,9 @@ signal died
 		get_parent().get_node("Sprite2D").modulate = Color.RED + health / max_health * Color.WHITE
 		health_changed.emit()
 		if health == 0:
-			get_parent().queue_free()
-			died.emit()
+			var parent = get_parent()
+			parent.queue_free()
+			died.emit(parent)
 
 func take_damage(damage: float):
 	health -= damage

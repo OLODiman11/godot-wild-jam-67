@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5yn5nt52v0up"]
+[gd_scene load_steps=6 format=3 uid="uid://b5yn5nt52v0up"]
 
 [ext_resource type="PackedScene" uid="uid://cumeeu7kg3eci" path="res://scenes/ui/upgrade_menu.tscn" id="1_5ucio"]
 [ext_resource type="Script" path="res://scripts/ui/points_label.gd" id="2_t7tv7"]
 [ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="3_prjlu"]
+[ext_resource type="PackedScene" uid="uid://bh8mqtxqaaouo" path="res://scenes/ui/inventory.tscn" id="4_3fshl"]
 
 [sub_resource type="GDScript" id="GDScript_sim8h"]
 script/source = "extends Button
@@ -30,6 +31,7 @@ visible = false
 layout_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -72,8 +74,12 @@ text = "Upgrade"
 
 [node name="PointsLabel" type="Label" parent="."]
 layout_mode = 1
-offset_right = 57.0
-offset_bottom = 23.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -208.0
+offset_bottom = 69.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 50
 text = "Points: 0"
 script = ExtResource("2_t7tv7")
@@ -94,6 +100,10 @@ grow_vertical = 0
 scale = Vector2(0.967357, 0.847357)
 value = 100.0
 nine_patch_stretch = false
+
+[node name="Inventory" parent="." instance=ExtResource("4_3fshl")]
+layout_mode = 1
+scale = Vector2(4, 4)
 
 [connection signal="pressed" from="UpgradeButton" to="UpgradeMenu" method="show"]
 

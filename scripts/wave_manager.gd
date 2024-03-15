@@ -36,7 +36,8 @@ func spawn_enemy():
 		enemy.enemy_res = load("res://resources/enemies/guard.tres")
 	else:
 		enemy.enemy_res = load("res://resources/enemies/melee.tres")
-	enemy.get_node("Health").died.connect(try_end_wave)
+	enemy.get_node("Health").died.connect(func(_x): try_end_wave())
+	enemy.get_node("Health").died.connect(Ally._on_enemy_killed)
 	enemy.converted_to_parasite.connect(try_end_wave)
 	enemy.get_node("AiController").target = PlayerController.character
 	

@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 signal converted_to_parasite
 
+var last_shot_by: Node2D
+
 var enemy_res: EnemyRes:
 	set(value):
 		enemy_res = value
@@ -13,4 +15,4 @@ var enemy_res: EnemyRes:
 		$Sprite2D.texture = enemy_res.sprite
 
 func _ready():
-	$Health.died.connect(Globals.enemy_killed)
+	$Health.died.connect(func(_x): Globals.enemy_killed())

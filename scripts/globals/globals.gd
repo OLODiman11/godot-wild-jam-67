@@ -2,6 +2,13 @@ extends Node
 
 signal points_changed(int)
 
+const weapon_resources: Array[WeaponRes] = [
+	preload("res://resources/weapons/baton.tres"),
+	preload("res://resources/weapons/pistol.tres"),
+	preload("res://resources/weapons/rifle.tres"),
+	preload("res://resources/weapons/sniper_rifle.tres")
+]
+
 var upgrade_points: int = 0:
 	set(value):
 		upgrade_points = value
