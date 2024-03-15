@@ -93,6 +93,7 @@ speed = 300.0
 
 [node name="AiController" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_5m626")]
 character = NodePath("..")
+target_group = "Enemies"
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_iimqj")]
 offset_left = -6.0

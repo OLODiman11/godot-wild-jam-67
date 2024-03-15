@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cmnunwt55g1yn" path="res://assets/sprites/enemy_meele.png" id="3_jyvrp"]
 [ext_resource type="Resource" uid="uid://lhcl3ob3ifjw" path="res://resources/weapons/baton.tres" id="4_3ndap"]
 
-[node name="Enemy" instance=ExtResource("1_umrdh")]
+[node name="Enemy" groups=["Enemies"] instance=ExtResource("1_umrdh")]
 script = ExtResource("1_f401s")
 
 [node name="Sprite2D" parent="." index="1"]
@@ -18,6 +18,10 @@ weapon_res = ExtResource("4_3ndap")
 [node name="Movement" parent="." index="4"]
 speed = 500.0
 
+[node name="AiController" parent="." index="5"]
+target_group = "Allies"
+
 [node name="HealthBar" parent="." index="6"]
+anchors_preset = -1
 grow_horizontal = 1
 grow_vertical = 1
