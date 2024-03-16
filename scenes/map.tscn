@@ -1,54 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgngaw7447d8v"]
+[gd_scene load_steps=4 format=3 uid="uid://bgngaw7447d8v"]
 
 [ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="1_driq8"]
-[ext_resource type="Script" path="res://scripts/map.gd" id="1_v4wtr"]
 [ext_resource type="Texture2D" uid="uid://cijond5qk5rx7" path="res://assets/1x1_white.png" id="2_0asrx"]
-[ext_resource type="Texture2D" uid="uid://6pjjku4v1jk1" path="res://assets/sprites/parasite_mom.png" id="3_7025j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x4oly"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_po3sx"]
-
-[sub_resource type="Animation" id="Animation_l7yye"]
-resource_name = "mom_idle"
-length = 1.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
-[sub_resource type="Animation" id="Animation_b5igh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_uoy7l"]
-_data = {
-"RESET": SubResource("Animation_b5igh"),
-"mom_idle": SubResource("Animation_l7yye")
-}
-
 [node name="Map" type="Node2D"]
-script = ExtResource("1_v4wtr")
 
 [node name="Floor" type="Sprite2D" parent="."]
 modulate = Color(0.8, 0.8, 0.8, 1)
@@ -136,20 +93,3 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall/StaticBody2D3" groups=["Map"]]
 shape = SubResource("RectangleShape2D_x4oly")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(14.6432, 14.6432)
-texture = ExtResource("3_7025j")
-hframes = 4
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/StaticBody2D"]
-position = Vector2(0, 0.956078)
-scale = Vector2(0.698306, 0.698306)
-shape = SubResource("RectangleShape2D_po3sx")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_uoy7l")
-}

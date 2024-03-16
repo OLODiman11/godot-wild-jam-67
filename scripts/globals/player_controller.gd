@@ -106,26 +106,27 @@ func switch_character():
 			break
 
 func _physics_process(_delta: float):
-	if _weapon:
-		_weapon.look_at(get_global_mouse_position())
-		if get_global_mouse_position() > character.global_position:
-			character.get_node("Sprite2D").flip_h = true
-		else:
-			character.get_node("Sprite2D").flip_h = false
-		
+	if character:
+		if _weapon:
+			_weapon.look_at(get_global_mouse_position())
+			if get_global_mouse_position() > character.global_position:
+				character.get_node("Sprite2D").flip_h = true
+			else:
+				character.get_node("Sprite2D").flip_h = false
+			
 
-	if Input.is_action_pressed("shoot"):
-		_weapon.shoot()
-	
-	var direction = Input.get_vector("left", "right", "up", "down")
-	if direction:
-		character.get_node("AnimationPlayer").play("walk")
-	else:
-		character.get_node("AnimationPlayer").play("idle")
-	if Input.is_action_pressed("run"):
-		_movement.run(direction)
-	else:
-		_movement.move(direction)
+		if Input.is_action_pressed("shoot"):
+			_weapon.shoot()
+		
+		var direction = Input.get_vector("left", "right", "up", "down")
+		if direction:
+			character.get_node("AnimationPlayer").play("walk")
+		else:
+			character.get_node("AnimationPlayer").play("idle")
+		if Input.is_action_pressed("run"):
+			_movement.run(direction)
+		else:
+			_movement.move(direction)
 		
 func update_inventory_ui():
 	var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
