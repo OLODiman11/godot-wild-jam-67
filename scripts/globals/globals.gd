@@ -10,6 +10,8 @@ const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/sniper_rifle.tres")
 ]
 
+var mother_points: int = 0
+
 var upgrade_points: int = 0:
 	set(value):
 		upgrade_points = value
