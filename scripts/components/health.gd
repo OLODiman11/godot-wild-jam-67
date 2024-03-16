@@ -5,6 +5,8 @@ extends Node2D
 signal health_changed
 signal died(Node2D)
 
+var blood_sprite = preload("res://scenes/blood.tscn")
+
 @export var max_health: float:
 	set(value):
 		max_health = value
@@ -18,6 +20,9 @@ signal died(Node2D)
 		health_changed.emit()
 		if is_equal_approx(0, health):
 			var parent = get_parent()
+			var blood = blood_sprite.instantiate()
+			get_tree().root.get_node("Main/Map").add_child(blood)
+			blood.position = parent.position
 			parent.queue_free()
 			died.emit(parent)
 
