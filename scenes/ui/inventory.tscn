@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh8mqtxqaaouo"]
+[gd_scene load_steps=9 format=3 uid="uid://wv5obad8i6fh"]
 
 [ext_resource type="Texture2D" uid="uid://cocfd2wexigxr" path="res://assets/weapon_preview/background.png" id="1_uofpc"]
 [ext_resource type="Texture2D" uid="uid://c1l1pc133ds18" path="res://assets/weapon_preview/baton.png" id="2_msugt"]
@@ -6,6 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://crx740un37jk8" path="res://assets/weapon_preview/pistol.png" id="3_ghq1k"]
 [ext_resource type="Texture2D" uid="uid://cqpj06xkig85v" path="res://assets/weapon_preview/rifle.png" id="4_f5i40"]
 [ext_resource type="Texture2D" uid="uid://dkrr2hcg3i211" path="res://assets/weapon_preview/sniper_rifle.png" id="5_e6re5"]
+[ext_resource type="Texture2D" uid="uid://c004sxeudaoyl" path="res://assets/weapon_preview/grenade_launcher.png" id="6_0y1de"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hra4e"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="Inventory" type="CenterContainer"]
 modulate = Color(0.776471, 0.776471, 0.776471, 1)
@@ -16,6 +20,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hra4e")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer"]
 modulate = Color(0.6, 0.6, 0.6, 1)
@@ -88,6 +93,23 @@ texture = ExtResource("2_qtwyj")
 [node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/HFlowContainer/Rifle"]
 layout_mode = 2
 texture = ExtResource("4_f5i40")
+
+[node name="Grenader" type="CenterContainer" parent="PanelContainer/MarginContainer/HFlowContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="PanelContainer/MarginContainer/HFlowContainer/Grenader"]
+layout_mode = 2
+texture = ExtResource("1_uofpc")
+
+[node name="Frame" type="TextureRect" parent="PanelContainer/MarginContainer/HFlowContainer/Grenader"]
+visible = false
+modulate = Color(0.0117647, 0.792157, 0.988235, 1)
+layout_mode = 2
+texture = ExtResource("2_qtwyj")
+
+[node name="TextureRect2" type="TextureRect" parent="PanelContainer/MarginContainer/HFlowContainer/Grenader"]
+layout_mode = 2
+texture = ExtResource("6_0y1de")
 
 [node name="Sniper" type="CenterContainer" parent="PanelContainer/MarginContainer/HFlowContainer"]
 layout_mode = 2

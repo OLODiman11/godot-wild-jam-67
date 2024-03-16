@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" path="res://scripts/characters/ally.gd" id="1_argwm"]
 [ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="2_h3rqr"]
-[ext_resource type="Texture2D" uid="uid://i4w3k8ntgq0n" path="res://assets/sprites/parasite_sheet.png" id="3_3bwba"]
+[ext_resource type="Texture2D" uid="uid://i4w3k8ntgq0n" path="res://assets/sprites/parasites/parasite_sheet.png" id="3_mxv3p"]
 [ext_resource type="PackedScene" uid="uid://dx70fgaf2yxkn" path="res://scenes/components/health.tscn" id="6_0uryq"]
-[ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/components/weapon.tscn" id="7_i2hle"]
-[ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="7_qkrmw"]
+[ext_resource type="PackedScene" uid="uid://cndhxe0rkxmn6" path="res://scenes/components/weapon.tscn" id="7_i2hle"]
+[ext_resource type="PackedScene" uid="uid://bdhhjbymmivmt" path="res://scenes/ui/health_bar.tscn" id="7_qkrmw"]
 [ext_resource type="PackedScene" uid="uid://b5ccwaf53l6nv" path="res://scenes/components/regeneration.tscn" id="8_2ui6p"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
 [ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="9_s75ov"]
-[ext_resource type="PackedScene" uid="uid://byj8lyjiucnls" path="res://scenes/components/inventory.tscn" id="10_781gy"]
+[ext_resource type="PackedScene" uid="uid://cq10xvlf0ik7t" path="res://scenes/components/inventory.tscn" id="10_781gy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
 
@@ -93,7 +93,7 @@ shape = SubResource("CapsuleShape2D_dgsdg")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
-texture = ExtResource("3_3bwba")
+texture = ExtResource("3_mxv3p")
 hframes = 4
 
 [node name="Weapon" parent="." instance=ExtResource("7_i2hle")]
@@ -105,7 +105,7 @@ speed = 800.0
 run_speed = 1200.0
 
 [node name="Health" parent="." instance=ExtResource("6_0uryq")]
-max_health = 100.0
+max_health = 500.0
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_qkrmw")]
 visible = true

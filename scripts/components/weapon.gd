@@ -5,6 +5,7 @@ extends Node2D
 const BATON: WeaponRes = preload("res://resources/weapons/baton.tres")
 const PISTOL: WeaponRes = preload("res://resources/weapons/pistol.tres")
 const RIFLE: WeaponRes = preload("res://resources/weapons/rifle.tres")
+const GENADE_LAUNCHER: WeaponRes = preload("res://resources/weapons/grenade_launcher.tres")
 const SNIPER_RIFLE: WeaponRes = preload("res://resources/weapons/sniper_rifle.tres")
 
 @export var bullet_collision_mask: Array[Globals.Layers]
@@ -57,7 +58,9 @@ func shoot():
 			if health_node != null:
 				health_node.take_damage(weapon_res.damage)
 	else:
-		var bullet = bullet_scene.instantiate()
+		var bullet = weapon_res.projectile.instantiate()
+		var root_node = get_tree().root.get_node('Main')
+		root_node.add_child(bullet)
 		bullet.speed = weapon_res.bullet_speed
 		bullet.damage = weapon_res.damage
 		bullet.position = $ShootPoint.global_position
@@ -65,7 +68,4 @@ func shoot():
 		bullet.orig_glob_pos = global_position
 		bullet.direction = get_global_transform().x
 		bullet.shooter = get_parent()
-		for mask in bullet_collision_mask:
-			bullet.set_collision_mask_value(mask, true)
-		var root_node = get_tree().root.get_node('Main')
-		root_node.add_child(bullet)
+		bullet.set_collision_masks(bullet_collision_mask)

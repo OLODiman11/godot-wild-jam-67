@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="WeaponRes" load_steps=3 format=3 uid="uid://dldbr3lwrurw1"]
+[gd_resource type="Resource" script_class="WeaponRes" load_steps=5 format=3 uid="uid://dldbr3lwrurw1"]
 
+[ext_resource type="PackedScene" uid="uid://r3vfkcvtavpr" path="res://scenes/projectiles/bullet.tscn" id="1_qhr72"]
 [ext_resource type="Script" path="res://scripts/resources/weapon_res.gd" id="1_svn1i"]
+[ext_resource type="Texture2D" uid="uid://cx57hhh6u23nt" path="res://assets/sprites/parasites/parasite_range.png" id="3_w1svo"]
 [ext_resource type="AudioStream" uid="uid://cx78chtt4yyc8" path="res://assets/sounds/rifle_start.mp3" id="2_6kdx0"]
 
 [resource]
@@ -11,4 +13,6 @@ damage = 10.0
 bullet_speed = 2500.0
 fire_range = 1000.0
 is_melee = false
+weapon_holder_sprite = ExtResource("3_w1svo")
+projectile = ExtResource("1_qhr72")
 shoot_sound = ExtResource("2_6kdx0")

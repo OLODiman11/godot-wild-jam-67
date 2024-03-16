@@ -29,3 +29,7 @@ func _physics_process(delta):
 		if health_node != null:
 			health_node.take_damage(damage)
 			queue_free()
+
+func set_collision_masks(masks:Array[int]):
+	for mask in masks:
+		set_collision_mask_value(mask, true)

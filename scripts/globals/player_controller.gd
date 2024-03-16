@@ -1,8 +1,10 @@
+class_name PlayerController
+
 extends Node2D
 
 signal character_switched(CharacterBody2D)
 
-@export var character: CharacterBody2D:
+var character: CharacterBody2D:
 	set(value):
 		if _ai_controller != null:
 			_ai_controller.enabled = true
@@ -23,6 +25,7 @@ signal character_switched(CharacterBody2D)
 			
 		character_switched.emit(character)
 
+static var instance: PlayerController = null
 var current_weapon_index = 1
 var _movement: Movement
 var _weapon: Weapon
@@ -39,8 +42,8 @@ var parasites_released: int = 0:
 @onready var enemies_container = get_tree().root.get_node("Main/EnemiesContainer")
 
 func _input(event):
-	if allies_container.get_child_count() + parasites_released < PlayerStats.max_parasite_count:
-		if event.is_action_pressed("release_parasite"):
+	if event.is_action_pressed("release_parasite"):
+		if allies_container.get_child_count() + parasites_released < PlayerStats.max_parasite_count:
 			parasites_released += 1
 			var parasite: Parasite = _parasite.instantiate()
 			parasite.missed.connect(func(): parasites_released -= 1)
@@ -65,73 +68,84 @@ func _input(event):
 		switch_weapon(2)
 	if event.is_action_pressed("fourth_weapon"):
 		switch_weapon(3)
+	if event.is_action_pressed("fifth_weapon"):
+		switch_weapon(4)
 	
 func switch_weapon(index):
-	if !_inventory.possessed_weapons[index]:
-		return
-	
-	var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
-	var previous = container.get_child(current_weapon_index)
-	previous.get_child(1).hide()
-	
-	current_weapon_index = index
-	var child = container.get_child(index)
-	child.get_child(1).show()
-	
-	_weapon.weapon_res = Globals.weapon_resources[index]
+	if is_inside_tree():
+		if !_inventory.possessed_weapons[index]:
+			return
+		
+		var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
+		var previous = container.get_child(current_weapon_index)
+		previous.get_child(1).hide()
+		
+		current_weapon_index = index
+		var child = container.get_child(index)
+		child.get_child(1).show()
+		
+		_weapon.weapon_res = Globals.weapon_resources[index]
+		character.get_node("Sprite2D").texture = _weapon.weapon_res.weapon_holder_sprite
 	
 func switch_character():
-	var size = allies_container.get_children().size()
-	var all_dead = true
-	for child in allies_container.get_children():
-		if !child.is_queued_for_deletion():
-			all_dead = false
-	if all_dead:
-		get_tree().change_scene_to_file("res://scenes/main.tscn")
-	for i in range(size):
-		var is_current_caharacter = allies_container.get_child(i) == character
-		print(is_current_caharacter)
-		if is_current_caharacter:
-			var new_character = allies_container.get_child((i + 1) % size)
-			var camera = character.get_node("MainCamera")
-			var path = character.get_node("SpawnPath")
-			character.remove_child(camera)
-			new_character.add_child(camera)
-			character.remove_child(path)
-			new_character.add_child(path)
-			var index = Globals.weapon_resources.find(new_character.get_node("Weapon").weapon_res)
-			new_character.get_node("Inventory").possessed_weapons[index] = true
-			character = new_character
-			switch_weapon(index)
-			break
+	if allies_container:
+		var size = allies_container.get_children().size()
+		var all_dead = true
+		for child in allies_container.get_children():
+			if !child.is_queued_for_deletion():
+				all_dead = false
+		if all_dead:
+			get_tree().change_scene_to_file("res://scenes/menu.tscn")
+		for i in range(size):
+			var is_current_caharacter = allies_container.get_child(i) == character
+			print(is_current_caharacter)
+			if is_current_caharacter:
+				var new_character = allies_container.get_child((i + 1) % size)
+				var camera = character.get_node("MainCamera")
+				var path = character.get_node("SpawnPath")
+				character.remove_child(camera)
+				new_character.add_child(camera)
+				character.remove_child(path)
+				new_character.add_child(path)
+				var index = Globals.weapon_resources.find(new_character.get_node("Weapon").weapon_res)
+				new_character.get_node("Inventory").possessed_weapons[index] = true
+				character = new_character
+				switch_weapon(index)
+				break
 
 func _physics_process(_delta: float):
-	_weapon.look_at(get_global_mouse_position())
-	if get_global_mouse_position() > character.global_position:
-		character.get_node("Sprite2D").flip_h = true
-	else:
-		character.get_node("Sprite2D").flip_h = false
-		
+	if is_instance_valid(character):
+		if _weapon:
+			_weapon.look_at(get_global_mouse_position())
+			if get_global_mouse_position() > character.global_position:
+				character.get_node("Sprite2D").flip_h = true
+			else:
+				character.get_node("Sprite2D").flip_h = false
+			
 
-	if Input.is_action_pressed("shoot"):
-		_weapon.shoot()
-	
-	var direction = Input.get_vector("left", "right", "up", "down")
-	if direction:
-		character.get_node("AnimationPlayer").play("walk")
-	else:
-		character.get_node("AnimationPlayer").play("idle")
-	if Input.is_action_pressed("run"):
-		_movement.run(direction)
-	else:
-		_movement.move(direction)
+		if Input.is_action_pressed("shoot"):
+			_weapon.shoot()
+		
+		var direction = Input.get_vector("left", "right", "up", "down")
+		if direction:
+			character.get_node("AnimationPlayer").play("walk")
+		else:
+			character.get_node("AnimationPlayer").play("idle")
+		if Input.is_action_pressed("run"):
+			_movement.run(direction)
+		else:
+			_movement.move(direction)
+
 		
 func update_inventory_ui():
-	var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
-	for i in range(Globals.weapon_resources.size()):
-		if _inventory.possessed_weapons[i]:
-			container.get_child(i).get_child(2).show()
-		else:
-			container.get_child(i).get_child(2).hide()
+	if is_inside_tree():
+		var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
+		for i in range(Globals.weapon_resources.size()):
+			if _inventory.possessed_weapons[i]:
+				container.get_child(i).get_child(2).show()
+			else:
+				container.get_child(i).get_child(2).hide()
 		
+func _init():
+	instance = self
 

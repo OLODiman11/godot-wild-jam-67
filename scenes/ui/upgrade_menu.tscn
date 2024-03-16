@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cumeeu7kg3eci"]
 
 [ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
-[ext_resource type="PackedScene" uid="uid://bahjc717lijkx" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
+[ext_resource type="PackedScene" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjk66"]
 
@@ -33,6 +33,12 @@ layout_mode = 2
 [node name="Title" parent="UpgradeList/Health" index="0"]
 text = "Health"
 
+[node name="Value" parent="UpgradeList/Health/Upgrade" index="0"]
+text = "200"
+
+[node name="IncrementButton" parent="UpgradeList/Health/Upgrade" index="1"]
+text = "+(2)"
+
 [node name="Speed" parent="UpgradeList" instance=ExtResource("2_h053b")]
 layout_mode = 2
 
@@ -41,6 +47,9 @@ text = "Speed"
 
 [node name="Value" parent="UpgradeList/Speed/Upgrade" index="0"]
 text = "800"
+
+[node name="IncrementButton" parent="UpgradeList/Speed/Upgrade" index="1"]
+text = "+(1)"
 
 [node name="RegenRate" parent="UpgradeList" instance=ExtResource("2_h053b")]
 layout_mode = 2
@@ -52,6 +61,9 @@ text = "Regen Rate"
 text = "1
 "
 
+[node name="IncrementButton" parent="UpgradeList/RegenRate/Upgrade" index="1"]
+text = "+(3)"
+
 [node name="MaxParasiteCount" parent="UpgradeList" instance=ExtResource("2_h053b")]
 layout_mode = 2
 
@@ -61,6 +73,9 @@ text = "Max Parasites"
 [node name="Value" parent="UpgradeList/MaxParasiteCount/Upgrade" index="0"]
 text = "1
 "
+
+[node name="IncrementButton" parent="UpgradeList/MaxParasiteCount/Upgrade" index="1"]
+text = "+(5)"
 
 [node name="CloseButton" type="Button" parent="UpgradeList"]
 layout_mode = 2
