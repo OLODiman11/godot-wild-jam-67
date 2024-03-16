@@ -58,7 +58,7 @@ func _input(event):
 			root_node.add_child(parasite)
 		
 	if event.is_action_pressed("next_character"):
-		switch_character()
+		switch_character(null)
 		
 	if event.is_action_pressed("first_weapon"):
 		switch_weapon(0)
@@ -87,7 +87,7 @@ func switch_weapon(index):
 		_weapon.weapon_res = Globals.weapon_resources[index]
 		character.get_node("Sprite2D").texture = _weapon.weapon_res.weapon_holder_sprite
 	
-func switch_character():
+func switch_character(_x):
 	if allies_container:
 		var size = allies_container.get_children().size()
 		var all_dead = true
