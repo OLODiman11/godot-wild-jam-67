@@ -10,6 +10,9 @@ signal hit
 @export var direction: Vector2
 @export var orig_glob_pos: Vector2
 
+func _ready():
+	look_at(global_position + direction)
+
 func _physics_process(delta):
 	var collision := move_and_collide(speed * direction * delta)
 	
