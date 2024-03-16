@@ -39,8 +39,8 @@ var parasites_released: int = 0:
 @onready var enemies_container = get_tree().root.get_node("Main/EnemiesContainer")
 
 func _input(event):
-	if allies_container.get_child_count() + parasites_released < PlayerStats.max_parasite_count:
-		if event.is_action_pressed("release_parasite"):
+	if event.is_action_pressed("release_parasite"):
+		if allies_container.get_child_count() + parasites_released < PlayerStats.max_parasite_count:
 			parasites_released += 1
 			var parasite: Parasite = _parasite.instantiate()
 			parasite.missed.connect(func(): parasites_released -= 1)
@@ -82,6 +82,12 @@ func switch_weapon(index):
 	
 func switch_character():
 	var size = allies_container.get_children().size()
+	var all_dead = true
+	for child in allies_container.get_children():
+		if !child.is_queued_for_deletion():
+			all_dead = false
+	if all_dead:
+		get_tree().change_scene_to_file("res://scenes/main.tscn")
 	for i in range(size):
 		var is_current_caharacter = allies_container.get_child(i) == character
 		print(is_current_caharacter)
@@ -100,11 +106,12 @@ func switch_character():
 			break
 
 func _physics_process(_delta: float):
-	_weapon.look_at(get_global_mouse_position())
-	if get_global_mouse_position() > character.global_position:
-		character.get_node("Sprite2D").flip_h = true
-	else:
-		character.get_node("Sprite2D").flip_h = false
+	if _weapon:
+		_weapon.look_at(get_global_mouse_position())
+		if get_global_mouse_position() > character.global_position:
+			character.get_node("Sprite2D").flip_h = true
+		else:
+			character.get_node("Sprite2D").flip_h = false
 		
 
 	if Input.is_action_pressed("shoot"):

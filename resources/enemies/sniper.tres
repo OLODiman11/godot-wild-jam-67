@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyRes" load_steps=5 format=3 uid="uid://c7lw6jartwff7"]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_res.gd" id="1_gts42"]
+[ext_resource type="Texture2D" uid="uid://dbt30uw1uy03e" path="res://assets/sprites/parasites/parasite_sniper.png" id="1_qkp3s"]
+[ext_resource type="Texture2D" uid="uid://dhqejikancnx4" path="res://assets/sprites/enemies/enemy_sniper.png" id="2_wlaf1"]
+[ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="3_hvo1d"]
+
+[resource]
+script = ExtResource("1_gts42")
+speed = 300.0
+max_health = 50.0
+weapon_res = ExtResource("3_hvo1d")
+sprite = ExtResource("2_wlaf1")
+parasite_sprite = ExtResource("1_qkp3s")
