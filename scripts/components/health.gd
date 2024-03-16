@@ -19,7 +19,7 @@ signal died(Node2D)
 		if is_equal_approx(0, health):
 			var parent = get_parent()
 			parent.queue_free()
-			died.emit()
+			died.emit(parent)
 
 func take_damage(damage: float):
 	health -= damage

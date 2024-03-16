@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b5ccwaf53l6nv" path="res://scenes/components/regeneration.tscn" id="8_2ui6p"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
 [ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="9_s75ov"]
-[ext_resource type="PackedScene" path="res://scenes/components/inventory.tscn" id="10_781gy"]
+[ext_resource type="PackedScene" uid="uid://cq10xvlf0ik7t" path="res://scenes/components/inventory.tscn" id="10_781gy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
 

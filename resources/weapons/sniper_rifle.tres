@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="WeaponRes" load_steps=3 format=3 uid="uid://cvhjanxurkwrb"]
+[gd_resource type="Resource" script_class="WeaponRes" load_steps=5 format=3 uid="uid://cvhjanxurkwrb"]
 
 [ext_resource type="Script" path="res://scripts/resources/weapon_res.gd" id="1_a3n8y"]
+[ext_resource type="PackedScene" uid="uid://r3vfkcvtavpr" path="res://scenes/projectiles/bullet.tscn" id="1_cf3hb"]
 [ext_resource type="AudioStream" uid="uid://dubwama23kyjl" path="res://assets/sounds/pistol_shot1.mp3" id="2_7xwtq"]
+[ext_resource type="Texture2D" uid="uid://dbt30uw1uy03e" path="res://assets/sprites/parasites/parasite_sniper.png" id="3_0lvcs"]
 
 [resource]
 script = ExtResource("1_a3n8y")
@@ -12,3 +14,5 @@ bullet_speed = 5000.0
 fire_range = 3500.0
 is_melee = false
 shoot_sound = ExtResource("2_7xwtq")
+weapon_holder_sprite = ExtResource("3_0lvcs")
+projectile = ExtResource("1_cf3hb")

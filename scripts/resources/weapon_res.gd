@@ -10,3 +10,4 @@ extends Resource
 @export var is_melee: bool
 @export var shoot_sound: Resource
 @export var weapon_holder_sprite: Texture2D
+@export var projectile: PackedScene

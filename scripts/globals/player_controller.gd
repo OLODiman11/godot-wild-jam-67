@@ -68,6 +68,8 @@ func _input(event):
 		switch_weapon(2)
 	if event.is_action_pressed("fourth_weapon"):
 		switch_weapon(3)
+	if event.is_action_pressed("fifth_weapon"):
+		switch_weapon(4)
 	
 func switch_weapon(index):
 	if is_inside_tree():
