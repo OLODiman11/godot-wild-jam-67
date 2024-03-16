@@ -82,6 +82,12 @@ func switch_weapon(index):
 	
 func switch_character():
 	var size = allies_container.get_children().size()
+	var all_dead = true
+	for child in allies_container.get_children():
+		if !child.is_queued_for_deletion():
+			all_dead = false
+	if all_dead:
+		get_tree().change_scene_to_file("res://scenes/main.tscn")
 	for i in range(size):
 		var is_current_caharacter = allies_container.get_child(i) == character
 		print(is_current_caharacter)

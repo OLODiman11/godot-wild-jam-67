@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponRes" load_steps=2 format=3 uid="uid://cvhjanxurkwrb"]
+[gd_resource type="Resource" script_class="WeaponRes" load_steps=3 format=3 uid="uid://cvhjanxurkwrb"]
 
 [ext_resource type="Script" path="res://scripts/resources/weapon_res.gd" id="1_a3n8y"]
+[ext_resource type="AudioStream" uid="uid://qo16mnxmxs3f" path="res://assets/sounds/sniper_rifle.wav" id="2_y1l6t"]
 
 [resource]
 script = ExtResource("1_a3n8y")
@@ -10,3 +11,4 @@ damage = 100.0
 bullet_speed = 5000.0
 fire_range = 3500.0
 is_melee = false
+shoot_sound = ExtResource("2_y1l6t")

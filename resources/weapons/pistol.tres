@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="WeaponRes" load_steps=2 format=3 uid="uid://7si3g17yr2yu"]
+[gd_resource type="Resource" script_class="WeaponRes" load_steps=3 format=3 uid="uid://7si3g17yr2yu"]
 
 [ext_resource type="Script" path="res://scripts/resources/weapon_res.gd" id="1_qu7tf"]
+[ext_resource type="AudioStream" uid="uid://cev8itkvj71g6" path="res://assets/sounds/pistol.mp3" id="2_5hlt7"]
 
 [resource]
 script = ExtResource("1_qu7tf")
@@ -10,3 +11,4 @@ damage = 25.0
 bullet_speed = 2000.0
 fire_range = 1750.0
 is_melee = false
+shoot_sound = ExtResource("2_5hlt7")

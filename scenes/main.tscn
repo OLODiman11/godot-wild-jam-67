@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=12 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="8_xmnlb"]
 [ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="9_1hoaq"]
 [ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
+[ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
 
 [sub_resource type="Curve2D" id="Curve2D_774ut"]
 _data = {
@@ -17,6 +18,11 @@ _data = {
 point_count = 5
 
 [node name="Main" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_vnn3q")
+volume_db = -20.0
+autoplay = true
 
 [node name="Map" parent="." instance=ExtResource("1_qi0m0")]
 
@@ -48,6 +54,9 @@ limit_top = -2050
 limit_right = 1950
 limit_bottom = 2050
 editor_draw_limits = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="AlliesContainer/Ally/MainCamera"]
+current = true
 
 [node name="EnemiesContainer" type="Node2D" parent="."]
 
