@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cua4wpwtvutjr"]
+
+[ext_resource type="Texture2D" uid="uid://6pjjku4v1jk1" path="res://assets/sprites/parasite_mom.png" id="1_eartl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1sfm"]
+atlas = ExtResource("1_eartl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hq2r4"]
+atlas = ExtResource("1_eartl")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_623r2"]
+atlas = ExtResource("1_eartl")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqm8n"]
+atlas = ExtResource("1_eartl")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0gmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1sfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hq2r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_623r2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqm8n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6247u"]
+size = Vector2(247, 247)
+
+[node name="Mother" type="CharacterBody2D" groups=["Map"]]
+collision_layer = 16
+collision_mask = 14
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(17.656, 17.656)
+sprite_frames = SubResource("SpriteFrames_i0gmc")
+frame_progress = 0.136907
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 17.5)
+shape = SubResource("RectangleShape2D_6247u")
