@@ -127,6 +127,7 @@ func _physics_process(_delta: float):
 			_movement.run(direction)
 		else:
 			_movement.move(direction)
+
 		
 func update_inventory_ui():
 	var container = get_tree().root.get_node("Main/CanvasLayer/UI/Inventory/PanelContainer/MarginContainer/HFlowContainer")
