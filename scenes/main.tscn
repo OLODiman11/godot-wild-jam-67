@@ -109,9 +109,13 @@ text = "Start"
 
 [node name="Mother" parent="." instance=ExtResource("12_chdqk")]
 
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="show"]
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="show"]
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/NextWave" method="show"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="hide"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="hide"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/NextWave" method="hide"]
 [connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
-[connection signal="pressed" from="CanvasLayer/UI/NextWave" to="CanvasLayer/UI/NextWave" method="hide"]
 
 [editable path="AlliesContainer/Ally"]
 [editable path="CanvasLayer/UI"]
