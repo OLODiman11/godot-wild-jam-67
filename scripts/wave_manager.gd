@@ -3,6 +3,7 @@ class_name WaveManager
 extends Node2D
 
 signal wave_ended
+signal wave_started
 
 var MAP_BOUNDS := 1700
 
@@ -23,6 +24,7 @@ func start_next_wave():
 	_enemies_to_spawn = wave_list[round_num]
 	round_num += 1
 	timer.start()
+	wave_started.emit()
 	
 func spawn_enemy():
 	if _enemies_to_spawn == 0:

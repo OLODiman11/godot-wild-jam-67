@@ -19,13 +19,14 @@ func _physics_process(delta):
 		queue_free()
 	
 	if collision != null:
-		if collision.get_collider().is_in_group('Map'):
+		var collidee = collision.get_collider()
+		if collidee.is_in_group('Map'):
 			queue_free()
 			return
-		if collision.get_collider().is_in_group("Enemies"):
-			var enemy: Enemy = collision.get_collider()
+		if collidee.is_in_group("Enemies"):
+			var enemy: Enemy = collidee
 			enemy.last_shot_by = shooter
-		var health_node: Health = collision.get_collider().get_node("Health")
+		var health_node: Health = collidee.get_node_or_null("Health")
 		if health_node != null:
 			health_node.take_damage(damage)
 			queue_free()

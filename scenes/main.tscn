@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=14 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
 [ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
 [ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
+[ext_resource type="PackedScene" uid="uid://cua4wpwtvutjr" path="res://scenes/mother.tscn" id="12_chdqk"]
 
 [sub_resource type="Curve2D" id="Curve2D_774ut"]
 _data = {
@@ -34,6 +35,7 @@ spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
 [node name="AlliesContainer" type="Node2D" parent="."]
 
 [node name="Ally" parent="AlliesContainer" instance=ExtResource("4_jpwry")]
+position = Vector2(250, 30)
 
 [node name="Inventory" parent="AlliesContainer/Ally" index="9"]
 possessed_weapons = Array[bool]([false, false, false, true, false])
@@ -105,9 +107,15 @@ text = "Start"
 
 [node name="PlayerController" parent="." instance=ExtResource("11_j50iq")]
 
+[node name="Mother" parent="." instance=ExtResource("12_chdqk")]
+
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="show"]
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="show"]
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/NextWave" method="show"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="hide"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="hide"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/NextWave" method="hide"]
 [connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
-[connection signal="pressed" from="CanvasLayer/UI/NextWave" to="CanvasLayer/UI/NextWave" method="hide"]
 
 [editable path="AlliesContainer/Ally"]
 [editable path="CanvasLayer/UI"]
