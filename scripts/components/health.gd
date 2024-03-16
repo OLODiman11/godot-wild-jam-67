@@ -16,10 +16,10 @@ signal died(Node2D)
 		health = value
 		get_parent().get_node("Sprite2D").modulate = Color.RED + health / max_health * Color.AQUA
 		health_changed.emit()
-		if health == 0:
+		if is_equal_approx(0, health):
 			var parent = get_parent()
 			parent.queue_free()
-			died.emit(parent)
+			died.emit()
 
 func take_damage(damage: float):
 	health -= damage

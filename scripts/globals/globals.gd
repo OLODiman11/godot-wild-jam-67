@@ -6,6 +6,7 @@ const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/baton.tres"),
 	preload("res://resources/weapons/pistol.tres"),
 	preload("res://resources/weapons/rifle.tres"),
+	preload("res://resources/weapons/grenade_launcher.tres"),
 	preload("res://resources/weapons/sniper_rifle.tres")
 ]
 

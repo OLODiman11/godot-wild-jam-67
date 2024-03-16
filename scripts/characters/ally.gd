@@ -17,7 +17,7 @@ static func _on_enemy_killed(enemy: Enemy):
 	killed_by.get_node("Inventory").possessed_weapons[enemy_weapon_index] = true
 	var current_weapon: WeaponRes = killed_by.get_node("Weapon").weapon_res
 	var current_weapon_index = Globals.weapon_resources.find(current_weapon)
-	if killed_by == PlayerController.character:
-		PlayerController.update_inventory_ui()
+	if killed_by == PlayerController.instance.character:
+		PlayerController.instance.update_inventory_ui()
 	if enemy_weapon_index > current_weapon_index:
 		killed_by.get_node("Weapon").switch(enemy_weapon)

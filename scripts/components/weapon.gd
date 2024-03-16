@@ -5,6 +5,7 @@ extends Node2D
 const BATON: WeaponRes = preload("res://resources/weapons/baton.tres")
 const PISTOL: WeaponRes = preload("res://resources/weapons/pistol.tres")
 const RIFLE: WeaponRes = preload("res://resources/weapons/rifle.tres")
+const GENADE_LAUNCHER: WeaponRes = preload("res://resources/weapons/grenade_launcher.tres")
 const SNIPER_RIFLE: WeaponRes = preload("res://resources/weapons/sniper_rifle.tres")
 
 @export var bullet_collision_mask: Array[Globals.Layers]

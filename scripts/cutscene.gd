@@ -6,7 +6,7 @@ extends Node2D
 func _ready():
 	anim.play("cutscene_start")
 	
-func _input(InputEvent):
+func _input(event):
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		get_tree().change_scene_to_file("res://scenes/main.tscn")
 	
