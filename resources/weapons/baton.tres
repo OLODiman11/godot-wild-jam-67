@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://r3vfkcvtavpr" path="res://scenes/projectiles/bullet.tscn" id="1_200y7"]
 [ext_resource type="Script" path="res://scripts/resources/weapon_res.gd" id="1_e5ius"]
-[ext_resource type="AudioStream" uid="uid://dubwama23kyjl" path="res://assets/sounds/pistol_shot1.mp3" id="2_3a0uk"]
 [ext_resource type="Texture2D" uid="uid://d3qed5mn0qlm1" path="res://assets/sprites/parasites/parasite_meele.png" id="3_1hcpn"]
+[ext_resource type="AudioStream" uid="uid://b86f1bvr71nfs" path="res://assets/sounds/baton.mp3" id="2_vosi2"]
 
 [resource]
 script = ExtResource("1_e5ius")
@@ -13,6 +13,6 @@ damage = 10.0
 bullet_speed = 0.0
 fire_range = 150.0
 is_melee = true
-shoot_sound = ExtResource("2_3a0uk")
 weapon_holder_sprite = ExtResource("3_1hcpn")
 projectile = ExtResource("1_200y7")
+shoot_sound = ExtResource("2_vosi2")

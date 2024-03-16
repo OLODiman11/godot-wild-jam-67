@@ -4,9 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://r3vfkcvtavpr" path="res://scenes/projectiles/bullet.tscn" id="2_sy18a"]
 [ext_resource type="Texture2D" uid="uid://cijond5qk5rx7" path="res://assets/1x1_white.png" id="3_07vtl"]
 
-[node name="Weapon" type="Node2D"]
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("_current_player")]
 script = ExtResource("1_bepd8")
 bullet_scene = ExtResource("2_sy18a")
+_current_player = NodePath("AudioStreamPlayer2D")
 
 [node name="ShootPoint" type="Marker2D" parent="."]
 
