@@ -12,10 +12,10 @@ extends Node2D
 func _ready():
 	timer.wait_time = 1.0 / rate
 	timer.timeout.connect(heal)
+	$Timer.wait_time = 1.0 / rate
 	
 func heal():
 	health.value += amount
 	
 func set_rate(value: float):
 	rate = value
-	$Timer.wait_time = 1.0 / rate

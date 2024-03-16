@@ -8,9 +8,6 @@
 [node name="Ally" groups=["Allies"] instance=ExtResource("1_jbd5d")]
 script = ExtResource("1_argwm")
 
-[node name="Weapon" parent="." index="3"]
-bullet_collision_mask = Array[int]([5, 3])
-
 [node name="HealthBar" parent="." index="6"]
 grow_horizontal = 1
 grow_vertical = 1

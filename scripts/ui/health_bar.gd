@@ -7,6 +7,8 @@ extends TextureProgressBar
 @export var health: Health : set = set_health_component
 
 func set_health_component(new_health: Health):
+	if new_health == null:
+		return
 	if health != null:
 		health.fraction_changed.disconnect(_adjust)
 		

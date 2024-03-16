@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://b72yp7eaeisl4"]
+[gd_scene load_steps=13 format=3 uid="uid://b72yp7eaeisl4"]
 
 [ext_resource type="Script" path="res://scripts/characters/character.gd" id="1_b4be6"]
 [ext_resource type="Texture2D" uid="uid://i4w3k8ntgq0n" path="res://assets/sprites/parasite_sheet.png" id="2_43b6j"]
 [ext_resource type="Script" path="res://scripts/components/health.gd" id="3_ie8yk"]
 [ext_resource type="PackedScene" uid="uid://c2ptt1kw2oop" path="res://scenes/components/weapon.tscn" id="4_fbvnx"]
-[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="5_4vl4e"]
 [ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="5_wl3a1"]
 [ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="6_5m626"]
 [ext_resource type="PackedScene" uid="uid://btdg77p4mbi0a" path="res://scenes/ui/health_bar.tscn" id="7_iimqj"]
@@ -85,15 +84,21 @@ max_value = 100.0
 fraction = 1.0
 
 [node name="Weapon" parent="." instance=ExtResource("4_fbvnx")]
-bullet_collision_mask = Array[int]([5])
-weapon_res = ExtResource("5_4vl4e")
+damage = 0.0
+fire_rate = 0.0
+fire_range = 0.0
+bullet_speed = 0.0
+bullet_scene = null
+target_layers = Array[int]([])
+is_melee = false
+bullet_spawn_offset = 0.0
 
 [node name="Movement" parent="." instance=ExtResource("5_wl3a1")]
 speed = 300.0
 
-[node name="AiController" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_5m626")]
-character = NodePath("..")
+[node name="AiController" parent="." instance=ExtResource("6_5m626")]
 target_group = "Enemies"
+character = null
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("7_iimqj")]
 offset_left = -6.0

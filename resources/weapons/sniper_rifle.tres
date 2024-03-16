@@ -1,12 +1,14 @@
-[gd_resource type="Resource" script_class="WeaponRes" load_steps=2 format=3 uid="uid://cvhjanxurkwrb"]
+[gd_resource type="Resource" script_class="WeaponRes" load_steps=3 format=3 uid="uid://cvhjanxurkwrb"]
 
 [ext_resource type="Script" path="res://scripts/resources/weapon_res.gd" id="1_a3n8y"]
+[ext_resource type="PackedScene" uid="uid://r3vfkcvtavpr" path="res://scenes/projectiles/bullet.tscn" id="1_ejf0u"]
 
 [resource]
 script = ExtResource("1_a3n8y")
-fire_rate = 0.7
-shoot_point_offset = 25.0
-damage = 100.0
-bullet_speed = 5000.0
-fire_range = 3500.0
 is_melee = false
+damage = 100.0
+fire_rate = 0.7
+fire_range = 3500.0
+bullet_speed = 5000.0
+bullet_spawn_offset = 0.0
+bullet_scene = ExtResource("1_ejf0u")

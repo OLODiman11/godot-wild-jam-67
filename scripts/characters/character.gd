@@ -6,12 +6,8 @@ extends CharacterBody2D
 
 signal died
 
-enum Type {
-	MELEE,
-	GUARD
-}
-
-@export var type: Type = Type.GUARD: set = set_character_res
+@export var type: Constants.CharacterType = Constants.CharacterType.GUARD: 
+	set = set_type
 @export var infected: bool = true: set = set_infected
 
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
@@ -29,14 +25,14 @@ func _ready():
 	_setup_sprite_tint_logic()
 	_setup_health_bar()
 	
-func set_character_res(new_type: Type):
+func set_type(new_type: Constants.CharacterType):
 	if !_cache_is_initialized():
 		return
 	type = new_type
 	var char_res: EnemyRes = Resources.CHARACTER_RES[type]
 	health.max_value = char_res.max_health
 	movement.speed = char_res.speed
-	weapon.weapon_res = char_res.weapon_res
+	weapon.type = char_res.weapon_type
 	_set_sprite()
 	
 func set_infected(new_value: bool):
@@ -54,9 +50,9 @@ func _setup_sprite_tint_logic():
 func _setup_health_bar():
 	if !Engine.is_editor_hint():
 		health_bar.hide()
+		health_bar_timer.timeout.connect(health_bar.hide)
+		health.fraction_changed.connect(_show_health_bar_and_restart_timer)
 	health_bar.health = health
-	health_bar_timer.timeout.connect(health_bar.hide)
-	health.fraction_changed.connect(_show_health_bar_and_restart_timer)
 	
 func _die_if_zero_health(_sender: Health):
 	if health.value <= 0:

@@ -28,7 +28,7 @@ func spawn_enemy():
 	if _enemies_to_spawn == 0:
 		timer.stop()
 		return
-	
+		
 	_enemies_to_spawn -= 1
 	
 	var enemy: Enemy = preload_enemy.instantiate()
@@ -48,7 +48,6 @@ func spawn_enemy():
 		if is_in_bounds_x and is_in_bounds_y:
 			break
 	
-		
 func try_end_wave():
 	if _enemies_to_spawn > 0:
 		return
@@ -58,7 +57,6 @@ func try_end_wave():
 			return
 	wave_ended.emit()
 		
-
 func _get_enemy_random_position():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
