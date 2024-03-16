@@ -9,17 +9,17 @@ func _input(event):
 	if event.is_action_pressed(\"next_character\"):
 		var size = allies_container.get_children().size()
 		for i in range(size):
-			var is_current_caharacter = allies_container.get_child(i) == PlayerController.character
+			var is_current_caharacter = allies_container.get_child(i) == PlayerController.instance.character
 			print(is_current_caharacter)
 			if is_current_caharacter:
 				var new_character = allies_container.get_child((i + 1) % size)
-				var camera = PlayerController.character.get_node(\"MainCamera\")
-				var path = PlayerController.character.get_node(\"SpawnPath\")
-				PlayerController.character.remove_child(camera)
+				var camera = PlayerController.instance.character.get_node(\"MainCamera\")
+				var path = PlayerController.instance.character.get_node(\"SpawnPath\")
+				PlayerController.instance.character.remove_child(camera)
 				new_character.add_child(camera)
-				PlayerController.character.remove_child(path)
+				PlayerController.instance.character.remove_child(path)
 				new_character.add_child(path)
-				PlayerController.character = new_character
+				PlayerController.instance.character = new_character
 				return
 "
 
