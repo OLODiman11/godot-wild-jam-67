@@ -48,7 +48,8 @@ collision_mask = 14
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(17.656, 17.656)
 sprite_frames = SubResource("SpriteFrames_i0gmc")
-frame_progress = 0.136907
+autoplay = "default"
+frame_progress = 0.819579
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 17.5)
