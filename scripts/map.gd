@@ -3,7 +3,7 @@ extends Node2D
 @onready var sirens = $Node2D
 @onready var timer = $Node2D/Timer
 
-const MAX_ENERGY: float = 2
+const MAX_ENERGY: float = .5
 const TIME_GAP: float = 0.05
 
 var light := false
