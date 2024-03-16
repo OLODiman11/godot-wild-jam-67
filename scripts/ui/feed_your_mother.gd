@@ -9,6 +9,8 @@ const LABEL_TEXT = "FEED YOUR MOTHER (%s/%s)"
 @onready var label = $ProgressBar/Label
 
 func _ready():
+	progress_bar.max_value = Globals.POINTS_FOR_WIN
+	
 	plus_one.pressed.connect(_add_points.bind(1))
 	plus_five.pressed.connect(_add_points.bind(5))
 	plus_all.pressed.connect(_add_points.bind(-1))

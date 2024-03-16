@@ -1,6 +1,7 @@
 extends Node
 
 signal points_changed(int)
+signal game_won
 
 const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/baton.tres"),
@@ -10,7 +11,14 @@ const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/sniper_rifle.tres")
 ]
 
-var mother_points: int = 0
+const POINTS_FOR_WIN: int = 100
+
+var mother_points: int = 0:
+	set(value):
+		mother_points = value
+		if mother_points >= POINTS_FOR_WIN:
+			game_won.emit()
+			print("You vonyaesh")
 
 var upgrade_points: int = 0:
 	set(value):
