@@ -73,6 +73,8 @@ func _input(event):
 	
 func switch_weapon(index):
 	if is_inside_tree():
+		if current_weapon_index == index:
+			return
 		if !_inventory.possessed_weapons[index]:
 			return
 		
@@ -85,7 +87,11 @@ func switch_weapon(index):
 		child.get_child(1).show()
 		
 		_weapon.weapon_res = Globals.weapon_resources[index]
+		create_tween().tween_property(character.get_node("Sprite2D"), "scale", Vector2(0.5,0.5), 0.1)
+		await get_tree().create_timer(0.1).timeout
+		character.get_node("PlayerSwitcher").play()
 		character.get_node("Sprite2D").texture = _weapon.weapon_res.weapon_holder_sprite
+		create_tween().tween_property(character.get_node("Sprite2D"), "scale", Vector2(2,2), 0.5).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 	
 func switch_character(_x):
 	if allies_container:
