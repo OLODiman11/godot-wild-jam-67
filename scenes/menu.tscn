@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://df24sob2r66cx"]
+[gd_scene load_steps=3 format=3 uid="uid://df24sob2r66cx"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_p5vy1"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="2_1cwmd"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -29,16 +30,20 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
+script = ExtResource("2_1cwmd")
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Settings"
+script = ExtResource("2_1cwmd")
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
+script = ExtResource("2_1cwmd")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -52,5 +57,3 @@ offset_bottom = 133.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "PARABREAK"
-
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://brl845cpq7fs1"]
+[gd_scene load_steps=17 format=3 uid="uid://brl845cpq7fs1"]
 
 [ext_resource type="Script" path="res://scripts/characters/ally.gd" id="1_argwm"]
 [ext_resource type="PackedScene" uid="uid://b0ab0rj6ikh7e" path="res://scenes/components/ai_controller.tscn" id="2_h3rqr"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="8_k3i8f"]
 [ext_resource type="PackedScene" uid="uid://bkcrpyonwo6ci" path="res://scenes/components/movement.tscn" id="9_s75ov"]
 [ext_resource type="PackedScene" uid="uid://cq10xvlf0ik7t" path="res://scenes/components/inventory.tscn" id="10_781gy"]
+[ext_resource type="AudioStream" uid="uid://bo0m6g78w4m3r" path="res://assets/sounds/player_switcher.wav" id="11_81n1w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgsdg"]
 
@@ -125,3 +126,6 @@ libraries = {
 }
 
 [node name="Inventory" parent="." instance=ExtResource("10_781gy")]
+
+[node name="PlayerSwitcher" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_81n1w")

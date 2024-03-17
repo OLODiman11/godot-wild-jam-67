@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5yn5nt52v0up"]
+[gd_scene load_steps=7 format=3 uid="uid://b5yn5nt52v0up"]
 
 [ext_resource type="PackedScene" uid="uid://cumeeu7kg3eci" path="res://scenes/ui/upgrade_menu.tscn" id="1_5ucio"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="2_5ftgf"]
 [ext_resource type="Script" path="res://scripts/ui/points_label.gd" id="2_t7tv7"]
 [ext_resource type="PackedScene" uid="uid://bdhhjbymmivmt" path="res://scenes/ui/health_bar.tscn" id="3_prjlu"]
 [ext_resource type="PackedScene" uid="uid://wv5obad8i6fh" path="res://scenes/ui/inventory.tscn" id="4_3fshl"]
@@ -72,6 +73,7 @@ offset_right = 75.0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 50
 text = "Upgrade"
+script = ExtResource("2_5ftgf")
 
 [node name="PointsLabel" type="Label" parent="."]
 layout_mode = 1

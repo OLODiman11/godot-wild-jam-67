@@ -29,9 +29,14 @@ func _ready():
 func start_next_wave():
 	var wave: WaveCongif = _waves[round_num]
 	_populate_spawn_queue(wave)
-	round_num += 1
+  round_num += 1
 	timer.start()
 	wave_started.emit()
+
+func _input(event):
+	if _enemies_to_spawn == 0:
+		if event.is_action_pressed("start_wave"):
+			start_next_wave()
 	
 func spawn_enemy():
 	if _spawn_queue.size() == 0:

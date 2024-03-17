@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=15 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -6,11 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://cafrwwps605aw" path="res://scenes/bootstrap.tscn" id="4_y6kmi"]
 [ext_resource type="PackedScene" uid="uid://b5yn5nt52v0up" path="res://scenes/ui/ui.tscn" id="5_jjwy5"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="7_046r7"]
+[ext_resource type="PackedScene" uid="uid://b4upt4cbfjmuv" path="res://scenes/ui/in_game_settings.tscn" id="7_qup4g"]
 [ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="8_xmnlb"]
 [ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="9_1hoaq"]
 [ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
 [ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
 [ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="11_rum6c"]
 [ext_resource type="PackedScene" uid="uid://cua4wpwtvutjr" path="res://scenes/mother.tscn" id="12_chdqk"]
 
 [sub_resource type="Curve2D" id="Curve2D_774ut"]
@@ -23,8 +25,8 @@ point_count = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_vnn3q")
-volume_db = -20.0
 autoplay = true
+bus = &"Music"
 
 [node name="Map" parent="." instance=ExtResource("1_qi0m0")]
 
@@ -38,7 +40,7 @@ spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
 position = Vector2(250, 30)
 
 [node name="Inventory" parent="AlliesContainer/Ally" index="9"]
-possessed_weapons = Array[bool]([false, false, false, true, false])
+possessed_weapons = Array[bool]([false, true, false, false, false])
 
 [node name="SpawnPath" type="Path2D" parent="AlliesContainer/Ally"]
 curve = SubResource("Curve2D_774ut")
@@ -79,8 +81,6 @@ anchor_left = 0.05
 anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.95
-offset_left = -18.432
-offset_top = -18.144
 
 [node name="Pistol" parent="CanvasLayer/UI/VBoxContainer" index="0"]
 weapon_res = ExtResource("7_046r7")
@@ -103,7 +103,11 @@ offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
-text = "Start"
+text = "Start - R"
+script = ExtResource("11_rum6c")
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("7_qup4g")]
+visible = false
 
 [node name="PlayerController" parent="." instance=ExtResource("11_j50iq")]
 

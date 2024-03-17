@@ -1,9 +1,14 @@
 extends Control
 
-
+@onready var play_button = $VBoxContainer/PlayButton
+@onready var settings_button = $VBoxContainer/Settings
 
 func _ready():
-		pass
+	play_button.pressed.connect(_on_play_button_pressed)
+	settings_button.pressed.connect(_on_settings_button_pressed)
 
 func _on_play_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/cutscene.tscn")
+	get_tree().change_scene_to_packed(Scenes.CUTSCENE)
+	
+func _on_settings_button_pressed():
+	get_tree().change_scene_to_packed(Scenes.MENU_SETTINGS)
