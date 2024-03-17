@@ -93,19 +93,33 @@ vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 modulate = Color(0.392157, 0.392157, 0.392157, 1)
-layout_mode = 0
-offset_left = 898.0
-offset_top = 392.0
-offset_right = 1038.0
-offset_bottom = 532.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 395.0
+offset_top = 153.0
+offset_right = 535.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("5_dmsrd")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 modulate = Color(0.392157, 0.392157, 0.392157, 1)
-layout_mode = 0
-offset_left = 118.0
-offset_top = 77.0
-offset_right = 258.0
-offset_bottom = 217.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -531.0
+offset_top = -315.0
+offset_right = -391.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("6_a3vhl")
 flip_h = true
