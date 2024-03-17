@@ -8,6 +8,7 @@ extends PanelContainer
 
 func _ready():
 	visibility_changed.connect(on_close_visible)
+	visibility_changed.connect(_on_visability_changed)
 	health.increment_button.pressed.connect(PlayerStats.add_max_health.bind(50))
 	speed.increment_button.pressed.connect(PlayerStats.add_speed.bind(100))
 	regen_rate.increment_button.pressed.connect(PlayerStats.add_regen_rate.bind(2))
@@ -54,9 +55,21 @@ func _input(event):
 			$".".visible = false
 		else:
 			$".".visible = true
+	if event.is_action_pressed("menu"):
+		hide()
 	
 func toggle_pause():
 	if visible:
 		GameManager.instance.pause_game()
 	else:
 		GameManager.instance.unpause_game()
+		
+func show_after_delay():
+	await get_tree().create_timer(1).timeout
+	show()
+	
+func _on_visability_changed():
+	if visible:
+		Globals.hide_on_esc = true
+	else:
+		Globals.hide_on_esc = false

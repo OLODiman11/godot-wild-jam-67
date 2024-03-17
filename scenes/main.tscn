@@ -166,9 +166,6 @@ script = ExtResource("20_gm6ht")
 process_mode = 3
 script = ExtResource("16_gkap5")
 
-[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="show"]
-[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="show"]
-[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/NextWave" method="show"]
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/ShopTutorial" method="show_once"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="hide"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="hide"]
@@ -180,6 +177,8 @@ script = ExtResource("16_gkap5")
 [connection signal="ready" from="CanvasLayer/MovementTutorial" to="GameManager" method="pause_game"]
 [connection signal="hidden" from="CanvasLayer/ShootTutorial" to="GameManager" method="unpause_game"]
 [connection signal="hidden" from="CanvasLayer/InfectTutorial" to="CanvasLayer/CharacterSwitchTutorial" method="show"]
+[connection signal="hidden" from="CanvasLayer/ShopTutorial" to="CanvasLayer/ShopTutorial" method="reissue_wave_ended"]
+[connection signal="hidden" from="CanvasLayer/ShopTutorial" to="GameManager" method="unpause_game"]
 [connection signal="hidden" from="CanvasLayer/WeaponSwitchTutorial" to="GameManager" method="unpause_game"]
 
 [editable path="AlliesContainer/Ally"]
