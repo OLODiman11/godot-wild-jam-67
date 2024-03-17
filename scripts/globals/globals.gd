@@ -2,6 +2,7 @@ extends Node
 
 signal points_changed(int)
 signal game_won
+signal character_died(CharacterBody2D)
 
 const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/baton.tres"),

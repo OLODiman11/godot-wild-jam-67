@@ -15,6 +15,8 @@ var blood_sprite = preload("res://scenes/blood.tscn")
 @onready var health := max_health:
 	set(value):
 		value = clampf(value, 0, max_health)
+		if is_equal_approx(value, health):
+			return
 		health = value
 		get_parent().get_node("Sprite2D").modulate = Color.RED + health / max_health * Color.AQUA
 		health_changed.emit()
@@ -25,6 +27,7 @@ var blood_sprite = preload("res://scenes/blood.tscn")
 			blood.position = parent.position
 			parent.queue_free()
 			died.emit(parent)
+			Globals.character_died.emit(get_parent())
 
 func take_damage(damage: float):
 	health -= damage

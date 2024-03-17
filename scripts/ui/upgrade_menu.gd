@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var speed: LabeledValue = $UpgradeList/Speed
 @onready var regen_rate: LabeledValue = $UpgradeList/RegenRate
 @onready var max_parasite_count: LabeledValue = $UpgradeList/MaxParasiteCount
+@onready var infect_button: Button = $UpgradeList/CustomButton
 
 func _ready():
 	health.increment_button.pressed.connect(PlayerStats.add_max_health.bind(50))
@@ -22,12 +23,28 @@ func _ready():
 	PlayerStats.max_parasite_count_changed.connect(set_label_text.bind(max_parasite_count))
 			
 	Globals.points_changed.connect(check_points)
+	
+	infect_button.pressed.connect(max_parasite_count.show)
+	infect_button.pressed.connect(infect_button.hide)
+	infect_button.pressed.connect(on_infect_button_pressed)
+	
+	visibility_changed.connect(toggle_pause)
+
+func on_infect_button_pressed():
+	max_parasite_count.increment_button.pressed.emit()
 
 func check_points(points: int):
 		health.increment_button.disabled = points < 2
 		speed.increment_button.disabled = points < 1
 		max_parasite_count.increment_button.disabled = points < 5
 		regen_rate.increment_button.disabled = points < 3
+		infect_button.disabled = points < 5
 		
 func set_label_text(value: float, labeled_value: LabeledValue):
 	labeled_value.value.set_text(str(value))
+	
+func toggle_pause():
+	if visible:
+		GameManager.instance.pause_game()
+	else:
+		GameManager.instance.unpause_game()
