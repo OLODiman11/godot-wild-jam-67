@@ -5,10 +5,8 @@ extends Node2D
 signal wave_ended
 signal wave_started
 
-var MAP_BOUNDS := 1700
-
-@onready var timer: Timer = $SpawnTimer
 const WAVES_DIR: String = "res://resources/waves/"
+const MAP_BOUNDS := 1700
 
 @export var enemies_container: Node2D
 @export var spawn_path: Path2D
@@ -18,6 +16,8 @@ var round_num = 0
 
 var _waves: Array[WaveCongif]
 var _spawn_queue: Array[EnemyRes]
+
+@onready var timer: Timer = $SpawnTimer
 
 func _ready():
 	var wave_file_names = DirAccess.get_files_at(WAVES_DIR)
