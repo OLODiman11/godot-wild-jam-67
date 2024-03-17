@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cumeeu7kg3eci"]
+[gd_scene load_steps=8 format=3 uid="uid://cumeeu7kg3eci"]
 
 [ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
 [ext_resource type="PackedScene" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
 [ext_resource type="Theme" uid="uid://qvyk1jsak2o4" path="res://resources/themes/ui.tres" id="3_8fp3g"]
 [ext_resource type="Script" path="res://scripts/ui/feed_your_mother.gd" id="3_32bta"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="5_cr0e4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rjk66"]
 
@@ -106,14 +107,17 @@ text = "FEED YOUR MOTHER"
 [node name="PlusOne" type="Button" parent="UpgradeList/FeedYourMother"]
 layout_mode = 2
 text = "+1"
+script = ExtResource("5_cr0e4")
 
 [node name="PlusFive" type="Button" parent="UpgradeList/FeedYourMother"]
 layout_mode = 2
 text = "+5"
+script = ExtResource("5_cr0e4")
 
 [node name="PlusAll" type="Button" parent="UpgradeList/FeedYourMother"]
 layout_mode = 2
 text = "All"
+script = ExtResource("5_cr0e4")
 
 [node name="CloseButton" type="Button" parent="UpgradeList"]
 layout_mode = 2
@@ -121,6 +125,7 @@ size_flags_vertical = 8
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_jbjqy")
 text = "Close"
+script = ExtResource("5_cr0e4")
 
 [connection signal="pressed" from="UpgradeList/CloseButton" to="." method="hide"]
 
