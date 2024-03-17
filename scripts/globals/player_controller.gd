@@ -126,9 +126,9 @@ func _physics_process(_delta: float):
 	if is_instance_valid(character):
 		if _weapon:
 			var look_vector = Vector2(
-				Input.get_action_raw_strength("look_left") - Input.get_action_raw_strength("look_right"),
-				Input.get_action_raw_strength("look_up") - Input.get_action_raw_strength("look_down")
-			). limit_length(1.0)
+				Input.get_action_strength("look_left") - Input.get_action_strength("look_right"),
+				Input.get_action_strength("look_up") - Input.get_action_strength("look_down")
+			).limit_length(1.0)
 			_weapon.look_at(get_global_mouse_position())
 			_weapon.look_at(character.global_position - look_vector)
 			if get_global_mouse_position() > character.global_position:

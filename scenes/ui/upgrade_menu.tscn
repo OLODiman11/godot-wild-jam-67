@@ -37,7 +37,7 @@ layout_mode = 2
 text = "Health"
 
 [node name="Value" parent="UpgradeList/Health/Upgrade" index="0"]
-text = "200"
+text = "500"
 
 [node name="IncrementButton" parent="UpgradeList/Health/Upgrade" index="1"]
 text = "+(2)"

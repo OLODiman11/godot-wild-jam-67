@@ -6,6 +6,7 @@ extends PanelContainer
 @onready var max_parasite_count: LabeledValue = $UpgradeList/MaxParasiteCount
 
 func _ready():
+	visibility_changed.connect(on_close_visible)
 	health.increment_button.pressed.connect(PlayerStats.add_max_health.bind(50))
 	speed.increment_button.pressed.connect(PlayerStats.add_speed.bind(100))
 	regen_rate.increment_button.pressed.connect(PlayerStats.add_regen_rate.bind(2))
@@ -31,3 +32,7 @@ func check_points(points: int):
 		
 func set_label_text(value: float, labeled_value: LabeledValue):
 	labeled_value.value.set_text(str(value))
+	
+func on_close_visible():
+	if visible:
+		$UpgradeList/CloseButton.grab_focus()
