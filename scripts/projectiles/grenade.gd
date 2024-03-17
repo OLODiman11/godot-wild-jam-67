@@ -14,8 +14,12 @@ extends CharacterBody2D
 @export var orig_glob_pos: Vector2
 
 var shooter: Node2D
+var _is_exploding = false
 
 func _physics_process(delta):
+	if _is_exploding:
+		return
+		
 	var collision := move_and_collide(speed * direction * delta)
 	
 	if (orig_glob_pos - global_position).length_squared() > fire_range**2:
@@ -33,11 +37,13 @@ func _physics_process(delta):
 		if health_node:
 			_blast()
 			
-			
 func _blast():
+	_is_exploding = true
 	$Sprite2D2.visible = true
 	$Sprite2D.visible = false
-	create_tween().tween_property($Sprite2D2,"scale", Vector2(10,10), 0.2)
+	$AudioStreamPlayer2D.play()
+	$AudioStreamPlayer2D.finished.connect(queue_free)
+	create_tween().tween_property($Sprite2D2, "scale", Vector2(10,10), 0.2)
 	await get_tree().create_timer(0.2).timeout
 	for body in area.get_overlapping_bodies():
 		if body.is_in_group("Enemies"):
@@ -45,7 +51,7 @@ func _blast():
 		var health = body.get_node("Health")
 		if health:
 			health.take_damage(damage)
-	queue_free()
+	$Sprite2D2.visible = false
 
 func set_collision_masks(masks:Array[int]):
 	for mask in masks:
