@@ -9,5 +9,5 @@
 
 [resource]
 script = ExtResource("1_ovjri")
-amounts = PackedInt32Array(10, 5, 4, 2, 2)
+amounts = PackedInt32Array(10, 5, 4, 2, 1)
 enemies = Array[Resource("res://scripts/resources/enemy_res.gd")]([ExtResource("1_vfjmo"), ExtResource("2_wabjb"), ExtResource("3_87osp"), ExtResource("4_rlx5u"), ExtResource("5_3fanh")])

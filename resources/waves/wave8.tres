@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WaveCongif" load_steps=7 format=3 uid="uid://cj533v6y61kku"]
+
+[ext_resource type="Resource" uid="uid://de3opb4sfvcfh" path="res://resources/enemies/melee.tres" id="1_6ykkt"]
+[ext_resource type="Resource" uid="uid://dsv21egrt5tc7" path="res://resources/enemies/pistol.tres" id="2_s110w"]
+[ext_resource type="Resource" uid="uid://drpfh83h58w4g" path="res://resources/enemies/rifleman.tres" id="3_1vgbq"]
+[ext_resource type="Resource" uid="uid://de3px1jpwhljj" path="res://resources/enemies/grenader.tres" id="4_06oko"]
+[ext_resource type="Resource" uid="uid://c7lw6jartwff7" path="res://resources/enemies/sniper.tres" id="5_foiy3"]
+[ext_resource type="Script" path="res://scripts/resources/wave_config.gd" id="6_cu5rs"]
+
+[resource]
+script = ExtResource("6_cu5rs")
+amounts = PackedInt32Array(2, 10, 10, 2, 5)
+enemies = Array[Resource("res://scripts/resources/enemy_res.gd")]([ExtResource("1_6ykkt"), ExtResource("2_s110w"), ExtResource("3_1vgbq"), ExtResource("4_06oko"), ExtResource("5_foiy3")])

@@ -8,7 +8,7 @@
 [resource]
 script = ExtResource("1_bgjkp")
 speed = 700.0
-max_health = 20.0
+max_health = 25.0
 weapon_res = ExtResource("2_r21fb")
 sprite = ExtResource("2_c5cgr")
 parasite_sprite = ExtResource("1_hxi3p")

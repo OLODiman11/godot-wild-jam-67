@@ -12,6 +12,8 @@ func _ready():
 	
 static func _on_enemy_killed(enemy: Enemy):
 	var killed_by = enemy.last_shot_by
+	if killed_by == null:
+		return
 	var enemy_weapon = enemy.get_node("Weapon").weapon_res
 	var enemy_weapon_index = Globals.weapon_resources.find(enemy_weapon)
 	killed_by.get_node("Inventory").possessed_weapons[enemy_weapon_index] = true
