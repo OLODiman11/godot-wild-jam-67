@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://1fft4kr0svye"]
+
+[ext_resource type="Script" path="res://scripts/wave_manager.gd" id="1_us804"]
+
+[node name="WaveManager" type="Node2D"]
+script = ExtResource("1_us804")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[node name="Enemies" type="Node2D" parent="."]

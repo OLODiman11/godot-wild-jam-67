@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://ci8fxkrjfka14"]
+
+[ext_resource type="Script" path="res://scripts/projectiles/grenade.gd" id="1_27eg3"]
+[ext_resource type="Texture2D" uid="uid://iymnxksgmrmr" path="res://assets/character.png" id="2_agvhd"]
+[ext_resource type="AudioStream" uid="uid://dsoi5xmruaqe" path="res://assets/sounds/explosion.mp3" id="3_5k37f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2stg4"]
+
+[sub_resource type="Gradient" id="Gradient_g0bg4"]
+offsets = PackedFloat32Array(0.116883, 0.318182, 0.493506, 0.545455, 0.616883)
+colors = PackedColorArray(1, 1, 1, 0.509804, 1, 1, 0, 0.32549, 0.735106, 0.406173, 1.92523e-07, 0.377979, 0.984314, 0.0392157, 0, 0.439216, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpxy1"]
+gradient = SubResource("Gradient_g0bg4")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35rlg"]
+
+[node name="Grenade" type="CharacterBody2D"]
+scale = Vector2(1.38334, 1.38334)
+collision_layer = 8
+collision_mask = 16
+script = ExtResource("1_27eg3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2stg4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.419608, 0.196078, 1)
+scale = Vector2(0.2, 0.09)
+texture = ExtResource("2_agvhd")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+texture = SubResource("GradientTexture2D_vpxy1")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(2.28858, 2.28858)
+collision_layer = 8
+collision_mask = 16
+
+[node name="Explosion" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(10.9709, 10.9709)
+shape = SubResource("CircleShape2D_35rlg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5k37f")

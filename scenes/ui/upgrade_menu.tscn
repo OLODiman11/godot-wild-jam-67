@@ -1,0 +1,142 @@
+[gd_scene load_steps=6 format=3 uid="uid://cumeeu7kg3eci"]
+
+[ext_resource type="Theme" uid="uid://du34kuq7l3o2n" path="res://resources/themes/shop.tres" id="1_2ixi0"]
+[ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
+[ext_resource type="PackedScene" uid="uid://bahjc717lijkx" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
+[ext_resource type="Script" path="res://scripts/ui/feed_your_mother.gd" id="3_32bta"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="5_cr0e4"]
+
+[node name="UpgradeMenu" type="PanelContainer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -275.0
+offset_top = -155.0
+offset_right = 275.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2ixi0")
+script = ExtResource("1_4yrbt")
+
+[node name="UpgradeList" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Health" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/Health" index="0"]
+text = "Health"
+
+[node name="Value" parent="UpgradeList/Health/Upgrade" index="0"]
+text = "500"
+
+[node name="IncrementButton" parent="UpgradeList/Health/Upgrade" index="1"]
+text = "+50 (3pt)  "
+
+[node name="Speed" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/Speed" index="0"]
+text = "Speed"
+
+[node name="Value" parent="UpgradeList/Speed/Upgrade" index="0"]
+text = "800"
+
+[node name="IncrementButton" parent="UpgradeList/Speed/Upgrade" index="1"]
+text = "+100 (1pt)"
+
+[node name="RegenRate" parent="UpgradeList" instance=ExtResource("2_h053b")]
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/RegenRate" index="0"]
+text = "Regeneration Rate"
+
+[node name="Value" parent="UpgradeList/RegenRate/Upgrade" index="0"]
+text = "1
+"
+
+[node name="IncrementButton" parent="UpgradeList/RegenRate/Upgrade" index="1"]
+text = "+2 (3pt)    "
+
+[node name="MaxParasiteCount" parent="UpgradeList" instance=ExtResource("2_h053b")]
+visible = false
+layout_mode = 2
+
+[node name="Title" parent="UpgradeList/MaxParasiteCount" index="0"]
+text = "Max Infected"
+
+[node name="Value" parent="UpgradeList/MaxParasiteCount/Upgrade" index="0"]
+text = "1
+"
+
+[node name="IncrementButton" parent="UpgradeList/MaxParasiteCount/Upgrade" index="1"]
+text = "+1 (5pt)    "
+
+[node name="UnlockInfect" type="Button" parent="UpgradeList"]
+layout_mode = 2
+text = "Unlock Infect Ability (5 points)"
+script = ExtResource("5_cr0e4")
+
+[node name="FeedYourMother" type="HBoxContainer" parent="UpgradeList"]
+layout_mode = 2
+script = ExtResource("3_32bta")
+
+[node name="ProgressBar" type="ProgressBar" parent="UpgradeList/FeedYourMother"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 1.0
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="UpgradeList/FeedYourMother/ProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.5
+offset_top = -17.5
+offset_right = 124.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.67451, 0, 0.105882, 1)
+theme_override_colors/font_outline_color = Color(0.643137, 0.643137, 0.643137, 1)
+theme_override_constants/outline_size = 6
+text = "FEED YOUR MOTHER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusOne" type="Button" parent="UpgradeList/FeedYourMother"]
+layout_mode = 2
+text = "+1"
+script = ExtResource("5_cr0e4")
+
+[node name="PlusFive" type="Button" parent="UpgradeList/FeedYourMother"]
+layout_mode = 2
+text = "+5"
+script = ExtResource("5_cr0e4")
+
+[node name="PlusAll" type="Button" parent="UpgradeList/FeedYourMother"]
+layout_mode = 2
+text = "All"
+script = ExtResource("5_cr0e4")
+
+[node name="CloseButton" type="Button" parent="UpgradeList"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Close"
+script = ExtResource("5_cr0e4")
+
+[connection signal="pressed" from="UpgradeList/CloseButton" to="." method="hide"]
+
+[editable path="UpgradeList/Health"]
+[editable path="UpgradeList/Speed"]
+[editable path="UpgradeList/RegenRate"]
+[editable path="UpgradeList/MaxParasiteCount"]

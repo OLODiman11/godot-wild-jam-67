@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://v31x3a606vli"]
+
+[ext_resource type="PackedScene" uid="uid://bb2r32x6qo4ka" path="res://scenes/tutorial/base_scene.tscn" id="1_0r88u"]
+
+[node name="BaseScene" instance=ExtResource("1_0r88u")]
+
+[node name="Panel" parent="." index="1"]
+offset_left = -426.0
+offset_top = -249.0
+offset_right = 424.0
+offset_bottom = 251.0

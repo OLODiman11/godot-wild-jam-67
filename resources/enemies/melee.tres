@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="EnemyRes" load_steps=5 format=3 uid="uid://de3opb4sfvcfh"]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_res.gd" id="1_bgjkp"]
+[ext_resource type="Texture2D" uid="uid://d3qed5mn0qlm1" path="res://assets/sprites/parasites/parasite_meele.png" id="1_hxi3p"]
+[ext_resource type="Texture2D" uid="uid://dokmdmxhy1c7g" path="res://assets/sprites/enemies/enemy_meele.png" id="2_c5cgr"]
+[ext_resource type="Resource" uid="uid://lhcl3ob3ifjw" path="res://resources/weapons/baton.tres" id="2_r21fb"]
+
+[resource]
+script = ExtResource("1_bgjkp")
+speed = 700.0
+max_health = 25.0
+weapon_res = ExtResource("2_r21fb")
+sprite = ExtResource("2_c5cgr")
+parasite_sprite = ExtResource("1_hxi3p")

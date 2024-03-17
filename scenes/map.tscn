@@ -1,0 +1,224 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgngaw7447d8v"]
+
+[ext_resource type="Script" path="res://scripts/map.gd" id="1_8md71"]
+[ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="1_driq8"]
+[ext_resource type="Texture2D" uid="uid://cijond5qk5rx7" path="res://assets/1x1_white.png" id="2_0asrx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4oly"]
+
+[sub_resource type="Gradient" id="Gradient_5yg45"]
+offsets = PackedFloat32Array(0, 0.454545)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmnii"]
+gradient = SubResource("Gradient_5yg45")
+fill = 1
+fill_from = Vector2(0, 0.440367)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6b0vl"]
+gradient = SubResource("Gradient_5yg45")
+fill = 1
+fill_from = Vector2(0, 0.477064)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_m6xxc"]
+gradient = SubResource("Gradient_5yg45")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Map" type="Node2D"]
+script = ExtResource("1_8md71")
+
+[node name="LeftWall" type="Sprite2D" parent="." groups=["Map"]]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(-1750, 0)
+scale = Vector2(200, 4100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(-0.5, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LeftWall" groups=["Map"]]
+position = Vector2(-0.505, 0)
+scale = Vector2(0.0502081, 0.0502081)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall/StaticBody2D" groups=["Map"]]
+shape = SubResource("RectangleShape2D_x4oly")
+
+[node name="RightWall" type="Sprite2D" parent="." groups=["Map"]]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(1750, 0)
+scale = Vector2(200, 4100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0.5, 0)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="RightWall" groups=["Map"]]
+position = Vector2(0.494999, 0)
+scale = Vector2(0.0502081, 0.0502081)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall/StaticBody2D2" groups=["Map"]]
+shape = SubResource("RectangleShape2D_x4oly")
+
+[node name="UpperWall" type="Sprite2D" parent="." groups=["Map"]]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+position = Vector2(0, -1730)
+scale = Vector2(3500, 200)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, -0.5)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="UpperWall" groups=["Map"]]
+position = Vector2(0, -0.74)
+rotation = 1.5708
+scale = Vector2(0.0648654, 0.0501421)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperWall/StaticBody2D4" groups=["Map"]]
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_x4oly")
+
+[node name="UpperWall2" type="Sprite2D" parent="." groups=["Map"]]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(0, -1950)
+scale = Vector2(3500, 100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, -0.5)
+
+[node name="BottomWall2" type="Sprite2D" parent="." groups=["Map"]]
+modulate = Color(0.486275, 0.486275, 0.486275, 1)
+position = Vector2(0, 1750)
+scale = Vector2(3500, 100)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, 0.5)
+
+[node name="BottomWall" type="Sprite2D" parent="." groups=["Map"]]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+position = Vector2(0, 1850)
+scale = Vector2(3900, 200)
+texture = ExtResource("2_0asrx")
+offset = Vector2(0, 0.5)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="BottomWall" groups=["Map"]]
+position = Vector2(0, 0.11)
+rotation = 1.5708
+scale = Vector2(0.0648654, 0.0449993)
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall/StaticBody2D3" groups=["Map"]]
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_x4oly")
+one_way_collision_margin = 5.0
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 0.00012207)
+
+[node name="Siren" type="PointLight2D" parent="Node2D"]
+position = Vector2(-1081.28, -837.256)
+scale = Vector2(20.5736, 20.5736)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_tmnii")
+
+[node name="Siren2" type="PointLight2D" parent="Node2D"]
+position = Vector2(1155, -837.256)
+rotation = 3.14159
+scale = Vector2(18.7548, 18.7548)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_6b0vl")
+
+[node name="Siren3" type="PointLight2D" parent="Node2D"]
+position = Vector2(1152, 750)
+rotation = 3.14159
+scale = Vector2(18.7548, 18.7548)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_6b0vl")
+
+[node name="Siren6" type="PointLight2D" parent="Node2D"]
+position = Vector2(917, 1154)
+rotation = 4.71238
+scale = Vector2(18.7548, 18.7548)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_6b0vl")
+
+[node name="Siren7" type="PointLight2D" parent="Node2D"]
+position = Vector2(-819, 1154)
+rotation = 4.71238
+scale = Vector2(18.7548, 18.7548)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_6b0vl")
+
+[node name="Siren8" type="PointLight2D" parent="Node2D"]
+position = Vector2(-819, -1167)
+rotation = 1.57079
+scale = Vector2(18.7548, 18.7548)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_6b0vl")
+
+[node name="Siren9" type="PointLight2D" parent="Node2D"]
+position = Vector2(984, -1167)
+rotation = 1.57079
+scale = Vector2(18.7548, 18.7548)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_6b0vl")
+
+[node name="Siren4" type="PointLight2D" parent="Node2D"]
+position = Vector2(-1081.28, 841)
+scale = Vector2(21.3038, 21.3038)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_tmnii")
+
+[node name="Siren5" type="PointLight2D" parent="Node2D"]
+position = Vector2(46, 43.9999)
+scale = Vector2(74.0968, 74.0968)
+color = Color(0.917647, 0, 0, 1)
+energy = 0.0
+shadow_color = Color(0.670588, 0, 0.588235, 1)
+shadow_filter = 1
+shadow_filter_smooth = 40.7
+texture = SubResource("GradientTexture2D_m6xxc")
+
+[node name="Timer" type="Timer" parent="Node2D"]
+wait_time = 0.05
+autostart = true
+
+[node name="Floor" type="Sprite2D" parent="."]
+modulate = Color(0.8, 0.8, 0.8, 1)
+texture_repeat = 2
+texture = ExtResource("1_driq8")
+region_enabled = true
+region_rect = Rect2(0, 0, 3500, 3500)
+
+[connection signal="timeout" from="Node2D/Timer" to="." method="_on_timer_timeout"]

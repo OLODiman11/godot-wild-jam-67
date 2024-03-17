@@ -1,0 +1,195 @@
+[gd_scene load_steps=24 format=3 uid="uid://bjsvj5goi8qnc"]
+
+[ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
+[ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
+[ext_resource type="PackedScene" uid="uid://brl845cpq7fs1" path="res://scenes/characters/ally.tscn" id="4_jpwry"]
+[ext_resource type="PackedScene" uid="uid://cafrwwps605aw" path="res://scenes/bootstrap.tscn" id="4_y6kmi"]
+[ext_resource type="PackedScene" uid="uid://b5yn5nt52v0up" path="res://scenes/ui/ui.tscn" id="5_jjwy5"]
+[ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="7_046r7"]
+[ext_resource type="PackedScene" uid="uid://b4upt4cbfjmuv" path="res://scenes/ui/in_game_settings.tscn" id="7_qup4g"]
+[ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="8_xmnlb"]
+[ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="9_1hoaq"]
+[ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
+[ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
+[ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="11_rum6c"]
+[ext_resource type="PackedScene" uid="uid://c2y0tpm3kukdo" path="res://scenes/mother.tscn" id="12_chdqk"]
+[ext_resource type="PackedScene" uid="uid://k3n5vcf7s4wd" path="res://scenes/tutorial/shoot_tutorial.tscn" id="13_grnu8"]
+[ext_resource type="PackedScene" uid="uid://v31x3a606vli" path="res://scenes/tutorial/movement_tutorial.tscn" id="13_papre"]
+[ext_resource type="PackedScene" uid="uid://dc15llolqbdpg" path="res://scenes/tutorial/infect_tutorial.tscn" id="15_ojyf1"]
+[ext_resource type="PackedScene" uid="uid://dvy4n0w1s6rnw" path="res://scenes/tutorial/character_switch_tutorial.tscn" id="16_abgp7"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="16_gkap5"]
+[ext_resource type="PackedScene" uid="uid://dwha3utwdgim3" path="res://scenes/tutorial/shop_tutorial.tscn" id="17_dtswv"]
+[ext_resource type="PackedScene" uid="uid://dhqoqgthmb3t8" path="res://scenes/tutorial/switch_weapon_tutorial.tscn" id="19_4j8di"]
+[ext_resource type="Script" path="res://scenes/tutorial/switch_weapon_tutorial.gd" id="20_gm6ht"]
+
+[sub_resource type="Curve2D" id="Curve2D_774ut"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -249, -149.6, 0, 0, 0, 0, 255.6, -153, 0, 0, 0, 0, 256.8, 159, 0, 0, 0, 0, -249.6, 159, 0, 0, 0, 0, -249, -149.6)
+}
+point_count = 5
+
+[node name="Main" type="Node2D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("10_vnn3q")
+autoplay = true
+bus = &"Music"
+
+[node name="Map" parent="." instance=ExtResource("1_qi0m0")]
+
+[node name="WaveManager" parent="." node_paths=PackedStringArray("enemies_container", "spawn_path") instance=ExtResource("3_qillp")]
+enemies_container = NodePath("../EnemiesContainer")
+spawn_path = NodePath("../AlliesContainer/Ally/SpawnPath")
+
+[node name="AlliesContainer" type="Node2D" parent="."]
+
+[node name="Ally" parent="AlliesContainer" instance=ExtResource("4_jpwry")]
+position = Vector2(250, 30)
+
+[node name="Inventory" parent="AlliesContainer/Ally" index="9"]
+possessed_weapons = Array[bool]([false, true, false, false, false])
+
+[node name="SpawnPath" type="Path2D" parent="AlliesContainer/Ally"]
+curve = SubResource("Curve2D_774ut")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="AlliesContainer/Ally/SpawnPath"]
+position = Vector2(-249, -149.6)
+rotation = -0.0067379
+
+[node name="Marker2D" type="Marker2D" parent="AlliesContainer/Ally/SpawnPath/PathFollow2D"]
+
+[node name="MainCamera" type="Camera2D" parent="AlliesContainer/Ally"]
+scale = Vector2(0.3, 0.3)
+zoom = Vector2(0.48, 0.48)
+limit_left = -1950
+limit_top = -2050
+limit_right = 1950
+limit_bottom = 2050
+editor_draw_limits = true
+
+[node name="AudioListener2D" type="AudioListener2D" parent="AlliesContainer/Ally/MainCamera"]
+current = true
+
+[node name="EnemiesContainer" type="Node2D" parent="."]
+
+[node name="Bootstrap" parent="." node_paths=PackedStringArray("current_ally", "allies_container", "enemies_container") instance=ExtResource("4_y6kmi")]
+current_ally = NodePath("../AlliesContainer/Ally")
+allies_container = NodePath("../AlliesContainer")
+enemies_container = NodePath("../EnemiesContainer")
+
+[node name="AllyFactory" parent="." node_paths=PackedStringArray("allies_container") instance=ExtResource("9_naicb")]
+allies_container = NodePath("../AlliesContainer")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource("5_jjwy5")]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+
+[node name="UpgradeMenu" parent="CanvasLayer/UI" index="0"]
+offset_left = -317.5
+offset_top = -154.0
+offset_right = 332.5
+offset_bottom = 154.0
+
+[node name="Label" parent="CanvasLayer/UI/UpgradeMenu/UpgradeList/FeedYourMother/ProgressBar" index="0"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[node name="Pistol" parent="CanvasLayer/UI/VBoxContainer" index="0"]
+weapon_res = ExtResource("7_046r7")
+
+[node name="Rifle" parent="CanvasLayer/UI/VBoxContainer" index="1"]
+weapon_res = ExtResource("8_xmnlb")
+
+[node name="Sniper Rifle" parent="CanvasLayer/UI/VBoxContainer" index="2"]
+weapon_res = ExtResource("9_1hoaq")
+
+[node name="Inventory" parent="CanvasLayer/UI" index="5"]
+visible = false
+
+[node name="NextWave" type="Button" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Start - R or (Y)"
+script = ExtResource("11_rum6c")
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("7_qup4g")]
+process_mode = 0
+visible = false
+
+[node name="MovementTutorial" parent="CanvasLayer" instance=ExtResource("13_papre")]
+
+[node name="ShootTutorial" parent="CanvasLayer" instance=ExtResource("13_grnu8")]
+visible = false
+
+[node name="InfectTutorial" parent="CanvasLayer" instance=ExtResource("15_ojyf1")]
+visible = false
+
+[node name="CharacterSwitchTutorial" parent="CanvasLayer" instance=ExtResource("16_abgp7")]
+visible = false
+
+[node name="ShopTutorial" parent="CanvasLayer" instance=ExtResource("17_dtswv")]
+process_mode = 2
+visible = false
+
+[node name="WeaponSwitchTutorial" parent="CanvasLayer" instance=ExtResource("19_4j8di")]
+visible = false
+script = ExtResource("20_gm6ht")
+
+[node name="PlayerController" parent="." instance=ExtResource("11_j50iq")]
+
+[node name="Mother" parent="." instance=ExtResource("12_chdqk")]
+
+[node name="GameManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("16_gkap5")
+
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/ShopTutorial" method="show_once"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="hide"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="hide"]
+[connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/NextWave" method="hide"]
+[connection signal="pressed" from="CanvasLayer/UI/UpgradeMenu/UpgradeList/UnlockInfect" to="CanvasLayer/InfectTutorial" method="show"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/UpgradeButton" to="GameManager" method="disable_shoot"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/UpgradeButton" to="GameManager" method="enable_shoot"]
+[connection signal="pressed" from="CanvasLayer/UI/UpgradeButton" to="GameManager" method="pause_game"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/NextWave" to="GameManager" method="disable_shoot"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/NextWave" to="GameManager" method="enable_shoot"]
+[connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
+[connection signal="hidden" from="CanvasLayer/MovementTutorial" to="CanvasLayer/ShootTutorial" method="show"]
+[connection signal="ready" from="CanvasLayer/MovementTutorial" to="GameManager" method="pause_game"]
+[connection signal="hidden" from="CanvasLayer/ShootTutorial" to="GameManager" method="unpause_game"]
+[connection signal="hidden" from="CanvasLayer/InfectTutorial" to="CanvasLayer/CharacterSwitchTutorial" method="show"]
+[connection signal="hidden" from="CanvasLayer/ShopTutorial" to="CanvasLayer/ShopTutorial" method="reissue_wave_ended"]
+[connection signal="hidden" from="CanvasLayer/ShopTutorial" to="GameManager" method="unpause_game"]
+[connection signal="hidden" from="CanvasLayer/WeaponSwitchTutorial" to="GameManager" method="unpause_game"]
+
+[editable path="AlliesContainer/Ally"]
+[editable path="CanvasLayer/UI"]
+[editable path="CanvasLayer/UI/UpgradeMenu"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Health"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/Speed"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/RegenRate"]
+[editable path="CanvasLayer/UI/UpgradeMenu/UpgradeList/MaxParasiteCount"]
+[editable path="CanvasLayer/UI/HealthBar"]

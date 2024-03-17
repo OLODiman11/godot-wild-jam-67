@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://df24sob2r66cx"]
+
+[ext_resource type="Theme" uid="uid://du34kuq7l3o2n" path="res://resources/themes/shop.tres" id="1_0heo5"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_p5vy1"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="2_1cwmd"]
+[ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="3_n1n5o"]
+[ext_resource type="Texture2D" uid="uid://crx740un37jk8" path="res://assets/weapon_preview/pistol.png" id="5_dmsrd"]
+[ext_resource type="Texture2D" uid="uid://dkrr2hcg3i211" path="res://assets/weapon_preview/sniper_rifle.png" id="6_a3vhl"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0heo5")
+script = ExtResource("1_p5vy1")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_n1n5o")
+stretch_mode = 1
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -192.0
+offset_right = 232.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.5
+offset_top = -57.5
+offset_right = 100.5
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PlayButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Play"
+script = ExtResource("2_1cwmd")
+
+[node name="Settings" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+script = ExtResource("2_1cwmd")
+
+[node name="Exit" type="Button" parent="Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"
+script = ExtResource("2_1cwmd")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -144.5
+offset_top = 33.0
+offset_right = 142.5
+offset_bottom = 102.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "PARABREAK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 395.0
+offset_top = 153.0
+offset_right = 535.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_dmsrd")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -531.0
+offset_top = -315.0
+offset_right = -391.0
+offset_bottom = -175.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_a3vhl")
+flip_h = true

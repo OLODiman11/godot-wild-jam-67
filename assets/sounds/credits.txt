@@ -1,0 +1,13 @@
+sniper_rifle.wav - https://freesound.org/people/EFlexMusic/sounds/398348/
+
+rifle.mp3 - https://www.zapsplat.com/music/ak-47-rifle-fully-automatic-semi-automatic-machine-gun-assault-rifle-7-62x39-gunshots-long-burst-near-distance-front-of-shooter-left-right-stereo-2/
+
+pistol.mp3 - https://www.zapsplat.com/music/gunshot-handgun-single-shot-exterior-1-2/
+
+baton.mp3 - https://www.zapsplat.com/music/badminton-racket-fast-swing-whoosh-1/
+
+ui - https://kenney.nl/assets/interface-sounds
+
+explosion.mp3 - https://www.zapsplat.com/music/deep-dark-sci-fi-explosion-or-laser-blast-could-be-underwater/
+
+grenade_launcher.wav - https://freesound.org/people/jackyyang09/sounds/432781/?
