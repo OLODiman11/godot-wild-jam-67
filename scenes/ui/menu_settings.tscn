@@ -9,7 +9,6 @@
 
 [node name="SettingsPanel" parent="." index="1" instance=ExtResource("2_yxhd4")]
 layout_mode = 1
-anchors_preset = 8
 offset_left = -300.0
 offset_top = -92.5
 offset_right = 300.0
@@ -31,5 +30,31 @@ grow_vertical = 2
 theme = ExtResource("4_g0q0c")
 text = "Back"
 script = ExtResource("4_mhqkd")
+
+[node name="TextureRect" parent="." index="3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 325.0
+offset_top = -250.0
+offset_right = 465.0
+offset_bottom = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect2" parent="." index="4"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = 157.0
+offset_right = -360.0
+offset_bottom = 297.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
