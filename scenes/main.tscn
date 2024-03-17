@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
 [ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
 [ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="11_rum6c"]
-[ext_resource type="PackedScene" uid="uid://cua4wpwtvutjr" path="res://scenes/mother.tscn" id="12_chdqk"]
+[ext_resource type="PackedScene" uid="uid://c2y0tpm3kukdo" path="res://scenes/mother.tscn" id="12_chdqk"]
 [ext_resource type="PackedScene" uid="uid://k3n5vcf7s4wd" path="res://scenes/tutorial/shoot_tutorial.tscn" id="13_grnu8"]
 [ext_resource type="PackedScene" uid="uid://v31x3a606vli" path="res://scenes/tutorial/movement_tutorial.tscn" id="13_papre"]
 [ext_resource type="PackedScene" uid="uid://dc15llolqbdpg" path="res://scenes/tutorial/infect_tutorial.tscn" id="15_ojyf1"]
@@ -92,6 +92,17 @@ anchor_left = 0.05
 anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.95
+
+[node name="UpgradeMenu" parent="CanvasLayer/UI" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.5
+offset_top = -85.5
+offset_right = 74.5
+offset_bottom = 85.5
 
 [node name="Pistol" parent="CanvasLayer/UI/VBoxContainer" index="0"]
 weapon_res = ExtResource("7_046r7")
