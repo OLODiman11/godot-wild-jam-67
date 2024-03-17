@@ -92,6 +92,12 @@ anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.95
 
+[node name="UpgradeMenu" parent="CanvasLayer/UI" index="0"]
+offset_left = -317.5
+offset_top = -154.0
+offset_right = 332.5
+offset_bottom = 154.0
+
 [node name="Label" parent="CanvasLayer/UI/UpgradeMenu/UpgradeList/FeedYourMother/ProgressBar" index="0"]
 anchors_preset = 15
 anchor_left = 0.0
