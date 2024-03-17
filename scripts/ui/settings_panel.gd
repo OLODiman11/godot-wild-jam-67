@@ -13,6 +13,9 @@ var _music_bus_index: int
 @onready var music_slider = $VBoxContainer/SoundSettings/MusicSlider
 
 func _ready():
+	master_slider.grab_focus()
+	visibility_changed.connect(on_visibility_changed)
+	
 	_master_bus_index = AudioServer.get_bus_index(master_bus_name)
 	_sfx_bus_index = AudioServer.get_bus_index(sfx_bus_name)
 	_music_bus_index = AudioServer.get_bus_index(music_bus_name)
@@ -27,3 +30,7 @@ func _ready():
 	
 func set_volume( value: float, bus_index: int):
 	AudioServer.set_bus_volume_db(bus_index, linear_to_db(value))
+	
+func on_visibility_changed():
+	if visible:
+		master_slider.grab_focus()

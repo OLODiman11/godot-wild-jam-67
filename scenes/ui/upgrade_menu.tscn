@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cumeeu7kg3eci"]
+[gd_scene load_steps=9 format=3 uid="uid://cumeeu7kg3eci"]
 
+[ext_resource type="Theme" uid="uid://bq5yldw4dqxp6" path="res://resources/themes/menu.tres" id="1_0aapj"]
 [ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
 [ext_resource type="PackedScene" uid="uid://bahjc717lijkx" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
 [ext_resource type="Theme" uid="uid://qvyk1jsak2o4" path="res://resources/themes/ui.tres" id="3_8fp3g"]
@@ -12,6 +13,16 @@
 bg_color = Color(0.231373, 0.231373, 0.231373, 1)
 
 [node name="UpgradeMenu" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.485
+anchor_top = 0.512
+anchor_right = 0.485
+anchor_bottom = 0.512
+offset_left = -339.72
+offset_top = -186.776
+offset_right = 369.28
+offset_bottom = 187.224
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,9 +34,9 @@ offset_right = 74.5
 offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_0aapj")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rjk66")
 script = ExtResource("1_4yrbt")
-metadata/_edit_use_anchors_ = true
 
 [node name="UpgradeList" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -37,10 +48,10 @@ layout_mode = 2
 text = "Health"
 
 [node name="Value" parent="UpgradeList/Health/Upgrade" index="0"]
-text = "200"
+text = "500"
 
 [node name="IncrementButton" parent="UpgradeList/Health/Upgrade" index="1"]
-text = "+(2)"
+text = "+50 (3pt)  "
 
 [node name="Speed" parent="UpgradeList" instance=ExtResource("2_h053b")]
 layout_mode = 2
@@ -52,7 +63,7 @@ text = "Speed"
 text = "800"
 
 [node name="IncrementButton" parent="UpgradeList/Speed/Upgrade" index="1"]
-text = "+(1)"
+text = "+100 (1pt)"
 
 [node name="RegenRate" parent="UpgradeList" instance=ExtResource("2_h053b")]
 layout_mode = 2
@@ -65,20 +76,26 @@ text = "1
 "
 
 [node name="IncrementButton" parent="UpgradeList/RegenRate/Upgrade" index="1"]
-text = "+(3)"
+text = "+2 (3pt)    "
 
 [node name="MaxParasiteCount" parent="UpgradeList" instance=ExtResource("2_h053b")]
+visible = false
 layout_mode = 2
 
 [node name="Title" parent="UpgradeList/MaxParasiteCount" index="0"]
-text = "Max Parasites"
+text = "Max Infected"
 
 [node name="Value" parent="UpgradeList/MaxParasiteCount/Upgrade" index="0"]
 text = "1
 "
 
 [node name="IncrementButton" parent="UpgradeList/MaxParasiteCount/Upgrade" index="1"]
-text = "+(5)"
+text = "+1 (5pt)    "
+
+[node name="CustomButton" type="Button" parent="UpgradeList"]
+layout_mode = 2
+text = "Infect (5 points)"
+script = ExtResource("5_cr0e4")
 
 [node name="FeedYourMother" type="HBoxContainer" parent="UpgradeList"]
 layout_mode = 2

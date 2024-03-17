@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwha3utwdgim3"]
+
+[ext_resource type="Theme" uid="uid://bq5yldw4dqxp6" path="res://resources/themes/menu.tres" id="1_hspo6"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="2_lkf82"]
+
+[node name="ShopTutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_hspo6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 150.0
+offset_top = 75.0
+offset_right = 1000.0
+offset_bottom = 575.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "For killing enemies you gain points. After each wave you can use the points to upgrade your stats or to FEED YOUR MOTHER.
+To win the game you have to feed your mother fully."
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Close" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -21.0
+offset_right = 26.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "X"
+script = ExtResource("2_lkf82")
+
+[connection signal="pressed" from="Panel/Close" to="." method="hide"]
