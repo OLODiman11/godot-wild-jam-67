@@ -1,0 +1,135 @@
+[gd_scene load_steps=11 format=3 uid="uid://61tbffbj775w"]
+
+[ext_resource type="Script" path="res://scripts/win_cutscene.gd" id="1_vtcdl"]
+[ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="2_r5b2e"]
+[ext_resource type="AudioStream" uid="uid://cntrnb7ym1aio" path="res://assets/sounds/win.mp3" id="3_i14ih"]
+[ext_resource type="AudioStream" uid="uid://cl6c758c2ae7d" path="res://assets/sounds/glass.wav" id="4_3ue2b"]
+[ext_resource type="AudioStream" uid="uid://dxyaktmi8soyd" path="res://assets/sounds/glass_break.ogg" id="5_qvq8r"]
+[ext_resource type="Texture2D" uid="uid://bi31m0n3hwfjg" path="res://assets/sprites/cutscenes/win.png" id="6_cs7b3"]
+[ext_resource type="AudioStream" uid="uid://dxswbxkwvy5tp" path="res://assets/sounds/screams.wav" id="6_eks5o"]
+
+[sub_resource type="Animation" id="Animation_tbo5p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Win:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sg82t"]
+resource_name = "win_animation"
+length = 15.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Win:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 12.2687,
+"start_offset": 0.0,
+"stream": ExtResource("3_i14ih")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 5.71423,
+"start_offset": 2.04776,
+"stream": ExtResource("4_3ue2b")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_qvq8r")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_eks5o")
+}],
+"times": PackedFloat32Array(0.334708, 4, 5)
+}
+tracks/2/use_blend = true
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/3/use_blend = true
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(14),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"open_menu"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mgbxd"]
+_data = {
+"RESET": SubResource("Animation_tbo5p"),
+"win_animation": SubResource("Animation_sg82t")
+}
+
+[node name="WinCutscene" type="Node2D"]
+script = ExtResource("1_vtcdl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.835294, 0.835294, 0.835294, 1)
+texture_repeat = 2
+position = Vector2(573, 291)
+scale = Vector2(1.94818, 1.94818)
+texture = ExtResource("2_r5b2e")
+region_enabled = true
+region_rect = Rect2(0, 0, 3500, 3500)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mgbxd")
+}
+
+[node name="Win" type="Sprite2D" parent="."]
+position = Vector2(558, 329)
+scale = Vector2(10.1197, 10.1197)
+texture = ExtResource("6_cs7b3")
+hframes = 14
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
