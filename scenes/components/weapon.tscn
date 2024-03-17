@@ -17,3 +17,4 @@ scale = Vector2(2.3125, 2.3125)
 texture = ExtResource("3_07vtl")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
