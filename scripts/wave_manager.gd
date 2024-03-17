@@ -8,16 +8,22 @@ signal wave_started
 var MAP_BOUNDS := 1700
 
 @onready var timer: Timer = $SpawnTimer
+const WAVES_DIR: String = "res://resources/waves/"
 
 @export var enemies_container: Node2D
 @export var spawn_path: Path2D
-@export var wave_list: PackedInt32Array = [5,10,15,20]
 @export var preload_enemy = preload("res://scenes/characters/enemy.tscn")
 
 var round_num = 0
 var _enemies_to_spawn: int
 
+var _waves: Array[WaveCongif]
+
 func _ready():
+	var wave_file_names = DirAccess.get_files_at(WAVES_DIR)
+	for file in wave_file_names:
+		var abs_path = "%s%s" % [WAVES_DIR, file]
+		_waves.append(load(abs_path))
 	timer.timeout.connect(spawn_enemy)
 
 func start_next_wave():
