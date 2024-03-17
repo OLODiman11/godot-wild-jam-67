@@ -117,7 +117,7 @@ func switch_character(_x):
 				character.remove_child(path)
 				new_character.add_child(path)
 				var index = Globals.weapon_resources.find(new_character.get_node("Weapon").weapon_res)
-				new_character.get_node("Inventory").possessed_weapons[index] = true
+				new_character.get_node("Inventory").possessed_weapons = character.get_node("Inventory").possessed_weapons
 				character = new_character
 				switch_weapon(index)
 				break
