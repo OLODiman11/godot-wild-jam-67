@@ -8,7 +8,9 @@ func _ready():
 	instance = self
 
 func pause_game():
-	get_tree().paused = true
+	if get_tree() != null:
+		get_tree().paused = true
 	
 func unpause_game():
-	get_tree().paused = false
+	if get_tree() != null:
+		get_tree().paused = false

@@ -17,7 +17,12 @@ const waves = [
 	preload("res://resources/waves/wave2.tres"),
 	preload("res://resources/waves/wave3.tres"),
 	preload("res://resources/waves/wave4.tres"),
-	preload("res://resources/waves/wave5.tres")
+	preload("res://resources/waves/wave5.tres"),
+	preload("res://resources/waves/wave6.tres"),
+	preload("res://resources/waves/wave7.tres"),
+	preload("res://resources/waves/wave8.tres"),
+	preload("res://resources/waves/wave9.tres"),
+	preload("res://resources/waves/wave10.tres"),
 ]
 
 const POINTS_FOR_WIN: int = 100
@@ -27,6 +32,7 @@ var mother_points: int = 0:
 		mother_points = value
 		if mother_points >= POINTS_FOR_WIN:
 			game_won.emit()
+			get_tree().change_scene_to_packed(Scenes.WIN_CUTSCENE)
 			print("You vonyaesh")
 
 var upgrade_points: int = 0:
