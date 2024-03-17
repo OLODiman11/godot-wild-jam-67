@@ -14,6 +14,7 @@ func _on_visability_changed():
 	
 func show_once(_x):
 	Globals.character_died.disconnect(show_once)
+	Globals.hide_on_esc = true
 	await get_tree().create_timer(1).timeout
 	GameManager.instance.pause_game()
 	show()

@@ -27,6 +27,7 @@ func show_once():
 		return
 	wave_manager.wave_ended.connect(show_delayed_shop)
 	has_been_shown = true
+	Globals.hide_on_esc = true
 	await get_tree().create_timer(1).timeout
 	GameManager.instance.pause_game()
 	show()
@@ -35,6 +36,7 @@ func reissue_wave_ended():
 	wave_manager.wave_ended.emit()
 	
 func show_delayed_shop():
+	Globals.hide_on_esc = true
 	await get_tree().create_timer(1).timeout
 	upgrade_button.show()
 	next_wave.show()
