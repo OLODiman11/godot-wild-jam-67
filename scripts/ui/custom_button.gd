@@ -7,4 +7,3 @@ func _ready():
 	focus_entered.connect(UiSfxPlayer.button_hover_player.play)
 	pressed.connect(UiSfxPlayer.button_press_player.play)
 
-

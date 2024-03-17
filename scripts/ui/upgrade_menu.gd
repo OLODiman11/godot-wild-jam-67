@@ -36,3 +36,10 @@ func set_label_text(value: float, labeled_value: LabeledValue):
 func on_close_visible():
 	if visible:
 		$UpgradeList/CloseButton.grab_focus()
+
+func _input(event):
+	if event.is_action_pressed("open_shop"):
+		if $".".visible:
+			$".".visible = false
+		else:
+			$".".visible = true
