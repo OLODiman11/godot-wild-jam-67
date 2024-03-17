@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="WaveCongif" load_steps=3 format=3 uid="uid://gv5ukbq43m10"]
+
+[ext_resource type="Resource" uid="uid://de3opb4sfvcfh" path="res://resources/enemies/melee.tres" id="1_6tqn0"]
+[ext_resource type="Script" path="res://scripts/resources/wave_config.gd" id="1_vd247"]
+
+[resource]
+script = ExtResource("1_vd247")
+amounts = PackedInt32Array(5)
+enemies = Array[Resource("res://scripts/resources/enemy_res.gd")]([ExtResource("1_6tqn0")])
