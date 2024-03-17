@@ -30,12 +30,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Play"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Settings" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Settings"
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Exit"
@@ -52,5 +53,3 @@ offset_bottom = 133.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "PARABREAK"
-
-[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
