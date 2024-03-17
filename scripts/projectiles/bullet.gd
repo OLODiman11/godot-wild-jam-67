@@ -17,6 +17,7 @@ func _physics_process(delta):
 	
 	if (orig_glob_pos - global_position).length_squared() > fire_range**2:
 		queue_free()
+		return
 	
 	if collision != null:
 		var collidee = collision.get_collider()
