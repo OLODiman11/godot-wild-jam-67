@@ -7,6 +7,7 @@ extends Node
 func _ready():
 	Globals.upgrade_points = 0
 	Globals.hide_on_esc = false
+	Globals.disabled_shoot = false
 	Globals.mother_points = 0
 	
 	PlayerStats.max_health = 500

@@ -5,6 +5,7 @@ signal game_won
 signal character_died(CharacterBody2D)
 
 var hide_on_esc = false
+var disabled_shoot = false
 
 const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/baton.tres"),

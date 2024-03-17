@@ -137,7 +137,8 @@ func _physics_process(_delta: float):
 				character.get_node("Sprite2D").flip_h = false
 			
 		if Input.is_action_pressed("shoot"):
-			_weapon.shoot()
+			if !Globals.disabled_shoot:
+				_weapon.shoot()
 		
 		var direction = Input.get_vector("left", "right", "up", "down")
 		if direction:
