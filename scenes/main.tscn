@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
 [ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
 [ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="11_rum6c"]
-[ext_resource type="PackedScene" path="res://scenes/mother.tscn" id="12_chdqk"]
+[ext_resource type="PackedScene" uid="uid://c2y0tpm3kukdo" path="res://scenes/mother.tscn" id="12_chdqk"]
 
 [sub_resource type="Curve2D" id="Curve2D_774ut"]
 _data = {
