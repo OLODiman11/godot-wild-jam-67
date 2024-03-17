@@ -31,9 +31,9 @@ var mother_points: int = 0:
 	set(value):
 		mother_points = value
 		if mother_points >= POINTS_FOR_WIN:
+			GameManager.instance.unpause_game()
 			game_won.emit()
 			get_tree().change_scene_to_packed(Scenes.WIN_CUTSCENE)
-			print("You vonyaesh")
 
 var upgrade_points: int = 0:
 	set(value):
