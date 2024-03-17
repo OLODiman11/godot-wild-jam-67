@@ -13,6 +13,7 @@ var _music_bus_index: int
 @onready var music_slider = $VBoxContainer/SoundSettings/MusicSlider
 
 func _ready():
+	master_slider.grab_focus()
 	_master_bus_index = AudioServer.get_bus_index(master_bus_name)
 	_sfx_bus_index = AudioServer.get_bus_index(sfx_bus_name)
 	_music_bus_index = AudioServer.get_bus_index(music_bus_name)

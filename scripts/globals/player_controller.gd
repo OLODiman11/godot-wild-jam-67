@@ -134,10 +134,7 @@ func _physics_process(_delta: float):
 			character.get_node("AnimationPlayer").play("walk")
 		else:
 			character.get_node("AnimationPlayer").play("idle")
-		if Input.is_action_pressed("run"):
-			_movement.run(direction)
-		else:
-			_movement.move(direction)
+		_movement.move(direction)
 
 		
 func update_inventory_ui():
