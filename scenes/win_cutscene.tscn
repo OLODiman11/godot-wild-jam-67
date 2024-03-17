@@ -133,3 +133,6 @@ texture = ExtResource("6_cs7b3")
 hframes = 14
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(571, 328)

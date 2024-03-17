@@ -6,6 +6,8 @@ func _ready():
 	Globals.character_died.connect(show_once)
 	
 func show_once(_x):
+	if _x == PlayerController.instance.character:
+		return
 	Globals.character_died.disconnect(show_once)
 	await get_tree().create_timer(1).timeout
 	GameManager.instance.pause_game()

@@ -150,3 +150,6 @@ theme_override_fonts/font = SubResource("SystemFont_4wwge")
 theme_override_font_sizes/font_size = 100
 theme_override_styles/normal = SubResource("StyleBoxFlat_n2cly")
 text = "You loose"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(574, 324)

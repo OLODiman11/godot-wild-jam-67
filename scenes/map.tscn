@@ -75,6 +75,7 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UpperWall/StaticBody2D4" groups=["Map"]]
+rotation = 1.57079
 shape = SubResource("RectangleShape2D_x4oly")
 
 [node name="UpperWall2" type="Sprite2D" parent="." groups=["Map"]]
@@ -106,7 +107,9 @@ collision_layer = 16
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall/StaticBody2D3" groups=["Map"]]
+rotation = 1.57079
 shape = SubResource("RectangleShape2D_x4oly")
+one_way_collision_margin = 5.0
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(0, 0.00012207)
