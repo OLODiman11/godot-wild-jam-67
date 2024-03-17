@@ -105,7 +105,7 @@ func switch_character(_x):
 			if !child.is_queued_for_deletion():
 				all_dead = false
 		if all_dead:
-			get_tree().change_scene_to_file("res://scenes/loose_cutscene.tscn")
+			get_tree().change_scene_to_packed(Scenes.LOOSE_CUTSCENE)
 		for i in range(size):
 			var is_current_caharacter = allies_container.get_child(i) == character
 			if is_current_caharacter:
