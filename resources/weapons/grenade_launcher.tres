@@ -7,9 +7,9 @@
 
 [resource]
 script = ExtResource("1_r1q0m")
-fire_rate = 0.5
+fire_rate = 0.8
 shoot_point_offset = 25.0
-damage = 40.0
+damage = 100.0
 bullet_speed = 1000.0
 fire_range = 1500.0
 is_melee = false
