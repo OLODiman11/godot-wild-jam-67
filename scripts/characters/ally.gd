@@ -5,6 +5,8 @@ extends CharacterBody2D
 func _ready():
 	$"Health".max_health = PlayerStats.max_health
 	$"Health".health = PlayerStats.max_health
+	$Movement.set_speed(PlayerStats.speed)
+	$Regeneration.set_rate(PlayerStats.regen_rate)
 	
 	PlayerStats.max_health_changed.connect($Health.set_max_health)
 	PlayerStats.speed_changed.connect($Movement.set_speed)
@@ -12,6 +14,8 @@ func _ready():
 	
 static func _on_enemy_killed(enemy: Enemy):
 	var killed_by = enemy.last_shot_by
+	if killed_by == null:
+		return
 	var enemy_weapon = enemy.get_node("Weapon").weapon_res
 	var enemy_weapon_index = Globals.weapon_resources.find(enemy_weapon)
 	killed_by.get_node("Inventory").possessed_weapons[enemy_weapon_index] = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwha3utwdgim3"]
+[gd_scene load_steps=4 format=3 uid="uid://dwha3utwdgim3"]
 
-[ext_resource type="Theme" uid="uid://bq5yldw4dqxp6" path="res://resources/themes/menu.tres" id="1_hspo6"]
+[ext_resource type="Theme" uid="uid://du34kuq7l3o2n" path="res://resources/themes/shop.tres" id="1_vut00"]
 [ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="2_lkf82"]
+[ext_resource type="Script" path="res://scenes/tutorial/shop_tutorial.gd" id="2_xr1qa"]
 
 [node name="ShopTutorial" type="Control"]
 layout_mode = 3
@@ -10,7 +11,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_hspo6")
+theme = ExtResource("1_vut00")
+script = ExtResource("2_xr1qa")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -21,11 +32,18 @@ offset_bottom = 575.0
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -156.0
+offset_right = 296.0
+offset_bottom = 153.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 35
 text = "For killing enemies you gain points. After each wave you can use the points to upgrade your stats or to FEED YOUR MOTHER.
 To win the game you have to feed your mother fully."
 horizontal_alignment = 1

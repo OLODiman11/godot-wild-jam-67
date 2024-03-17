@@ -4,7 +4,7 @@ extends PanelContainer
 @onready var speed: LabeledValue = $UpgradeList/Speed
 @onready var regen_rate: LabeledValue = $UpgradeList/RegenRate
 @onready var max_parasite_count: LabeledValue = $UpgradeList/MaxParasiteCount
-@onready var infect_button: Button = $UpgradeList/CustomButton
+@onready var infect_button: Button = $UpgradeList/UnlockInfect
 
 func _ready():
 	visibility_changed.connect(on_close_visible)

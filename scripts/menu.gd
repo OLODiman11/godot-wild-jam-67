@@ -1,7 +1,7 @@
 extends Control
 
-@onready var play_button = $VBoxContainer/PlayButton
-@onready var settings_button = $VBoxContainer/Settings
+@onready var play_button = $Panel/VBoxContainer/PlayButton
+@onready var settings_button = $Panel/VBoxContainer/Settings
 
 func _ready():
 	play_button.grab_focus()
