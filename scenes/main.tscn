@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=24 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -20,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://dvy4n0w1s6rnw" path="res://scenes/tutorial/character_switch_tutorial.tscn" id="16_abgp7"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="16_gkap5"]
 [ext_resource type="PackedScene" uid="uid://dwha3utwdgim3" path="res://scenes/tutorial/shop_tutorial.tscn" id="17_dtswv"]
-[ext_resource type="Script" path="res://scenes/tutorial/shop_tutorial.gd" id="18_qeu52"]
 [ext_resource type="PackedScene" uid="uid://dhqoqgthmb3t8" path="res://scenes/tutorial/switch_weapon_tutorial.tscn" id="19_4j8di"]
 [ext_resource type="Script" path="res://scenes/tutorial/switch_weapon_tutorial.gd" id="20_gm6ht"]
 
@@ -93,16 +92,16 @@ anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.95
 
-[node name="UpgradeMenu" parent="CanvasLayer/UI" index="0"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -85.5
-offset_right = 74.5
-offset_bottom = 85.5
+[node name="Label" parent="CanvasLayer/UI/UpgradeMenu/UpgradeList/FeedYourMother/ProgressBar" index="0"]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
 
 [node name="Pistol" parent="CanvasLayer/UI/VBoxContainer" index="0"]
 weapon_res = ExtResource("7_046r7")
@@ -127,7 +126,6 @@ offset_left = -46.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
-theme_override_font_sizes/font_size = 60
 text = "Start - R or (Y)"
 script = ExtResource("11_rum6c")
 
@@ -135,10 +133,10 @@ script = ExtResource("11_rum6c")
 process_mode = 0
 visible = false
 
+[node name="MovementTutorial" parent="CanvasLayer" instance=ExtResource("13_papre")]
+
 [node name="ShootTutorial" parent="CanvasLayer" instance=ExtResource("13_grnu8")]
 visible = false
-
-[node name="MovementTutorial" parent="CanvasLayer" instance=ExtResource("13_papre")]
 
 [node name="InfectTutorial" parent="CanvasLayer" instance=ExtResource("15_ojyf1")]
 visible = false
@@ -149,7 +147,6 @@ visible = false
 [node name="ShopTutorial" parent="CanvasLayer" instance=ExtResource("17_dtswv")]
 process_mode = 2
 visible = false
-script = ExtResource("18_qeu52")
 
 [node name="WeaponSwitchTutorial" parent="CanvasLayer" instance=ExtResource("19_4j8di")]
 visible = false
@@ -170,12 +167,12 @@ script = ExtResource("16_gkap5")
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="hide"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="hide"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/NextWave" method="hide"]
-[connection signal="pressed" from="CanvasLayer/UI/UpgradeMenu/UpgradeList/CustomButton" to="CanvasLayer/InfectTutorial" method="show"]
+[connection signal="pressed" from="CanvasLayer/UI/UpgradeMenu/UpgradeList/UnlockInfect" to="CanvasLayer/InfectTutorial" method="show"]
 [connection signal="pressed" from="CanvasLayer/UI/UpgradeButton" to="GameManager" method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
-[connection signal="hidden" from="CanvasLayer/ShootTutorial" to="GameManager" method="unpause_game"]
 [connection signal="hidden" from="CanvasLayer/MovementTutorial" to="CanvasLayer/ShootTutorial" method="show"]
 [connection signal="ready" from="CanvasLayer/MovementTutorial" to="GameManager" method="pause_game"]
+[connection signal="hidden" from="CanvasLayer/ShootTutorial" to="GameManager" method="unpause_game"]
 [connection signal="hidden" from="CanvasLayer/InfectTutorial" to="CanvasLayer/CharacterSwitchTutorial" method="show"]
 [connection signal="hidden" from="CanvasLayer/WeaponSwitchTutorial" to="GameManager" method="unpause_game"]
 

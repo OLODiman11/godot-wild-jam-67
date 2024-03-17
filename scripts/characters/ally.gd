@@ -5,6 +5,8 @@ extends CharacterBody2D
 func _ready():
 	$"Health".max_health = PlayerStats.max_health
 	$"Health".health = PlayerStats.max_health
+	$Movement.set_speed(PlayerStats.speed)
+	$Regeneration.set_rate(PlayerStats.regen_rate)
 	
 	PlayerStats.max_health_changed.connect($Health.set_max_health)
 	PlayerStats.speed_changed.connect($Movement.set_speed)
