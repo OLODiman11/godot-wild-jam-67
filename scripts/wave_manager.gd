@@ -12,6 +12,7 @@ const MAP_BOUNDS := 1700
 @export var preload_enemy = preload("res://scenes/characters/enemy.tscn")
 
 var round_num = 0
+var modifier = 1
 
 var _spawn_queue: Array[EnemyRes]
 
@@ -21,6 +22,9 @@ func _ready():
 	timer.timeout.connect(spawn_enemy)
 
 func start_next_wave():
+	if round_num >= Globals.waves.size():
+		round_num %= Globals.waves.size()
+		modifier *= 2
 	var wave: WaveCongif = Globals.waves[round_num]
 	_populate_spawn_queue(wave)
 	round_num += 1
@@ -74,7 +78,7 @@ func _populate_spawn_queue(wave: WaveCongif):
 	_spawn_queue.clear()
 	for i in range(wave.enemies.size()):
 		var enemy_res = wave.enemies[i]
-		var amount = wave.amounts[i]
+		var amount = modifier * wave.amounts[i]
 		var batch: Array[EnemyRes] = []
 		batch.resize(amount)
 		batch.fill(enemy_res)
