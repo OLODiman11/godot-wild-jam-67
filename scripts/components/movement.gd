@@ -15,10 +15,6 @@ func move(direction: Vector2):
 	_parent.velocity = direction * speed
 	_parent.move_and_slide()
 	
-func run(direction: Vector2):
-	direction = direction.normalized()
-	_parent.velocity = direction * run_speed
-	_parent.move_and_slide()
 	
 func set_speed(value: float):
 	speed = value

@@ -117,7 +117,7 @@ offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
-text = "Start - R"
+text = "Start - R or (Y)"
 script = ExtResource("11_rum6c")
 
 [node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("7_qup4g")]

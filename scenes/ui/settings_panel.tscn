@@ -54,7 +54,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.001
+step = 0.05
 value = 1.0
 
 [node name="SfxLabel" type="Label" parent="VBoxContainer/SoundSettings"]
@@ -68,7 +68,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.001
+step = 0.05
 value = 1.0
 
 [node name="MusicLabel" type="Label" parent="VBoxContainer/SoundSettings"]
@@ -82,5 +82,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.001
+step = 0.05
 value = 1.0
