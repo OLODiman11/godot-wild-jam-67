@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://ye7qar40usv5"]
+[gd_scene load_steps=4 format=3 uid="uid://ye7qar40usv5"]
+
+[ext_resource type="Texture2D" uid="uid://bdq3bynye27wb" path="res://assets/floor_tile.png" id="1_o4ecx"]
+[ext_resource type="Texture2D" uid="uid://cqpj06xkig85v" path="res://assets/weapon_preview/rifle.png" id="2_c5wc5"]
+[ext_resource type="Texture2D" uid="uid://c004sxeudaoyl" path="res://assets/weapon_preview/grenade_launcher.png" id="3_gt6h2"]
 
 [node name="MainMenuBase" type="Control"]
 layout_mode = 3
@@ -8,11 +12,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.313726, 0.313726, 0.313726, 1)
+texture = ExtResource("1_o4ecx")
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+offset_left = 939.0
+offset_top = 81.0
+offset_right = 1079.0
+offset_bottom = 221.0
+texture = ExtResource("2_c5wc5")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.392157, 0.392157, 0.392157, 1)
+offset_left = 102.0
+offset_top = 412.0
+offset_right = 242.0
+offset_bottom = 552.0
+texture = ExtResource("3_gt6h2")
+flip_h = true
