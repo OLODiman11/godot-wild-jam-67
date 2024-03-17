@@ -11,6 +11,14 @@ const weapon_resources: Array[WeaponRes] = [
 	preload("res://resources/weapons/sniper_rifle.tres")
 ]
 
+const waves = [
+	preload("res://resources/waves/wave1.tres"),
+	preload("res://resources/waves/wave2.tres"),
+	preload("res://resources/waves/wave3.tres"),
+	preload("res://resources/waves/wave4.tres"),
+	preload("res://resources/waves/wave5.tres")
+]
+
 const POINTS_FOR_WIN: int = 100
 
 var mother_points: int = 0:
