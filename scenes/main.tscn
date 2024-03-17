@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=25 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -14,6 +14,15 @@
 [ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
 [ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="11_rum6c"]
 [ext_resource type="PackedScene" uid="uid://cua4wpwtvutjr" path="res://scenes/mother.tscn" id="12_chdqk"]
+[ext_resource type="PackedScene" uid="uid://k3n5vcf7s4wd" path="res://scenes/tutorial/shoot_tutorial.tscn" id="13_grnu8"]
+[ext_resource type="PackedScene" uid="uid://v31x3a606vli" path="res://scenes/tutorial/movement_tutorial.tscn" id="13_papre"]
+[ext_resource type="PackedScene" uid="uid://dc15llolqbdpg" path="res://scenes/tutorial/infect_tutorial.tscn" id="15_ojyf1"]
+[ext_resource type="PackedScene" uid="uid://dvy4n0w1s6rnw" path="res://scenes/tutorial/character_switch_tutorial.tscn" id="16_abgp7"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="16_gkap5"]
+[ext_resource type="PackedScene" uid="uid://dwha3utwdgim3" path="res://scenes/tutorial/shop_tutorial.tscn" id="17_dtswv"]
+[ext_resource type="Script" path="res://scenes/tutorial/shop_tutorial.gd" id="18_qeu52"]
+[ext_resource type="PackedScene" uid="uid://dhqoqgthmb3t8" path="res://scenes/tutorial/switch_weapon_tutorial.tscn" id="19_4j8di"]
+[ext_resource type="Script" path="res://scenes/tutorial/switch_weapon_tutorial.gd" id="20_gm6ht"]
 
 [sub_resource type="Curve2D" id="Curve2D_774ut"]
 _data = {
@@ -24,6 +33,7 @@ point_count = 5
 [node name="Main" type="Node2D"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("10_vnn3q")
 autoplay = true
 bus = &"Music"
@@ -74,6 +84,7 @@ enemies_container = NodePath("../EnemiesContainer")
 allies_container = NodePath("../AlliesContainer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource("5_jjwy5")]
 anchors_preset = -1
@@ -91,6 +102,9 @@ weapon_res = ExtResource("8_xmnlb")
 [node name="Sniper Rifle" parent="CanvasLayer/UI/VBoxContainer" index="2"]
 weapon_res = ExtResource("9_1hoaq")
 
+[node name="Inventory" parent="CanvasLayer/UI" index="5"]
+visible = false
+
 [node name="NextWave" type="Button" parent="CanvasLayer/UI"]
 layout_mode = 1
 anchors_preset = 3
@@ -107,19 +121,52 @@ text = "Start - R"
 script = ExtResource("11_rum6c")
 
 [node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("7_qup4g")]
+process_mode = 0
 visible = false
+
+[node name="ShootTutorial" parent="CanvasLayer" instance=ExtResource("13_grnu8")]
+visible = false
+
+[node name="MovementTutorial" parent="CanvasLayer" instance=ExtResource("13_papre")]
+
+[node name="InfectTutorial" parent="CanvasLayer" instance=ExtResource("15_ojyf1")]
+visible = false
+
+[node name="CharacterSwitchTutorial" parent="CanvasLayer" instance=ExtResource("16_abgp7")]
+visible = false
+
+[node name="ShopTutorial" parent="CanvasLayer" instance=ExtResource("17_dtswv")]
+process_mode = 2
+visible = false
+script = ExtResource("18_qeu52")
+
+[node name="WeaponSwitchTutorial" parent="CanvasLayer" instance=ExtResource("19_4j8di")]
+visible = false
+script = ExtResource("20_gm6ht")
 
 [node name="PlayerController" parent="." instance=ExtResource("11_j50iq")]
 
 [node name="Mother" parent="." instance=ExtResource("12_chdqk")]
 
+[node name="GameManager" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("16_gkap5")
+
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="show"]
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="show"]
 [connection signal="wave_ended" from="WaveManager" to="CanvasLayer/UI/NextWave" method="show"]
+[connection signal="wave_ended" from="WaveManager" to="CanvasLayer/ShopTutorial" method="show_once"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeMenu" method="hide"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/UpgradeButton" method="hide"]
 [connection signal="wave_started" from="WaveManager" to="CanvasLayer/UI/NextWave" method="hide"]
+[connection signal="pressed" from="CanvasLayer/UI/UpgradeMenu/UpgradeList/CustomButton" to="CanvasLayer/InfectTutorial" method="show"]
+[connection signal="pressed" from="CanvasLayer/UI/UpgradeButton" to="GameManager" method="pause_game"]
 [connection signal="pressed" from="CanvasLayer/UI/NextWave" to="WaveManager" method="start_next_wave"]
+[connection signal="hidden" from="CanvasLayer/ShootTutorial" to="GameManager" method="unpause_game"]
+[connection signal="hidden" from="CanvasLayer/MovementTutorial" to="CanvasLayer/ShootTutorial" method="show"]
+[connection signal="ready" from="CanvasLayer/MovementTutorial" to="GameManager" method="pause_game"]
+[connection signal="hidden" from="CanvasLayer/InfectTutorial" to="CanvasLayer/CharacterSwitchTutorial" method="show"]
+[connection signal="hidden" from="CanvasLayer/WeaponSwitchTutorial" to="GameManager" method="unpause_game"]
 
 [editable path="AlliesContainer/Ally"]
 [editable path="CanvasLayer/UI"]

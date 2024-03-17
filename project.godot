@@ -22,6 +22,11 @@ PlayerStats="*res://scripts/globals/player_stats.gd"
 UiSfxPlayer="*res://scripts/globals/ui_sfx_player.gd"
 Scenes="*res://scripts/globals/scenes.gd"
 
+[display]
+
+window/size/viewport_width=1150
+window/size/viewport_height=650
+
 [input]
 
 up={

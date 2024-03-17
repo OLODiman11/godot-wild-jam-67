@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cumeeu7kg3eci"]
 
 [ext_resource type="Script" path="res://scripts/ui/upgrade_menu.gd" id="1_4yrbt"]
-[ext_resource type="PackedScene" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
+[ext_resource type="PackedScene" uid="uid://bahjc717lijkx" path="res://scenes/ui/labeled_value.tscn" id="2_h053b"]
 [ext_resource type="Theme" uid="uid://qvyk1jsak2o4" path="res://resources/themes/ui.tres" id="3_8fp3g"]
 [ext_resource type="Script" path="res://scripts/ui/feed_your_mother.gd" id="3_32bta"]
 [ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="5_cr0e4"]
@@ -12,6 +12,7 @@
 bg_color = Color(0.231373, 0.231373, 0.231373, 1)
 
 [node name="UpgradeMenu" type="PanelContainer"]
+process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -68,10 +69,11 @@ text = "1
 text = "+(3)"
 
 [node name="MaxParasiteCount" parent="UpgradeList" instance=ExtResource("2_h053b")]
+visible = false
 layout_mode = 2
 
 [node name="Title" parent="UpgradeList/MaxParasiteCount" index="0"]
-text = "Max Parasites"
+text = "Max Infected"
 
 [node name="Value" parent="UpgradeList/MaxParasiteCount/Upgrade" index="0"]
 text = "1
@@ -79,6 +81,11 @@ text = "1
 
 [node name="IncrementButton" parent="UpgradeList/MaxParasiteCount/Upgrade" index="1"]
 text = "+(5)"
+
+[node name="CustomButton" type="Button" parent="UpgradeList"]
+layout_mode = 2
+text = "Infect (5 points)"
+script = ExtResource("5_cr0e4")
 
 [node name="FeedYourMother" type="HBoxContainer" parent="UpgradeList"]
 layout_mode = 2
