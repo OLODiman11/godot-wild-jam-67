@@ -1,6 +1,6 @@
 class_name LabeledValue
 
-extends HSplitContainer
+extends HBoxContainer
 
 @onready var title = $Title
 @onready var value = $Upgrade/Value

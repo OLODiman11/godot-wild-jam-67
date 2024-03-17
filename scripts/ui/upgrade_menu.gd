@@ -7,6 +7,7 @@ extends PanelContainer
 @onready var infect_button: Button = $UpgradeList/CustomButton
 
 func _ready():
+	visibility_changed.connect(on_close_visible)
 	health.increment_button.pressed.connect(PlayerStats.add_max_health.bind(50))
 	speed.increment_button.pressed.connect(PlayerStats.add_speed.bind(100))
 	regen_rate.increment_button.pressed.connect(PlayerStats.add_regen_rate.bind(2))
@@ -42,6 +43,17 @@ func check_points(points: int):
 		
 func set_label_text(value: float, labeled_value: LabeledValue):
 	labeled_value.value.set_text(str(value))
+	
+func on_close_visible():
+	if visible:
+		$UpgradeList/CloseButton.grab_focus()
+
+func _input(event):
+	if event.is_action_pressed("open_shop"):
+		if $".".visible:
+			$".".visible = false
+		else:
+			$".".visible = true
 	
 func toggle_pause():
 	if visible:
