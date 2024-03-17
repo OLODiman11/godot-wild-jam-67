@@ -33,7 +33,7 @@ func _physics_process(delta):
 		if collision.get_collider().is_in_group("Enemies"):
 			var enemy: Enemy = collision.get_collider()
 			enemy.last_shot_by = shooter
-		var health_node: Health = collision.get_collider().get_node("Health")
+		var health_node: Health = collision.get_collider().get_node_or_null("Health")
 		if health_node:
 			_blast()
 			
@@ -48,7 +48,7 @@ func _blast():
 	for body in area.get_overlapping_bodies():
 		if body.is_in_group("Enemies"):
 			body.last_shot_by = shooter
-		var health = body.get_node("Health")
+		var health = body.get_node_or_null("Health")
 		if health:
 			health.take_damage(damage)
 	$Sprite2D2.visible = false

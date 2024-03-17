@@ -29,17 +29,17 @@ func _ready():
 func start_next_wave():
 	var wave: WaveCongif = _waves[round_num]
 	_populate_spawn_queue(wave)
-  round_num += 1
+	round_num += 1
 	timer.start()
 	wave_started.emit()
 
 func _input(event):
-	if _enemies_to_spawn == 0:
+	if _no_more_enemies_to_spawn():
 		if event.is_action_pressed("start_wave"):
 			start_next_wave()
 	
 func spawn_enemy():
-	if _spawn_queue.size() == 0:
+	if _no_more_enemies_to_spawn():
 		timer.stop()
 		return
 	
@@ -61,7 +61,7 @@ func spawn_enemy():
 	enemies_container.add_child(enemy)
 		
 func try_end_wave():
-	if _spawn_queue.size() > 0:
+	if !_no_more_enemies_to_spawn():
 		return
 		
 	for enemy in enemies_container.get_children():
@@ -86,3 +86,6 @@ func _populate_spawn_queue(wave: WaveCongif):
 		batch.fill(enemy_res)
 		_spawn_queue.append_array(batch)
 	_spawn_queue.shuffle()
+	
+func _no_more_enemies_to_spawn() -> bool:
+	return _spawn_queue.size() <= 0
