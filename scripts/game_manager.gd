@@ -14,3 +14,9 @@ func pause_game():
 func unpause_game():
 	if get_tree() != null:
 		get_tree().paused = false
+		
+func disable_shoot():
+	Globals.disabled_shoot = true
+	
+func enable_shoot():
+	Globals.disabled_shoot = false
