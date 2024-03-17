@@ -34,5 +34,5 @@ func add_max_health(amount: float):
 func add_regen_rate(amount: float):
 	regen_rate += amount
 	
-func add_max_parasite_count(amount: float):
+func add_max_parasite_count(amount: int):
 	max_parasite_count += amount

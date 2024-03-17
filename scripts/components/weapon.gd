@@ -54,7 +54,7 @@ func shoot():
 			if result.collider.is_in_group("Enemies"):
 				var enemy: Enemy = result.collider
 				enemy.last_shot_by = get_parent()
-			var health_node: Health = result.collider.get_node("Health")
+			var health_node: Health = result.collider.get_node_or_null("Health")
 			if health_node != null:
 				health_node.take_damage(weapon_res.damage)
 	else:

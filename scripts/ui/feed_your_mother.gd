@@ -33,6 +33,6 @@ func _update_progress_bar():
 	label.text = LABEL_TEXT % [progress_bar.value, progress_bar.max_value]
 	
 func _set_disabled_according_to_points(points: int):
-	plus_one.disabled = Globals.upgrade_points < 1
-	plus_five.disabled = Globals.upgrade_points < 5
-	plus_all.disabled = Globals.upgrade_points <= 0
+	plus_one.disabled = points < 1
+	plus_five.disabled = points < 5
+	plus_all.disabled = points <= 0

@@ -16,10 +16,10 @@ func _ready():
 	regen_rate.increment_button.pressed.connect(Globals.spend_points.bind(2))
 	max_parasite_count.increment_button.pressed.connect(Globals.spend_points.bind(5))
 	
-	PlayerStats.max_health_changed.connect(health.value.set_text)
-	PlayerStats.speed_changed.connect(speed.value.set_text)
-	PlayerStats.regen_rate_changed.connect(regen_rate.value.set_text)
-	PlayerStats.max_parasite_count_changed.connect(max_parasite_count.value.set_text)
+	PlayerStats.max_health_changed.connect(set_label_text.bind(health))
+	PlayerStats.speed_changed.connect(set_label_text.bind(speed))
+	PlayerStats.regen_rate_changed.connect(set_label_text.bind(regen_rate))
+	PlayerStats.max_parasite_count_changed.connect(set_label_text.bind(max_parasite_count))
 			
 	Globals.points_changed.connect(check_points)
 
@@ -28,3 +28,6 @@ func check_points(points: int):
 		speed.increment_button.disabled = points < 1
 		max_parasite_count.increment_button.disabled = points < 5
 		regen_rate.increment_button.disabled = points < 3
+		
+func set_label_text(value: float, labeled_value: LabeledValue):
+	labeled_value.value.set_text(str(value))
