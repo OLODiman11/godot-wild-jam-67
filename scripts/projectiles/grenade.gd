@@ -20,6 +20,7 @@ func _physics_process(delta):
 	
 	if (orig_glob_pos - global_position).length_squared() > fire_range**2:
 		_blast()
+		return
 	
 	if collision != null:
 		if collision.get_collider().is_in_group('Map'):
