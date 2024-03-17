@@ -92,7 +92,6 @@ text = "1
 
 [node name="IncrementButton" parent="UpgradeList/MaxParasiteCount/Upgrade" index="1"]
 text = "+1 (5pt)    "
-text = "+(5)"
 
 [node name="CustomButton" type="Button" parent="UpgradeList"]
 layout_mode = 2
