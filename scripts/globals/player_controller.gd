@@ -36,7 +36,6 @@ var _parasite: Resource = preload("res://scenes/projectiles/parasite.tscn")
 var parasites_released: int = 0:
 	set(value):
 		parasites_released = value
-		print(parasites_released)
 
 @onready var allies_container = get_tree().root.get_node("Main/AlliesContainer")
 @onready var enemies_container = get_tree().root.get_node("Main/EnemiesContainer")
@@ -98,7 +97,6 @@ func switch_character(_x):
 			get_tree().change_scene_to_file("res://scenes/menu.tscn")
 		for i in range(size):
 			var is_current_caharacter = allies_container.get_child(i) == character
-			print(is_current_caharacter)
 			if is_current_caharacter:
 				var new_character = allies_container.get_child((i + 1) % size)
 				var camera = character.get_node("MainCamera")
@@ -122,7 +120,6 @@ func _physics_process(_delta: float):
 			else:
 				character.get_node("Sprite2D").flip_h = false
 			
-
 		if Input.is_action_pressed("shoot"):
 			_weapon.shoot()
 		
