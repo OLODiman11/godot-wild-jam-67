@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=15 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cafrwwps605aw" path="res://scenes/bootstrap.tscn" id="4_y6kmi"]
 [ext_resource type="PackedScene" uid="uid://b5yn5nt52v0up" path="res://scenes/ui/ui.tscn" id="5_jjwy5"]
 [ext_resource type="Resource" uid="uid://7si3g17yr2yu" path="res://resources/weapons/pistol.tres" id="7_046r7"]
+[ext_resource type="PackedScene" uid="uid://b4upt4cbfjmuv" path="res://scenes/ui/in_game_settings.tscn" id="7_qup4g"]
 [ext_resource type="Resource" uid="uid://dldbr3lwrurw1" path="res://resources/weapons/rifle.tres" id="8_xmnlb"]
 [ext_resource type="Resource" uid="uid://cvhjanxurkwrb" path="res://resources/weapons/sniper_rifle.tres" id="9_1hoaq"]
 [ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
@@ -79,8 +80,6 @@ anchor_left = 0.05
 anchor_top = 0.05
 anchor_right = 0.95
 anchor_bottom = 0.95
-offset_left = -18.432
-offset_top = -18.144
 
 [node name="Pistol" parent="CanvasLayer/UI/VBoxContainer" index="0"]
 weapon_res = ExtResource("7_046r7")
@@ -104,6 +103,9 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
 text = "Start"
+
+[node name="InGameMenu" parent="CanvasLayer" instance=ExtResource("7_qup4g")]
+visible = false
 
 [node name="PlayerController" parent="." instance=ExtResource("11_j50iq")]
 
