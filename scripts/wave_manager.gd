@@ -21,6 +21,14 @@ func _ready():
 	timer.timeout.connect(spawn_enemy)
 
 func start_next_wave():
+	start_wave()
+
+func _input(event):
+	if _enemies_to_spawn == 0:
+		if event.is_action_pressed("start_wave"):
+			start_wave()
+	
+func start_wave():
 	_enemies_to_spawn = wave_list[round_num]
 	round_num += 1
 	timer.start()
