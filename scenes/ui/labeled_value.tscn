@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bahjc717lijkx"]
+[gd_scene load_steps=3 format=3 uid="uid://bahjc717lijkx"]
 
 [ext_resource type="Script" path="res://scripts/ui/labeled_value.gd" id="1_ft8ru"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="2_6bheb"]
 
 [node name="LabeledValue" type="HSplitContainer"]
 anchors_preset = 15
@@ -33,3 +34,4 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 disabled = true
 text = "+"
+script = ExtResource("2_6bheb")

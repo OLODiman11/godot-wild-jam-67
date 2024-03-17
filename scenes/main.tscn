@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bjsvj5goi8qnc"]
+[gd_scene load_steps=15 format=3 uid="uid://bjsvj5goi8qnc"]
 
 [ext_resource type="PackedScene" uid="uid://bgngaw7447d8v" path="res://scenes/map.tscn" id="1_qi0m0"]
 [ext_resource type="PackedScene" uid="uid://1fft4kr0svye" path="res://scenes/wave_manager.tscn" id="3_qillp"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cgq511otc5wat" path="res://scenes/ally_factory.tscn" id="9_naicb"]
 [ext_resource type="AudioStream" uid="uid://bc3v8pasdpn4b" path="res://assets/sounds/background.mp3" id="10_vnn3q"]
 [ext_resource type="PackedScene" uid="uid://dhq7ppwd27y2v" path="res://scenes/player_controller.tscn" id="11_j50iq"]
+[ext_resource type="Script" path="res://scripts/ui/custom_button.gd" id="11_rum6c"]
 [ext_resource type="PackedScene" uid="uid://cua4wpwtvutjr" path="res://scenes/mother.tscn" id="12_chdqk"]
 
 [sub_resource type="Curve2D" id="Curve2D_774ut"]
@@ -104,6 +105,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 60
 text = "Start"
+script = ExtResource("11_rum6c")
 
 [node name="PlayerController" parent="." instance=ExtResource("11_j50iq")]
 
